@@ -10,6 +10,8 @@ import {YangUtils} from "../helpers/yang-utils";
 export class YangGenerator extends Generator
 {
     protected props: any;
+    private _root: string;
+    private _projectRoot: string;
 
     constructor(args: any, opts: any) {
         super(args, opts);
@@ -58,7 +60,7 @@ export class YangGenerator extends Generator
 
 
     _initializing() {
-        this.props['root'] = this.options['root'] || '.';
+        this.root = this.options['root'] || '.';
         this.props['dir'] = this.options['dir'] || '';
         this.props['name'] = this.options['name'];
     }
@@ -103,7 +105,7 @@ export class YangGenerator extends Generator
         await this._commitFiles();
         if (!props) props = {};
 
-        if (!props.root)
+        if (!props['root'])
             props['root'] = this.root;
 
         props['force'] = this.options['force'];
@@ -149,23 +151,34 @@ export class YangGenerator extends Generator
 
 
     get projectRoot(): string {
-        let root = this.root;
-        root = (root.length === 0 || root.endsWith('/') ? root : root + '/');
+        if (!this._projectRoot) {
+            let root = this.root;
+            root = (root.length === 0 || root.endsWith('/') ? root : root + '/');
 
-        let ndx = 0;
+            let ndx = 0;
+            while (!this.fs.exists(this.destinationPath(`${root}package.json`)) && (++ndx) < 20)
+                root = '../' + root;
 
-        while (!this.fs.exists(this.destinationPath(`${root}package.json`)) && (++ndx) < 20)
-            root = '../' + root;
+            if (ndx === 20)
+                root = '';
 
-        if (ndx === 20)
-            root = '';
+            this._projectRoot = root;
+        }
 
-        return root;
+        return this._projectRoot;
     }
 
 
     get root(): string {
-        return this.props['root'];
+        if (!this._root)
+            this._root = './';
+
+        return this._root;
+    }
+
+    set root(root: string) {
+        this._root = root;
+        this._projectRoot = null;
     }
 
     get directory(): string {

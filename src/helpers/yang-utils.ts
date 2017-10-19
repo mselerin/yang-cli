@@ -7,6 +7,7 @@ import {StringUtils} from "./string-utils";
 
 export class YangUtils
 {
+    static MAIN_FILE = "app/main.ts";
     static CORE_MODULE_FILE = "app/core/core.module.ts";
     static SERVICE_MODULE_FILE = "app/core/core.services.ts";
     static SHARED_MODULE_FILE = "app/shared/shared.module.ts";

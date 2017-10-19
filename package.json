@@ -44,6 +44,7 @@
   "dependencies": {
     "chalk": "^2.2.0",
     "code-block-writer": "^4.2.1",
+    "deep-extend": "^0.5.0",
     "gulp-rename": "^1.2.2",
     "lodash": "^4.17.4",
     "requireg": "^0.1.7",

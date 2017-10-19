@@ -11,7 +11,7 @@ Install Yang using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` or us
 Generate your new project inside any folder:
 
 ```bash
-yang my-awesome-project
+yang new my-awesome-project
 ```
 
 This will create a new folder `my-awesome-project` containing a fresh Angular application.
@@ -27,8 +27,8 @@ That's all !
 
 
 ## Commands
-### App
-`yang app my-awesome-project`
+### New
+`yang new my-awesome-project`
 Scaffold a brand new application.
 ***
 

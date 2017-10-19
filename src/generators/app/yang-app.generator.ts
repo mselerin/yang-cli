@@ -80,7 +80,9 @@ export class YangAppGenerator extends YangGenerator
     _configuring() {
         super._configuring();
         this.props['dir'] = this.options['dir'] || `./${this.props['name']}`;
-        this.props['root'] = this.directory;
+
+        // Surcharge de la racine pour ce répertoire
+        this.root = this.directory;
     }
 
 
