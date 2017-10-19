@@ -16,7 +16,7 @@
   "exclude": [
     "node_modules",
     "!node_modules/@types",
-    "test/**/*-spec.ts",
+    "test/**/*.spec.ts",
     "src/generators/*/templates/**/*"
   ]
 }
