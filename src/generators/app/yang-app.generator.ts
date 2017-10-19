@@ -99,8 +99,8 @@ export class YangAppGenerator extends YangGenerator
     }
 
 
-    _install() {
-        super._install();
+    async _install() {
+        await super._install();
 
         if (this.options['install'])
             this.spawnCommand("yarn", [], { cwd: this.props['dir']});

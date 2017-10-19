@@ -1,5 +1,5 @@
 import * as Yargs from 'yargs';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import {YangUtils} from "./helpers/yang-utils";
 import {YangAppGenerator} from "./generators/app/yang-app.generator";
 import {YangFeatureGenerator} from "./generators/feature/yang-feature.generator";

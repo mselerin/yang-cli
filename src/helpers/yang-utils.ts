@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import * as chalk from 'chalk';
 import * as Environment from 'yeoman-environment';
+import chalk from 'chalk';
 import {YangGenerator} from "../generators/yang.generator";
 
 export class YangUtils

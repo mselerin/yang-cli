@@ -1,8 +1,8 @@
 import * as Generator from 'yeoman-generator';
 import * as rename from "gulp-rename";
 import * as path from "path";
-import * as chalk from "chalk";
 import * as stackTrace from "stack-trace";
+import chalk from "chalk";
 import TsSimpleAst, {SourceFile} from "ts-simple-ast";
 import {StringUtils} from "../helpers/string-utils";
 import {YangUtils} from "../helpers/yang-utils";
