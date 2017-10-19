@@ -12,7 +12,8 @@
     "build": "npm run clean && tsc --pretty",
     "test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
     "watch": "npm run build -- --watch",
-    "watch:test": "npm run test -- --watch"
+    "watch:test": "npm run test -- --watch",
+    "preversion": "npm run build"
   },
   "author": {
     "name": "Michel Selerin",
