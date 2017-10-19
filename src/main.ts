@@ -16,32 +16,35 @@ export class Main
     {
         console.log(`< ${chalk.blue('YANG')} ${chalk.yellow(Main.version)} >`);
 
+        const genOptionsGroup = 'Generator options:';
+
         Yargs
-            .command(['new [name]'], 'Scaffold a new application', (argv) => argv,
+            .command(['new [name]'], 'Scaffold a new application',
+                (yargs) => yargs.option('install', { type: 'boolean', describe: 'Install dependencies' }),
                 (args) => YangUtils.runGenerator(YangAppGenerator, args)
             )
 
-            .command('component [name]', 'Create a new component', (argv) => argv,
+            .command('component <name>', 'Create a new component', (yargs) => yargs,
                 (args) => YangUtils.runGenerator(YangComponentGenerator, args)
             )
 
-            .command('directive [name]', 'Create a new directive', (argv) => argv,
+            .command('directive <name>', 'Create a new directive', (yargs) => yargs,
                 (args) => YangUtils.runGenerator(YangDirectiveGenerator, args)
             )
 
-            .command('feature [name]', 'Create a new feature', (argv) => argv,
+            .command('feature <name>', 'Create a new feature', (yargs) => yargs,
                 (args) => YangUtils.runGenerator(YangFeatureGenerator, args)
             )
 
-            .command('pipe [name]', 'Create a new pipe', (argv) => argv,
+            .command('pipe <name>', 'Create a new pipe', (yargs) => yargs,
                 (args) => YangUtils.runGenerator(YangPipeGenerator, args)
             )
 
-            .command('service [name]', 'Create a new service', (argv) => argv,
+            .command('service <name>', 'Create a new service', (yargs) => yargs,
                 (args) => YangUtils.runGenerator(YangServiceGenerator, args)
             )
 
-            .command('plugin <name> [cmd]', 'Run a Yang Plugin', (argv) => argv,
+            .command('plugin <name> [cmd]', 'Run a Yang plugin', (yargs) => yargs,
                 (args) => {
                     const pluginName = args['name'];
                     const pluginCmd = args['cmd'];
@@ -62,6 +65,31 @@ export class Main
                 }
             )
 
+            .option('debug', {
+                group: genOptionsGroup,
+                type: 'boolean',
+                describe: "Print debug informations"
+            })
+
+            .option('force', {
+                group: genOptionsGroup,
+                type: 'boolean',
+                describe: "Overwrite files"
+            })
+
+            .option('prompt', {
+                group: genOptionsGroup,
+                type: 'boolean',
+                describe: "Don't use the default, ask everything"
+            })
+
+            .option('dir', {
+                group: genOptionsGroup,
+                type: 'string',
+                describe: "The directory where the code will be"
+            })
+
+            .demandCommand(1, 'You need one command before moving on')
             .help()
             .argv;
     }

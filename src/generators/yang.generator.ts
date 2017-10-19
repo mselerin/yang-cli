@@ -31,24 +31,9 @@ export class YangGenerator extends Generator
         this.argument('name', { type: String, required: false });
 
         this.option('debug', { type: Boolean, default: false });
-        this.option('name', { type: String });
-
-        this.option('root', {
-            description: "The root directory (where package.json is)",
-            type: String,
-            default: ''
-        });
-
-        this.option('dir', {
-            description: "The directory where the code will be",
-            type: String
-        });
-
-        this.option('prompt', {
-            description: "Don't use the default, ask everything",
-            type: Boolean,
-            default: false
-        });
+        this.option('root', { type: String, default: '' });
+        this.option('dir', { type: String });
+        this.option('prompt', { type: Boolean, default: false });
 
         // TODO dry run
         // this.option('dry', {

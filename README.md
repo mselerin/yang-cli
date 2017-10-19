@@ -69,6 +69,17 @@ Generates a stub service under app/services.
 ***
 
 
+### Plugin
+`yang plugin fantastic`
+Call an external plugin installed globally.
+***
+
+
+## Global options
+```
+--force : Always overwrite files (never ask)
+--help : Show help (no way !)
+```
 
 ## License
 MIT © [Michel Selerin]()
