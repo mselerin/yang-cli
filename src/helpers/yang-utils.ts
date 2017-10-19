@@ -14,9 +14,11 @@ export class YangUtils
     static FEATURES_MODULE_FILE = "app/features/features.module.ts";
     static ROUTING_MODULE_FILE = "app/app-routing.module.ts";
 
-    static runGenerator(Generator: typeof YangGenerator, props: any, context?: YangGenerator): Promise<void>
+    static runGenerator(Generator: typeof YangGenerator, props?: any): Promise<void>
     {
         console.log(chalk.grey(`With ${Generator.name}`));
+
+        if (!props) props = {};
 
         const kebabName = _.kebabCase(Generator.name);
         const env = Environment.createEnv();

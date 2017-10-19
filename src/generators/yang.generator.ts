@@ -94,7 +94,7 @@ export class YangGenerator extends Generator
             props['root'] = this.root;
 
         props['force'] = this.options['force'];
-        await YangUtils.runGenerator(generator, props, this);
+        await YangUtils.runGenerator(generator, props);
     }
 
 
