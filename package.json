@@ -1,6 +1,6 @@
 {
   "name": "yang-cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Yet Another Angular Generator - powered by Yeoman & Webpack",
   "repository": {
     "type": "git",
