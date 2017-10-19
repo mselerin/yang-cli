@@ -7,6 +7,7 @@ import {YangComponentGenerator} from "./generators/component/yang-component.gene
 import {YangDirectiveGenerator} from "./generators/directive/yang-directive.generator";
 import {YangPipeGenerator} from "./generators/pipe/yang-pipe.generator";
 import {YangServiceGenerator} from "./generators/service/yang-service.generator";
+import {StringUtils} from "./helpers/string-utils";
 
 export class Main
 {
@@ -39,6 +40,27 @@ export class Main
 
             .command('service [name]', 'Create a new service', (argv) => argv,
                 (args) => YangUtils.runGenerator(YangServiceGenerator, args)
+            )
+
+            .command('plugin <name> [cmd]', 'Run a Yang Plugin', (argv) => argv,
+                (args) => {
+                    const pluginName = args['name'];
+                    const pluginCmd = args['cmd'];
+
+                    const plugin = YangUtils.loadPlugin(pluginName);
+                    if (!plugin) {
+                        console.log(chalk.bgRed(`Plugin ${pluginName} not found`));
+                        return;
+                    }
+
+                    const cmd = YangUtils.getPluginCommand(plugin, pluginCmd);
+                    if (!cmd) {
+                        console.log(chalk.bgRed(`Plugin command ${pluginCmd} not found`));
+                        return;
+                    }
+
+                    return YangUtils.runGenerator(cmd, args);
+                }
             )
 
             .help()

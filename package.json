@@ -18,8 +18,6 @@
     "name": "Michel Selerin",
     "email": "michel.selerin@outlook.com"
   },
-  "main": "dist/bin/yang.js",
-  "typings": "dist/bin/yang.d.ts",
   "bin": {
     "yang": "bin/yang"
   },
@@ -34,7 +32,6 @@
     "@types/sinon": "^2.3.6",
     "@types/yargs": "^8.0.2",
     "@types/yeoman-generator": "^1.0.4",
-    "@types/yosay": "^0.0.29",
     "chai": "^4.0.1",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
@@ -48,6 +45,7 @@
     "code-block-writer": "^4.2.1",
     "gulp-rename": "^1.2.2",
     "lodash": "^4.17.4",
+    "requireg": "^0.1.7",
     "stack-trace": "^0.0.10",
     "ts-simple-ast": "^0.75.0",
     "yargs": "^9.0.1",

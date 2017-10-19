@@ -2,6 +2,8 @@ import * as _ from 'lodash';
 import * as Environment from 'yeoman-environment';
 import chalk from 'chalk';
 import {YangGenerator} from "../generators/yang.generator";
+import requireg = require('requireg');
+import {StringUtils} from "./string-utils";
 
 export class YangUtils
 {
@@ -26,5 +28,32 @@ export class YangUtils
         return new Promise<void>(resolve => {
             g.run(() => resolve());
         });
+    }
+
+
+    static loadPlugin(pluginName: string): any {
+        const packageName = `yang-plugin-${pluginName}`;
+        try {
+            return requireg(packageName);
+        }
+        catch (err) {
+            return null;
+        }
+    }
+
+    static getPluginCommand(plugin: any, pluginCmd: string): any {
+        if (plugin) {
+            if (pluginCmd) {
+                // Retrouver la commande
+                const realPluginCmd = `Yang${StringUtils.pascalCase(pluginCmd)}Generator`;
+                return plugin[realPluginCmd];
+            }
+            else {
+                // Le premier objet
+                return (Object.keys(plugin).length > 0 ? plugin[Object.keys(plugin)[0]] : null);
+            }
+        }
+
+        return null;
     }
 }
