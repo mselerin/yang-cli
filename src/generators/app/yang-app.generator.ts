@@ -80,6 +80,7 @@ export class YangAppGenerator extends YangGenerator
     _configuring() {
         super._configuring();
         this.props['dir'] = this.options['dir'] || `./${this.props['name']}`;
+        this.props['root'] = this.directory;
     }
 
 
@@ -88,7 +89,6 @@ export class YangAppGenerator extends YangGenerator
         this._copyTemplates();
 
         await this._composeWith(YangFeatureGenerator, {
-            dir: this.props['dir'],
             name: 'home',
             component: true,
             template: true,
@@ -96,9 +96,7 @@ export class YangAppGenerator extends YangGenerator
         });
 
         // Recopier les templates du home
-        await this._composeWith(YangHomeGenerator, {
-            dir: this.props['dir']
-        });
+        await this._composeWith(YangHomeGenerator);
     }
 
 

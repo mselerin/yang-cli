@@ -7,7 +7,6 @@ import {YangComponentGenerator} from "./generators/component/yang-component.gene
 import {YangDirectiveGenerator} from "./generators/directive/yang-directive.generator";
 import {YangPipeGenerator} from "./generators/pipe/yang-pipe.generator";
 import {YangServiceGenerator} from "./generators/service/yang-service.generator";
-import {StringUtils} from "./helpers/string-utils";
 
 export class Main
 {
@@ -18,7 +17,7 @@ export class Main
         console.log(`< ${chalk.blue('YANG')} ${chalk.yellow(Main.version)} >`);
 
         Yargs
-            .command(['new [name]', '*'], 'Scaffold a new application', (argv) => argv,
+            .command(['new [name]'], 'Scaffold a new application', (argv) => argv,
                 (args) => YangUtils.runGenerator(YangAppGenerator, args)
             )
 

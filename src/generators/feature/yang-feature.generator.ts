@@ -33,9 +33,9 @@ export class YangFeatureGenerator extends YangGenerator
         this._updateRouting();
 
         await this._composeWith(YangComponentGenerator, {
+            dir: this.props.dir,
             name: this.props.name,
             feature: this.props.name,
-            dir: this.props.dir,
             template: this.props.template,
             styles: this.props.styles
         });

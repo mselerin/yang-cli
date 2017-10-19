@@ -31,6 +31,12 @@ export class YangGenerator extends Generator
         this.option('debug', { type: Boolean, default: false });
         this.option('name', { type: String });
 
+        this.option('root', {
+            description: "The root directory (where package.json is)",
+            type: String,
+            default: ''
+        });
+
         this.option('dir', {
             description: "The directory where the code will be",
             type: String
@@ -52,6 +58,7 @@ export class YangGenerator extends Generator
 
 
     _initializing() {
+        this.props['root'] = this.options['root'] || '.';
         this.props['dir'] = this.options['dir'] || '';
         this.props['name'] = this.options['name'];
     }
@@ -96,6 +103,9 @@ export class YangGenerator extends Generator
         await this._commitFiles();
         if (!props) props = {};
 
+        if (!props.root)
+            props['root'] = this.root;
+
         props['force'] = this.options['force'];
         await YangUtils.runGenerator(generator, props, this);
     }
@@ -139,8 +149,8 @@ export class YangGenerator extends Generator
 
 
     get projectRoot(): string {
-        let root = this.directory;
-        root = (root.endsWith('/') ? root : root + '/');
+        let root = this.root;
+        root = (root.length === 0 || root.endsWith('/') ? root : root + '/');
 
         let ndx = 0;
 
@@ -153,6 +163,10 @@ export class YangGenerator extends Generator
         return root;
     }
 
+
+    get root(): string {
+        return this.props['root'];
+    }
 
     get directory(): string {
         return this.props['dir'];
