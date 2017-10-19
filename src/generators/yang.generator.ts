@@ -139,7 +139,9 @@ export class YangGenerator extends Generator
 
 
     get projectRoot(): string {
-        let root = '';
+        let root = this.directory;
+        root = (root.endsWith('/') ? root : root + '/');
+
         let ndx = 0;
 
         while (!this.fs.exists(this.destinationPath(`${root}package.json`)) && (++ndx) < 20)
