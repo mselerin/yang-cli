@@ -23,7 +23,8 @@
   },
   "files": [
     "bin",
-    "dist"
+    "dist",
+    "src"
   ],
   "devDependencies": {
     "@types/chai": "^4.0.0",
