@@ -1,0 +1,22 @@
+{
+   "compileOnSave": false,
+   "compilerOptions": {
+      "baseUrl": ".",
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "lib": ["es2016", "dom"],
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "noImplicitAny": false,
+      "outDir": "ts-out"
+   },
+   "exclude": [
+      "node_modules"
+   ],
+   "angularCompilerOptions": {
+      "genDir": "."
+   }
+}

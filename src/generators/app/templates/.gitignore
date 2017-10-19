@@ -1,0 +1,11 @@
+#IDE
+/*.iml
+/.idea
+/out
+
+# Projects
+/node_modules
+/dist
+/ts-out
+/typings
+npm-debug.log
