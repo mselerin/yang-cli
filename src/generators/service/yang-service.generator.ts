@@ -9,7 +9,7 @@ export class YangServiceGenerator extends YangGenerator
         this.props['dir'] = this.options['dir'];
 
         if (!this.props['dir'])
-            this.props['dir'] = `${this.projectRoot}app/services`;
+            this.props['dir'] = `${this.projectRoot}src/app/core/services`;
     }
 
 
@@ -23,7 +23,7 @@ export class YangServiceGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Service`, `app/core/services/${this.props.kebabName}.service`);
+            `${this.props.pascalName}Service`, `./services/${this.props.kebabName}.service`);
 
         CodeUtils.insertInVariableArray(sourceFile, "PROVIDERS", `    ${this.props.pascalName}Service`);
         this.fs.write(file, sourceFile.getFullText());

@@ -50,8 +50,8 @@
     "lodash": "^4.17.4",
     "requireg": "^0.1.7",
     "stack-trace": "^0.0.10",
-    "ts-simple-ast": "^0.75.0",
-    "yargs": "^9.0.1",
+    "ts-simple-ast": "^0.78.1",
+    "yargs": "^10.0.3",
     "yeoman-environment": "^2.0.5",
     "yeoman-generator": "^2.0.1"
   }

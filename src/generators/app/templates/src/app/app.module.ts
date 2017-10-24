@@ -9,16 +9,22 @@ import {FeaturesModule} from './features/features.module';
 import {AppComponent} from './app.component';
 
 
+const MODULES: any[] = [
+    BrowserModule,
+    CoreModule,
+    FeaturesModule,
+    AppRoutingModule
+];
+
+
+const DECLARATIONS: any[] = [
+    AppComponent
+];
+
+
 @NgModule({
-    imports: [
-        BrowserModule,
-        CoreModule,
-        AppRoutingModule,
-        FeaturesModule
-    ],
-    declarations: [
-        AppComponent
-    ],
+    imports: MODULES,
+    declarations: DECLARATIONS,
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

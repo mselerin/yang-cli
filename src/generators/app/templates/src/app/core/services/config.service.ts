@@ -13,7 +13,7 @@ export class ConfigService
    ) { }
 
    loadConfig(): Promise<any> {
-      let url = 'app/resources/config/app-config.json';
+      let url = 'assets/config/app-config.json';
 
       return this.http.get(url)
          .map(data => _.merge(this.appConfig, new AppConfig(), data))

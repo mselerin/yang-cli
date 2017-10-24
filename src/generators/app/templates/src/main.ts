@@ -1,12 +1,12 @@
-import {CONFIG} from './config';
+import {environment} from './environments/environment';
 
 
 // App Styles
-import 'app/resources/styles/app.scss';
+import './styles.scss';
 
 
 // Main App module
-import {AppModule} from './app.module';
+import {AppModule} from './app/app.module';
 
 
 // Polyfills
@@ -18,7 +18,7 @@ import 'zone.js/dist/zone.js';
 import {enableProdMode} from "@angular/core";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 
-if (CONFIG.production)
+if (environment.production)
     enableProdMode();
 
 platformBrowserDynamic().bootstrapModule(AppModule);

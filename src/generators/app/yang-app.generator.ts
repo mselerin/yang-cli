@@ -83,6 +83,11 @@ export class YangAppGenerator extends YangGenerator
 
         // Surcharge de la racine pour ce répertoire
         this.root = this.directory;
+
+        // Si le répertoire n'est pas vide : STOP
+        if (this.fs.exists(this.destinationPath(`${this.projectRoot}package.json`))) {
+            this.env.error(new Error(`Directory [${this.projectRoot}] is not empty !`));
+        }
     }
 
 

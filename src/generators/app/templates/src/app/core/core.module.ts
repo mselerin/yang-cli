@@ -1,12 +1,12 @@
 // Rxjs
 import 'rxjs';
+import {Observable} from "rxjs/Observable";
 
 // Angular Modules
 import {NgModule, SkipSelf, Optional, APP_INITIALIZER} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // Constants
 import {AppConfig} from 'app/models/app-config.model';
@@ -22,13 +22,22 @@ import {ServicesModule} from './core.services';
 
 // App init
 export function coreInitFactory(coreInit: CoreInitializer) {
-   return () => coreInit.init();
+    return () => coreInit.init();
 }
 
 
 // Translation
+export class CoreTranslationLoader implements TranslateLoader {
+    constructor(private http: HttpClient) {}
+
+    public getTranslation(lang: string): any {
+        return this.http.get(`assets/i18n/${lang}.json`)
+            .catch(() => Observable.of({}));
+    }
+}
+
 export function httpLoaderFactory(http: HttpClient) {
-   return new TranslateHttpLoader(http, 'app/resources/i18n/', '.json');
+    return new CoreTranslationLoader(http);
 }
 
 
@@ -64,13 +73,13 @@ const MODULES = [
 
 
 @NgModule({
-   providers: PROVIDERS,
-   imports: MODULES
+    providers: PROVIDERS,
+    imports: MODULES
 })
 export class CoreModule {
-   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-      if (parentModule) {
-         throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
-      }
-   }
+    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+        if (parentModule) {
+            throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
+        }
+    }
 }

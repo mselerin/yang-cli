@@ -7,12 +7,12 @@ import {StringUtils} from "./string-utils";
 
 export class YangUtils
 {
-    static MAIN_FILE = "app/main.ts";
-    static CORE_MODULE_FILE = "app/core/core.module.ts";
-    static SERVICE_MODULE_FILE = "app/core/core.services.ts";
-    static SHARED_MODULE_FILE = "app/shared/shared.module.ts";
-    static FEATURES_MODULE_FILE = "app/features/features.module.ts";
-    static ROUTING_MODULE_FILE = "app/app-routing.module.ts";
+    static MAIN_FILE = "src/main.ts";
+    static CORE_MODULE_FILE = "src/app/core/core.module.ts";
+    static SERVICE_MODULE_FILE = "src/app/core/core.services.ts";
+    static SHARED_MODULE_FILE = "src/app/shared/shared.module.ts";
+    static FEATURES_MODULE_FILE = "src/app/features/features.module.ts";
+    static ROUTING_MODULE_FILE = "src/app/app-routing.module.ts";
 
     static runGenerator(Generator: typeof YangGenerator, props?: any): Promise<void>
     {
@@ -20,9 +20,10 @@ export class YangUtils
 
         if (!props) props = {};
 
-        const kebabName = _.kebabCase(Generator.name);
-        const env = Environment.createEnv();
+        // Always force mode
+        props['force'] = true;
 
+        const env = Environment.createEnv();
         let g = env.instantiate(Generator, {
             options: props,
             arguments: props.arguments

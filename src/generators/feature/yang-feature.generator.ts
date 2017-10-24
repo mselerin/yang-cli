@@ -17,7 +17,7 @@ export class YangFeatureGenerator extends YangGenerator
     _configuring() {
         super._configuring();
 
-        this.props['dir'] = this.options['dir'] || `${this.projectRoot}app/features/${this.props.kebabName}`;
+        this.props['dir'] = this.options['dir'] || `${this.projectRoot}src/app/features/${this.props.kebabName}`;
         this.props['component'] = this.options['component'] || false;
         this.props['template'] = this.options['template'] || false;
         this.props['styles'] = this.options['styles'] || false;
@@ -61,7 +61,7 @@ export class YangFeatureGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Routes`, `app/features/${this.props.kebabName}/${this.props.kebabName}-routing.module`);
+            `${this.props.pascalName}Routes`, `./features/${this.props.kebabName}/${this.props.kebabName}-routing.module`);
 
         CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES", `    ...${this.props.pascalName}Routes`);
         this.fs.write(file, sourceFile.getFullText());

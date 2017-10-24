@@ -24,10 +24,10 @@ export class YangComponentGenerator extends YangGenerator
         this.props['dir'] = this.options['dir'];
 
         if (!this.props['dir'] && this.props['shared'])
-            this.props['dir'] = `${this.projectRoot}app/shared/components`;
+            this.props['dir'] = `${this.projectRoot}src/app/shared/components`;
 
         if (!this.props['dir'] && this.props['feature'])
-            this.props['dir'] = `${this.projectRoot}app/features/${this.props['feature']}/${this.props['name']}`;
+            this.props['dir'] = `${this.projectRoot}src/app/features/${this.props['feature']}/${this.props['name']}`;
 
         if (!this.props['dir'])
             this.props['dir'] = '';
@@ -76,7 +76,7 @@ export class YangComponentGenerator extends YangGenerator
 
         else if (this.props.feature)
         {
-            let file = `${this.projectRoot}app/features/${this.props.feature}/${this.props.feature}.module.ts`;
+            let file = `${this.projectRoot}src/app/features/${this.props.feature}/${this.props.feature}.module.ts`;
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,

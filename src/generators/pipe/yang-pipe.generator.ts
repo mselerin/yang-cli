@@ -9,7 +9,7 @@ export class YangPipeGenerator extends YangGenerator
         this.props['dir'] = this.options['dir'];
 
         if (!this.props['dir'])
-            this.props['dir'] = `${this.projectRoot}app/shared/pipes`;
+            this.props['dir'] = `${this.projectRoot}src/app/shared/pipes`;
     }
 
 

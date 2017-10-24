@@ -1,6 +1,6 @@
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
-import {LayoutComponent} from "app/features/layout/layout.component";
+import {LayoutComponent} from "./features/layout/layout.component";
 
 const FEATURES_ROUTES: Routes = [
 ];

@@ -4,7 +4,7 @@ export class YangHomeGenerator extends YangGenerator
 {
     _initializing() {
         super._initializing();
-        this.props['dir'] = `${this.projectRoot}app/features/home`;
+        this.props['dir'] = `${this.projectRoot}src/app/features/home`;
     }
 
 
