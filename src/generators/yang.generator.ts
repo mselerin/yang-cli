@@ -114,7 +114,13 @@ export class YangGenerator extends Generator
         this.fs.copyTpl(
             this.templatePath('**/*.{json,js,ts,html,css,scss,md}'),
             this.destinationPath(this.directory),
-            this.props
+            this.props,
+            null,
+            {
+                globOptions: {
+                    dot: true
+                }
+            }
         );
     }
 
