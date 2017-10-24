@@ -86,8 +86,10 @@ export class YangGenerator extends Generator
     }
 
 
-    async _composeWith(generator: typeof YangGenerator, props: any = {}): Promise<void> {
-        await this._commitFiles();
+    async _composeWith(generator: typeof YangGenerator, props: any = {}, commitBefore: boolean = true): Promise<void> {
+        if (commitBefore)
+            await this._commitFiles();
+
         if (!props) props = {};
 
         if (!props['root'])
