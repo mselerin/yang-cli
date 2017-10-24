@@ -100,14 +100,14 @@ let config = {
                 test: /\.s?css$/,
                 loader: extractCSS.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
                 }),
                 exclude: [/\.component\.s?css$/]
             },
 
             {
                 test: /\.s?css$/,
-                loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
+                loaders: ['to-string-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
                 include: [/\.component\.s?css$/]
             },
 
