@@ -32,13 +32,15 @@ export class YangFeatureGenerator extends YangGenerator
         this._updateFeatures();
         this._updateRouting();
 
-        await this._composeWith(YangComponentGenerator, {
-            dir: this.props.dir,
-            name: this.props.name,
-            feature: this.props.name,
-            template: this.props.template,
-            styles: this.props.styles
-        });
+        if (this.props['component']) {
+            await this._composeWith(YangComponentGenerator, {
+                dir: this.props.dir,
+                name: this.props.name,
+                feature: this.props.name,
+                template: this.props.template,
+                styles: this.props.styles
+            });
+        }
     }
 
 

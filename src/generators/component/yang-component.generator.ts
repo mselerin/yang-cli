@@ -12,22 +12,28 @@ export class YangComponentGenerator extends YangGenerator
         this.option('styles', { type: Boolean, default: false });
         this.option('template', { type: Boolean, default: false });
         this.option('shared', { type: Boolean, default: false });
+        this.option('flat', { type: Boolean, default: false });
     }
 
 
     _initializing() {
         super._initializing();
-        this.props['shared'] = this.options['shared'] || false;
+        this.props['feature'] = this.options['feature'];
         this.props['styles'] = this.options['styles'] || false;
         this.props['template'] = this.options['template'] || false;
-        this.props['feature'] = this.options['feature'];
+        this.props['shared'] = this.options['shared'] || false;
+        this.props['flat'] = this.options['flat'];
         this.props['dir'] = this.options['dir'];
 
         if (!this.props['dir'] && this.props['shared'])
             this.props['dir'] = `${this.projectRoot}src/app/shared/components`;
 
-        if (!this.props['dir'] && this.props['feature'])
-            this.props['dir'] = `${this.projectRoot}src/app/features/${this.props['feature']}/${this.props['name']}`;
+        if (!this.props['dir'] && this.props['feature']) {
+            this.props['dir'] = `${this.projectRoot}src/app/features/${this.props['feature']}`;
+            if (!this.props['flat'])
+                this.props['dir'] += `/${this.props['name']}`;
+        }
+
 
         if (!this.props['dir'])
             this.props['dir'] = '';
@@ -80,7 +86,7 @@ export class YangComponentGenerator extends YangGenerator
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
-                `${this.props.pascalName}Component`, `./${this.props.kebabName}.component`);
+                `${this.props.pascalName}Component`, `.${this.props.flat ? '' : '/' + this.props.name}/${this.props.kebabName}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${this.props.pascalName}Component`);
             this.fs.write(file, sourceFile.getFullText());
