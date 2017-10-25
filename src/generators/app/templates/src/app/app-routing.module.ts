@@ -1,12 +1,12 @@
+import {Injectable, NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import {ModuleWithProviders} from "@angular/core";
 import {LayoutComponent} from "./features/layout/layout.component";
 
 const FEATURES_ROUTES: Routes = [
 ];
 
 
-export const routes: Routes = [
+export const ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
         path: '',
@@ -18,4 +18,11 @@ export const routes: Routes = [
     { path: '**', redirectTo: '/home' }
 ];
 
-export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+@NgModule({
+    imports: [
+        RouterModule.forRoot([], { useHash: true }),
+        RouterModule.forChild(ROUTES)
+    ],
+    providers: []
+})
+export class AppRoutingModule {}
