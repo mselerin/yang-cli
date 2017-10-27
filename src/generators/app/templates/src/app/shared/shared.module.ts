@@ -5,7 +5,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 // Pipes
 import {PropercasePipe} from './pipes/propercase.pipe';
@@ -19,7 +18,6 @@ const MODULES: any[] = [
    FormsModule,
    HttpClientModule,
    RouterModule,
-   BrowserAnimationsModule,
    TranslateModule
 ];
 

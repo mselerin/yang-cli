@@ -6,6 +6,8 @@ import {Observable} from "rxjs/Observable";
 import {NgModule, SkipSelf, Optional, APP_INITIALIZER} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
 // Constants
@@ -66,6 +68,8 @@ const MODULES = [
         }
     }),
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     InterceptorsModule,
     ServicesModule

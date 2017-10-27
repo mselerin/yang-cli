@@ -1,6 +1,5 @@
 // Angular Modules
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 
 // Components
 import {AppRoutingModule} from './app-routing.module';
@@ -10,7 +9,6 @@ import {AppComponent} from './app.component';
 
 
 const MODULES: any[] = [
-    BrowserModule,
     CoreModule,
     FeaturesModule,
     AppRoutingModule
