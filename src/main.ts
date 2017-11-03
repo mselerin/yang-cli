@@ -10,7 +10,7 @@ import {YangServiceGenerator} from "./generators/service/yang-service.generator"
 
 export class Main
 {
-    static PKG = require('../package.json');
+    static PKG = require('../../package.json');
 
     public static main()
     {

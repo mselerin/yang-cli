@@ -11,12 +11,12 @@
     "removeComments": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ],
   "exclude": [
     "node_modules",
     "!node_modules/@types",
-    "test/**/*.spec.ts",
     "src/generators/*/templates/**/*"
   ]
 }

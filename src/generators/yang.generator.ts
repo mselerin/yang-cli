@@ -17,10 +17,10 @@ export class YangGenerator extends Generator
         super(args, opts);
         this.props = {};
 
-        // On est dans dist/generators, repositionner la source à src/generators
+        // On est dans dist/src/generators, repositionner la source à src/generators
         let callSite = stackTrace.get().find((callSite) => callSite.getFunctionName() === this.constructor.name);
         let dirs = path.dirname(callSite.getFileName()).split(path.sep);
-        dirs[dirs.lastIndexOf('dist')] = 'src';
+        dirs[dirs.lastIndexOf('dist')] = '.';
 
         this.sourceRoot(path.join(dirs.join(path.sep), 'templates'));
         this._initCli();

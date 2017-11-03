@@ -7,7 +7,7 @@ import {YangAppGenerator} from "../src/generators/app/yang-app.generator";
 
 chai.use(require('chai-fs'));
 
-const assert = chai.assert;
+const assert = (chai.assert as any);
 const DEFAULT_NAME = "test-yang-cli";
 const TMP_DIR = path.join(os.tmpdir(), DEFAULT_NAME);
 
