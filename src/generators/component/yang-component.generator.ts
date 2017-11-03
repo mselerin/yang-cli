@@ -82,11 +82,16 @@ export class YangComponentGenerator extends YangGenerator
 
         else if (this.props.feature)
         {
+            let compDir = this.props.dir.substring(`${this.projectRoot}src/`.length);
+
+            if (compDir.startsWith(`app/features/${this.props['feature']}`))
+                compDir = compDir.substring(`app/features/${this.props['feature']}`.length);
+
             let file = `${this.projectRoot}src/app/features/${this.props.feature}/${this.props.feature}.module.ts`;
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
-                `${this.props.pascalName}Component`, `.${this.props.flat ? '' : '/' + this.props.name}/${this.props.kebabName}.component`);
+                `${this.props.pascalName}Component`, `.${compDir}/${this.props.kebabName}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${this.props.pascalName}Component`);
             this.fs.write(file, sourceFile.getFullText());

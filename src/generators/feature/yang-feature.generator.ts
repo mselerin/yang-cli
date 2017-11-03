@@ -59,13 +59,13 @@ export class YangFeatureGenerator extends YangGenerator
 
     _updateRouting(): void {
         // Ajouter la route
-        const file = `${this.projectRoot}${YangUtils.ROUTING_MODULE_FILE}`;
+        const file = `${this.projectRoot}${YangUtils.FEATURES_MODULE_FILE}`;
         const sourceFile = this._getSourceFile(file);
 
-        CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Routes`, `./features/${this.props.kebabName}/${this.props.kebabName}-routing.module`);
+        CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES",
+            `    { path: '${this.props.kebabName}', loadChildren: 'app/features/${this.props.kebabName}/${this.props.kebabName}-routing.module#${this.props.pascalName}RoutingModule' }`
+        );
 
-        CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES", `    ...${this.props.pascalName}Routes`);
         this.fs.write(file, sourceFile.getFullText());
     }
 

@@ -28,19 +28,19 @@
   ],
   "devDependencies": {
     "@types/chai": "^4.0.0",
-    "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.45",
-    "@types/sinon": "^2.3.6",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.47",
+    "@types/sinon": "^2.3.7",
     "@types/yargs": "^8.0.2",
-    "@types/yeoman-generator": "^1.0.4",
+    "@types/yeoman-generator": "^2.0.0",
     "chai": "^4.0.1",
     "chai-fs": "^1.0.0",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
-    "sinon": "^4.0.1",
+    "sinon": "^4.1.1",
     "ts-mocha": "^1.0.3",
     "ts-node": "^3.0.4",
-    "typescript": "^2.5.3"
+    "typescript": "^2.6.1"
   },
   "dependencies": {
     "chalk": "^2.2.0",
@@ -50,7 +50,7 @@
     "lodash": "^4.17.4",
     "requireg": "^0.1.7",
     "stack-trace": "^0.0.10",
-    "ts-simple-ast": "^0.78.1",
+    "ts-simple-ast": "^0.81.0",
     "yargs": "^10.0.3",
     "yeoman-environment": "^2.0.5",
     "yeoman-generator": "^2.0.1"

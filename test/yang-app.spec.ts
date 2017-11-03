@@ -20,8 +20,10 @@ function testApp(props: any) {
     const ROOT_DIR = path.join(TMP_DIR, name);
 
     before(async () => {
-        if (!fs.existsSync(TMP_DIR))
-            fs.mkdirSync(TMP_DIR);
+        if (fs.existsSync(TMP_DIR))
+            rimraf.sync(TMP_DIR);
+
+        fs.mkdirSync(TMP_DIR);
 
         process.chdir(TMP_DIR);
         await YangUtils.runGenerator(YangAppGenerator, props);

@@ -3,12 +3,12 @@ import 'rxjs';
 import {Observable} from "rxjs/Observable";
 
 // Angular Modules
-import {NgModule, SkipSelf, Optional, APP_INITIALIZER} from '@angular/core';
+import {APP_INITIALIZER, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 // Constants
 import {AppConfig} from 'app/models/app-config.model';

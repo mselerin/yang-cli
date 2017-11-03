@@ -1,17 +1,16 @@
 import {NgModule} from "@angular/core";
-import {Routes} from "@angular/router";
-<% if (component) {%>import {<%=pascalName%>Component} from './<%=kebabName%>.component';<% } %>
+import {RouterModule, Routes} from "@angular/router";
+import {<%=pascalName%>Module} from "./<%=kebabName%>.module";
+<% if (component) {%>import {<%=pascalName%>Component} from "./<%=kebabName%>.component";<% } %>
 
 
 export const <%=pascalName%>Routes: Routes = [
-    <% if (component) {%>{
-    path: '<%=kebabName%>',
-    component: <%=pascalName%>Component
-   }<% } %>
+    <% if (component) {%>{ path: '', component: <%=pascalName%>Component }<% } %>
 ];
 
 
 @NgModule({
-    providers: []
+    providers: [],
+    imports: [ <%=pascalName%>Module, RouterModule.forChild(<%=pascalName%>Routes) ]
 })
-export class <%=pascalName%>RoutesModule {}
+export class <%=pascalName%>RoutingModule {}

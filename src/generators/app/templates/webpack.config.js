@@ -28,7 +28,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-const { AotPlugin } = require('@ngtools/webpack');
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const ENABLE_AOT = false; //profileConfig.production;
 
 
@@ -133,7 +133,7 @@ let config = {
         }),
 
         // Plugin AOT pour Angular
-        new AotPlugin({
+        new AngularCompilerPlugin({
             tsConfigPath: path.join(PATHS.src, 'tsconfig.app.json'),
             mainPath: path.join(PATHS.src, 'main.ts'),
             skipCodeGeneration: !ENABLE_AOT // AOT really happens here (false = enabled)
