@@ -1,0 +1,9 @@
+notifications:
+   email:
+      on_success: never
+      on_failure: always
+
+language: node_js
+node_js:
+   - v8
+   - v7
