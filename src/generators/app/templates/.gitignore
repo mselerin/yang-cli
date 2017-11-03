@@ -6,6 +6,6 @@
 # Projects
 /node_modules
 /dist
-/ts-out
+/out-tsc
 /typings
 npm-debug.log
