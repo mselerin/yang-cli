@@ -5,5 +5,5 @@ notifications:
 
 language: node_js
 node_js:
-   - v8
-   - v7
+   - "8"
+   - "7"
