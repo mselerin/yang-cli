@@ -29,7 +29,7 @@ export class YangFeatureGenerator extends YangGenerator
         await super._writing();
         this._copyTemplates();
 
-        this._updateFeatures();
+        // this._updateFeatures();
         this._updateRouting();
 
         if (this.props['component']) {
@@ -44,17 +44,17 @@ export class YangFeatureGenerator extends YangGenerator
     }
 
 
-    _updateFeatures(): void {
-        // Ajouter l'import et le module
-        const file = `${this.projectRoot}${YangUtils.FEATURES_MODULE_FILE}`;
-        const sourceFile = this._getSourceFile(file);
-
-        CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Module`, `./${this.props.kebabName}/${this.props.kebabName}.module`);
-
-        CodeUtils.insertInVariableArray(sourceFile, "MODULES", `   ${this.props.pascalName}Module`);
-        this.fs.write(file, sourceFile.getFullText());
-    }
+    // _updateFeatures(): void {
+    //     // Ajouter l'import et le module
+    //     const file = `${this.projectRoot}${YangUtils.FEATURES_MODULE_FILE}`;
+    //     const sourceFile = this._getSourceFile(file);
+    //
+    //     CodeUtils.addImport(sourceFile,
+    //         `${this.props.pascalName}Module`, `./${this.props.kebabName}/${this.props.kebabName}.module`);
+    //
+    //     CodeUtils.insertInVariableArray(sourceFile, "MODULES", `   ${this.props.pascalName}Module`);
+    //     this.fs.write(file, sourceFile.getFullText());
+    // }
 
 
     _updateRouting(): void {

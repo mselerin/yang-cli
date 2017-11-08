@@ -90,7 +90,7 @@ let config = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                 loaders: ['@ngtools/webpack'],
                 exclude: [/\.(spec|e2e)\.ts$/]
             },

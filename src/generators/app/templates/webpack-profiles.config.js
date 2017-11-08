@@ -5,7 +5,7 @@ const defaultConfig = {
     version: `${APP_VERSION}`,
     buildDate: `${BUILD_DATE.toISOString()}`,
     production: true,
-    apiUrl: '',
+    apiUrl: '/api/',
     proxy: {}
 };
 
@@ -15,11 +15,7 @@ module.exports = {
         apiUrl: 'http://localhost:8080/api/'
     }),
 
-    test: Object.assign({}, defaultConfig, {
-        apiUrl: '/api/'
-    }),
+    test: Object.assign({}, defaultConfig, {}),
 
-    prod: Object.assign({}, defaultConfig, {
-        apiUrl: '/api/'
-    }),
+    prod: Object.assign({}, defaultConfig, {}),
 };

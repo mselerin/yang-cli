@@ -1,4 +1,5 @@
-import {NgModule, Injectable} from '@angular/core';
+import {environment} from 'environments/environment';
+import {Injectable, NgModule} from '@angular/core';
 import {
     HTTP_INTERCEPTORS,
     HttpClientModule,
@@ -6,26 +7,33 @@ import {
     HttpHandler,
     HttpInterceptor,
     HttpRequest
-} from '@angular/common/http';
+} from "@angular/common/http";
 
-import {Observable} from 'rxjs';
+import {Observable} from "rxjs";
 
+const API_URL_TOKEN = "/api/";
 
 @Injectable()
-export class SampleInterceptor implements HttpInterceptor
+export class APIInterceptor implements HttpInterceptor
 {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
     {
+        if (environment.apiUrl && environment.apiUrl !== API_URL_TOKEN && req.url.startsWith(API_URL_TOKEN)) {
+            let url = environment.apiUrl + req.url.substr(5);
+            req = req.clone({
+                url: url
+            });
+        }
+
         return next.handle(req);
     }
 }
 
 
-
 @NgModule({
     imports: [ HttpClientModule ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: SampleInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true }
     ]
 })
 export class InterceptorsModule {}
