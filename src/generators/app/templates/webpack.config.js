@@ -28,6 +28,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
+const AngularNamedLazyChunksWebpackPlugin = require('angular-named-lazy-chunks-webpack-plugin');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const ENABLE_AOT = false; //profileConfig.production;
 
@@ -52,7 +53,6 @@ const isInPath = (module, p, ignores) => {
     if (module.userRequest) {
         inPath = (module.userRequest.indexOf(p) === 0);
 
-        // Vérification des ignores
         if (inPath && ignores) {
             let hasIgnore = ignores.some((ignore) => {
                 return (module.userRequest.indexOf(path.join(p, ignore)) === 0);
@@ -132,38 +132,38 @@ let config = {
             PROFILE_CONFIG: JSON.stringify(profileConfig)
         }),
 
-        // Plugin AOT pour Angular
-        new AngularCompilerPlugin({
-            tsConfigPath: path.join(PATHS.src, 'tsconfig.app.json'),
-            mainPath: path.join(PATHS.src, 'main.ts'),
-            skipCodeGeneration: !ENABLE_AOT // AOT really happens here (false = enabled)
-        }),
-
-        // Permet de séparer le code applicatif des librairies externes
+        // Write third-party module in a specific file
         new CommonsChunkPlugin({
             name: 'vendor',
             chunks: ['main'],
             minChunks: (module) => isInPath(module, PATHS.node_modules, ['@angular'])
         }),
 
-        // Sortir Angular hors du vendor-modules
+        // Write Angular outside vendor-modules
         new CommonsChunkPlugin({
             name: 'angular',
             chunks: ['vendor', 'main'],
             minChunks: (module) => isInPath(module, path.join(PATHS.node_modules, '@angular'))
         }),
 
-        // Faire un fichier pour la partie "webpack" (manifest)
+        // Webpack specific fragments
         new CommonsChunkPlugin({
             name: 'manifest',
             minChunks: null
         }),
 
+        // Angular Compilation
+        new AngularNamedLazyChunksWebpackPlugin(),
+        new AngularCompilerPlugin({
+            tsConfigPath: path.join(PATHS.src, 'tsconfig.app.json'),
+            mainPath: path.join(PATHS.src, 'main.ts'),
+            skipCodeGeneration: !ENABLE_AOT // AOT really happens here (false = enabled)
+        }),
+
         extractCSS,
 
-        // Recopier tout sauf ce qui est déjà pris en compte
         new CopyWebpackPlugin([
-            // Copie de la config avec un search-replace
+            // Config copy with search-replace for @{token}
             {
                 context: 'src',
                 from: 'assets/config/*.json',
