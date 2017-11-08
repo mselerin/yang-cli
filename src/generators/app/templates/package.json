@@ -37,7 +37,6 @@
     "@ngtools/webpack": "1.8.0",
     "@types/lodash": "4.14.80",
     "@types/node": "8.0.47",
-    "angular-named-lazy-chunks-webpack-plugin": "1.0.1",
     "clean-webpack-plugin": "0.1.17",
     "copy-webpack-plugin": "4.2.0",
     "css-loader": "0.28.7",

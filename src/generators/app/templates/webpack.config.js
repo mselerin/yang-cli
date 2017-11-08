@@ -28,7 +28,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-const AngularNamedLazyChunksWebpackPlugin = require('angular-named-lazy-chunks-webpack-plugin');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const ENABLE_AOT = false; //profileConfig.production;
 
@@ -153,7 +152,6 @@ let config = {
         }),
 
         // Angular Compilation
-        new AngularNamedLazyChunksWebpackPlugin(),
         new AngularCompilerPlugin({
             tsConfigPath: path.join(PATHS.src, 'tsconfig.app.json'),
             mainPath: path.join(PATHS.src, 'main.ts'),
