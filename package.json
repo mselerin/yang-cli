@@ -1,22 +1,22 @@
 {
   "name": "yang-cli",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Yet Another Angular Generator - powered by Yeoman & Webpack",
   "repository": {
     "type": "git",
     "url": "https://github.com/mselerin/yang-cli"
   },
   "license": "MIT",
+  "author": {
+    "name": "Michel Selerin",
+    "email": "michel.selerin@outlook.com"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc --pretty",
     "test": "ts-mocha test/**/*.spec.ts",
     "watch": "npm run build -- --watch",
     "postversion": "npm run build"
-  },
-  "author": {
-    "name": "Michel Selerin",
-    "email": "michel.selerin@outlook.com"
   },
   "bin": {
     "yang": "bin/yang"
@@ -27,30 +27,30 @@
     "src"
   ],
   "devDependencies": {
-    "@types/chai": "^4.0.4",
+    "@types/chai": "^4.0.5",
     "@types/mocha": "^2.2.44",
-    "@types/node": "^8.0.47",
-    "@types/sinon": "^2.3.7",
+    "@types/node": "^8.0.53",
+    "@types/sinon": "^4.0.0",
     "@types/yargs": "^8.0.2",
     "@types/yeoman-generator": "^2.0.0",
     "chai": "^4.0.1",
-    "chai-fs": "^1.0.0",
+    "chai-fs": "^2.0.0",
     "fs-extra": "^4.0.2",
     "mocha": "^4.0.1",
-    "sinon": "^4.1.1",
+    "sinon": "^4.1.2",
     "ts-mocha": "^1.0.3",
     "ts-node": "^3.0.4",
     "typescript": "^2.6.1"
   },
   "dependencies": {
     "chalk": "^2.2.0",
-    "code-block-writer": "^4.2.1",
+    "code-block-writer": "^5.0.0",
     "deep-extend": "^0.5.0",
     "gulp-rename": "^1.2.2",
     "lodash": "^4.17.4",
     "requireg": "^0.1.7",
     "stack-trace": "^0.0.10",
-    "ts-simple-ast": "^0.81.0",
+    "ts-simple-ast": "^0.98.0",
     "yargs": "^10.0.3",
     "yeoman-environment": "^2.0.5",
     "yeoman-generator": "^2.0.1"

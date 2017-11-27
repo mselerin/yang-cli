@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import * as Environment from 'yeoman-environment';
 import chalk from 'chalk';
 import {YangGenerator} from "../generators/yang.generator";
@@ -25,8 +24,8 @@ export class YangUtils
 
         const env = Environment.createEnv();
         let g = env.instantiate(Generator, {
-            options: props,
-            arguments: props.arguments
+            arguments: props.arguments,
+            options: props
         });
 
         return new Promise<void>(resolve => {
