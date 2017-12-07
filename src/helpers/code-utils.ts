@@ -30,6 +30,10 @@ export class CodeUtils
     static insertInVariableArray(sourceFile: SourceFile, variableName: string, str: string): void
     {
         let varDeclaration = sourceFile.getVariableDeclaration(variableName);
+        if (!varDeclaration) {
+            throw new Error(`Cannot find variable '${variableName}' in file '${sourceFile.getFilePath()}'`);
+        }
+
         let block = varDeclaration.getText();
         block = CodeUtils.insertInArray(block, str);
 

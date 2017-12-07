@@ -70,7 +70,7 @@ export class YangComponentGenerator extends YangGenerator
         // Update files
         if (this.props.shared)
         {
-            let file = `${this.projectRoot}${YangUtils.SHARED_MODULE_FILE}`;
+            const file = `${this.projectRoot}${YangUtils.SHARED_MODULE_FILE}`;
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
@@ -87,7 +87,7 @@ export class YangComponentGenerator extends YangGenerator
             if (compDir.startsWith(`app/features/${this.props['feature']}`))
                 compDir = compDir.substring(`app/features/${this.props['feature']}`.length);
 
-            let file = `${this.projectRoot}src/app/features/${this.props.feature}/${this.props.feature}.module.ts`;
+            const file = `${this.projectRoot}src/app/features/${this.props.feature}/${this.props.feature}.module.ts`;
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
