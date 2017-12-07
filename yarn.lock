@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@types/chai@^4.0.5":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.5.tgz#b6e250e281b47e0192e236619e9b1afe62fd345c"
+"@types/chai@^4.0.8":
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.8.tgz#d27600e9ba2f371e08695d90a0fe0408d89c7be7"
 
 "@types/inquirer@*":
   version "0.0.35"
@@ -17,9 +17,13 @@
   version "2.2.44"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
-"@types/node@*", "@types/node@^8.0.53":
+"@types/node@*":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+
+"@types/node@^8.0.56":
+  version "8.0.56"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.56.tgz#c4652f88d7a677e26ccc16c1485c282ce28f1ce9"
 
 "@types/rx-core-binding@*":
   version "4.0.4"
@@ -109,9 +113,9 @@
     "@types/rx-lite-time" "*"
     "@types/rx-lite-virtualtime" "*"
 
-"@types/sinon@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-4.0.0.tgz#9a93ffa4ee1329e85166278a5ed99f81dc4c8362"
+"@types/sinon@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-4.1.0.tgz#cdfb934d656b2c888e51f53e95900c7bbca11c08"
 
 "@types/through@*":
   version "0.0.29"
@@ -119,9 +123,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/yargs@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.2.tgz#0f9c7b236e2d78cd8f4b6502de15d0728aa29385"
+"@types/yargs@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-10.0.0.tgz#b93aa88155fe5106cddf3f934517411ca2a45939"
 
 "@types/yeoman-generator@^2.0.0":
   version "2.0.0"
@@ -329,9 +333,9 @@ cloneable-readable@^1.0.0:
     process-nextick-args "^1.0.6"
     through2 "^2.0.1"
 
-code-block-writer@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-5.0.0.tgz#51c95723208c1af3003767b82170572dd2aff6e6"
+code-block-writer@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-6.2.0.tgz#f436d3b9a239bdc5bd96f5c7b764de5b7cde9339"
 
 code-point-at@^1.0.0:
   version "1.1.0"
@@ -513,9 +517,9 @@ formatio@1.2.0, formatio@^1.2.0:
   dependencies:
     samsam "1.x"
 
-fs-extra@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.2.tgz#f91704c53d1b461f893452b0c307d9997647ab6b"
+fs-extra@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -1463,11 +1467,11 @@ ts-node@^3.0.4:
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-ts-simple-ast@^0.98.0:
-  version "0.98.0"
-  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-0.98.0.tgz#21fb8eeb369843d05ad32339879d5ac16e71bcc5"
+ts-simple-ast@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-1.3.0.tgz#88ecd8e2b28668c22fc48ec219dd8cce78187c70"
   dependencies:
-    code-block-writer "^5.0.0"
+    code-block-writer "^6.2.0"
     globby "^6.1.0"
     minimatch "^3.0.4"
     object-assign "^4.1.1"
@@ -1493,9 +1497,13 @@ type-detect@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.5.tgz#d70e5bc81db6de2a381bcaca0c6e0cbdc7635de2"
 
-typescript@2.6.1, typescript@^2.6.1:
+typescript@2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
+
+typescript@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
 universalify@^0.1.0:
   version "0.1.1"
