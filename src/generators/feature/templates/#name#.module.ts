@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from "app/shared/shared.module";
+import {<%=pascalName%>RoutingModule} from "./<%=kebabName%>-routing.module";
 
 const MODULES = [
-    SharedModule
+    SharedModule,
+    <%=pascalName%>RoutingModule
 ];
 
 const DECLARATIONS = [

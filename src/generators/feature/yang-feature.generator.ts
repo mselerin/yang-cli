@@ -63,7 +63,7 @@ export class YangFeatureGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES",
-            `    { path: '${this.props.kebabName}', loadChildren: 'app/features/${this.props.kebabName}/${this.props.kebabName}-routing.module#${this.props.pascalName}RoutingModule' }`
+            `    { path: '${this.props.kebabName}', loadChildren: 'app/features/${this.props.kebabName}/${this.props.kebabName}.module#${this.props.pascalName}Module' }`
         );
 
         this.fs.write(file, sourceFile.getFullText());
