@@ -137,9 +137,15 @@ export class YangGenerator extends Generator
 
 
     _getSourceFile(file: string): SourceFile {
-        let ast = new TsSimpleAst();
-        let content = this.fs.read(file);
-        return ast.addSourceFileFromText(file, content);
+        let ast = new TsSimpleAst({ useVirtualFileSystem: true });
+
+        let sourceFile = ast.getSourceFile(file);
+        if (!sourceFile) {
+            let content = this.fs.read(file);
+            sourceFile = ast.createSourceFile(file, content);
+        }
+
+        return sourceFile;
     }
 
 

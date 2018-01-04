@@ -60,7 +60,7 @@ describe('yang new', () => {
         testApp({});
     });
 
-    describe('with specitic name', () => {
+    describe('with specific name', () => {
         testApp({
             'name': 'awesome-project'
         });

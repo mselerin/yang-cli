@@ -66,7 +66,7 @@ export class CodeUtils
 
 
     static addImport(sourceFile: SourceFile, importName: string, importFile: string) {
-        sourceFile.addImport({
+        sourceFile.addImportDeclaration({
             namedImports: [{name: importName}],
             moduleSpecifier: importFile
         });
