@@ -7,10 +7,9 @@ export class YangFeatureGenerator extends YangGenerator
 {
     _initCli(): void {
         super._initCli();
-        this.option('routing', { type: Boolean, default: true });
-        this.option('component', { type: Boolean, default: false });
-        this.option('template', { type: Boolean, default: false });
-        this.option('styles', { type: Boolean, default: false });
+        this.option('with-component', { type: Boolean, default: false });
+        this.option('with-template', { type: Boolean, default: false });
+        this.option('with-styles', { type: Boolean, default: false });
     }
 
 
@@ -18,9 +17,9 @@ export class YangFeatureGenerator extends YangGenerator
         super._configuring();
 
         this.props['dir'] = this.options['dir'] || `${this.projectRoot}src/app/features/${this.props.kebabName}`;
-        this.props['component'] = this.options['component'] || false;
-        this.props['template'] = this.options['template'] || false;
-        this.props['styles'] = this.options['styles'] || false;
+        this.props['component'] = this.options['with-component'] || false;
+        this.props['template'] = this.options['with-template'] || false;
+        this.props['styles'] = this.options['with-styles'] || false;
     }
 
 
@@ -34,11 +33,11 @@ export class YangFeatureGenerator extends YangGenerator
 
         if (this.props['component']) {
             await this._composeWith(YangComponentGenerator, {
-                dir: this.props.dir,
-                name: this.props.name,
-                feature: this.props.name,
-                template: this.props.template,
-                styles: this.props.styles
+                'dir': this.props.dir,
+                'name': this.props.name,
+                'feature': this.props.name,
+                'with-template': this.props.template,
+                'with-styles': this.props.styles
             });
         }
     }

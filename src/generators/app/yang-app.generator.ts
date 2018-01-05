@@ -108,10 +108,10 @@ export class YangAppGenerator extends YangGenerator
         this._copyTemplates();
 
         await this._composeWith(YangFeatureGenerator, {
-            name: 'home',
-            component: true,
-            template: true,
-            styles: true
+            'name': 'home',
+            'with-component': true,
+            'with-template': true,
+            'with-styles': true
         });
 
         // Recopier les templates du home

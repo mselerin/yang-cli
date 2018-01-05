@@ -9,8 +9,8 @@ export class YangComponentGenerator extends YangGenerator
         super._initCli();
 
         this.option('feature', { type: String });
-        this.option('styles', { type: Boolean, default: false });
-        this.option('template', { type: Boolean, default: false });
+        this.option('with-styles', { type: Boolean, default: false });
+        this.option('with-template', { type: Boolean, default: false });
         this.option('shared', { type: Boolean, default: false });
         this.option('flat', { type: Boolean, default: false });
     }
@@ -19,8 +19,8 @@ export class YangComponentGenerator extends YangGenerator
     _initializing() {
         super._initializing();
         this.props['feature'] = this.options['feature'];
-        this.props['styles'] = this.options['styles'] || false;
-        this.props['template'] = this.options['template'] || false;
+        this.props['styles'] = this.options['with-styles'] || false;
+        this.props['template'] = this.options['with-template'] || false;
         this.props['shared'] = this.options['shared'] || false;
         this.props['flat'] = this.options['flat'];
         this.props['dir'] = this.options['dir'];
