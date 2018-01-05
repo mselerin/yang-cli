@@ -41,7 +41,7 @@ Scaffold a brand new application.
 Generates a complete feature under app/features.
 
 ##### Options
-* styles : Add a `name.component.scss`
+* `--with-component` : Add a new 'my-super-feature' component. Options from the 'component' generator are available.
 ***
 
 
@@ -56,7 +56,8 @@ Generates a stub component under `app/shared/components`.
 Generates a stub component under `app/features/my-super-feature/my-feature-component`.
 
 ##### Options
-* styles : Add a `name.component.scss`
+* `--with-styles` : Add a `name.component.scss`
+* `--with-template` : Add a `name.component.html`
 ***
 
 
