@@ -29,7 +29,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
-const ENABLE_AOT = true; //profileConfig.production;
+const ENABLE_AOT = false; //profileConfig.production;
 
 
 const PATHS = { };
