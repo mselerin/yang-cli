@@ -92,6 +92,18 @@ export class YangAppGenerator extends YangGenerator
 
 
     async _writing(): Promise<void> {
+
+        // Launch angular-cli
+        // this.spawnCommandSync('ng', ['new', this.props.name
+        //     , '--style', 'scss'
+        //     , '--directory', this.root
+        //     , '--inline-style'
+        //     , '--inline-template'
+        //     //, '--skip-git'
+        //     //, '--skip-commit'
+        //     , '--skip-install'
+        // ]);
+
         await super._writing();
         this._copyTemplates();
 

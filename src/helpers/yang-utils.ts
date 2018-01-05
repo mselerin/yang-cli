@@ -1,8 +1,8 @@
 import * as Environment from 'yeoman-environment';
 import chalk from 'chalk';
 import {YangGenerator} from "../generators/yang.generator";
-import requireg = require('requireg');
 import {StringUtils} from "./string-utils";
+import {requireg} from "./requireg";
 
 export class YangUtils
 {

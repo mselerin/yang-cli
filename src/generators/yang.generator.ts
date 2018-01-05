@@ -34,13 +34,6 @@ export class YangGenerator extends Generator
         this.option('root', { type: String, default: '' });
         this.option('dir', { type: String });
         this.option('prompt', { type: Boolean, default: false });
-
-        // TODO dry run
-        // this.option('dry', {
-        //     description: "Don't use the default, ask everything",
-        //     type: Boolean,
-        //     default: false
-        // });
     }
 
 

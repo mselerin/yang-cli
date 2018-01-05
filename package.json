@@ -28,7 +28,7 @@
   ],
   "devDependencies": {
     "@types/chai": "^4.0.10",
-    "@types/mocha": "^2.2.45",
+    "@types/mocha": "^2.2.46",
     "@types/node": "^8.5.5",
     "@types/sinon": "^4.1.2",
     "@types/yargs": "^10.0.1",
@@ -48,7 +48,8 @@
     "deep-extend": "^0.5.0",
     "gulp-rename": "^1.2.2",
     "lodash": "^4.17.4",
-    "requireg": "^0.1.7",
+    "rc": "^1.2.2",
+    "resolve": "^1.5.0",
     "stack-trace": "^0.0.10",
     "ts-simple-ast": "^5.3.1",
     "yargs": "^10.0.3",
