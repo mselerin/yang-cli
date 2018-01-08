@@ -1,9 +1,9 @@
 import {Directive, AfterContentInit, ElementRef} from '@angular/core';
 
 @Directive({
-   selector: '[<%=kebabName%>]'
+   selector: '[<%=dasherize_name%>]'
 })
-export class <%=pascalName%>Directive implements AfterContentInit
+export class <%=classify_name%>Directive implements AfterContentInit
 {
    constructor(
       private element: ElementRef

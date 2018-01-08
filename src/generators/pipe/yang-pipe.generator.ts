@@ -1,6 +1,7 @@
 import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
+import {classify, dasherize} from "../../helpers/string-utils";
 
 export class YangPipeGenerator extends YangGenerator
 {
@@ -13,10 +14,6 @@ export class YangPipeGenerator extends YangGenerator
     }
 
 
-    _configuring() {
-        super._configuring();
-    }
-
 
     async _writing(): Promise<void> {
         await super._writing();
@@ -27,9 +24,9 @@ export class YangPipeGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Pipe`, `./pipes/${this.props.kebabName}.pipe`);
+            `${classify(this.props.name)}Pipe`, `./pipes/${dasherize(this.props.name)}.pipe`);
 
-        CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${this.props.pascalName}Pipe`);
+        CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Pipe`);
         this.fs.write(file, sourceFile.getFullText());
     }
 

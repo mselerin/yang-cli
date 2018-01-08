@@ -1,6 +1,7 @@
 import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
+import {classify, dasherize} from "../../helpers/string-utils";
 
 export class YangDirectiveGenerator extends YangGenerator
 {
@@ -22,9 +23,9 @@ export class YangDirectiveGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Directive`, `./directives/${this.props.kebabName}.directive`);
+            `${classify(this.props.name)}Directive`, `./directives/${dasherize(this.props.name)}.directive`);
 
-        CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${this.props.pascalName}Directive`);
+        CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Directive`);
         this.fs.write(file, sourceFile.getFullText());
     }
 

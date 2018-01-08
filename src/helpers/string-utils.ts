@@ -24,15 +24,19 @@ export class StringUtils
     }
 
 
-    static kebabCase(str: string): string {
+    static dasherize(str: string): string {
         return _.kebabCase(str);
     }
 
-    static camelCase(str: string): string {
+    static camelize(str: string): string {
         return _.camelCase(str);
     }
 
-    static pascalCase(str: string): string {
+    static classify(str: string): string {
         return _.upperFirst(_.camelCase(str));
     }
 }
+
+
+export function dasherize(str: string) { return StringUtils.dasherize(str); }
+export function classify(str: string) { return StringUtils.classify(str); }

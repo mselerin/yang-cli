@@ -1,6 +1,7 @@
 import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
+import {classify, dasherize} from "../../helpers/string-utils";
 
 export class YangServiceGenerator extends YangGenerator
 {
@@ -23,9 +24,9 @@ export class YangServiceGenerator extends YangGenerator
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
-            `${this.props.pascalName}Service`, `./services/${this.props.kebabName}.service`);
+            `${classify(this.props.name)}Service`, `./services/${dasherize(this.props.name)}.service`);
 
-        CodeUtils.insertInVariableArray(sourceFile, "PROVIDERS", `    ${this.props.pascalName}Service`);
+        CodeUtils.insertInVariableArray(sourceFile, "PROVIDERS", `    ${classify(this.props.name)}Service`);
         this.fs.write(file, sourceFile.getFullText());
     }
 

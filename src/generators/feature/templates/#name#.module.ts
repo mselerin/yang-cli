@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from "app/shared/shared.module";
-import {<%=pascalName%>RoutingModule} from "./<%=kebabName%>-routing.module";
+import {<%=classify_name%>RoutingModule} from "./<%=dasherize_name%>-routing.module";
 
 const MODULES = [
     SharedModule,
-    <%=pascalName%>RoutingModule
+    <%=classify_name%>RoutingModule
 ];
 
 const DECLARATIONS = [
@@ -15,4 +15,4 @@ const DECLARATIONS = [
     imports: MODULES,
     declarations: DECLARATIONS
 })
-export class <%=pascalName%>Module {}
+export class <%=classify_name%>Module {}

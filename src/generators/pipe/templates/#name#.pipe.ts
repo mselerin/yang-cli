@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: '<%=kebabName%>' })
-export class <%=pascalName%>Pipe implements PipeTransform {
+@Pipe({ name: '<%=dasherize_name%>' })
+export class <%=classify_name%>Pipe implements PipeTransform {
    transform(input: string|any): string|any {
       return input;
    }

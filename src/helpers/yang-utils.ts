@@ -48,7 +48,7 @@ export class YangUtils
         if (plugin) {
             if (pluginCmd) {
                 // Retrouver la commande
-                const realPluginCmd = `Yang${StringUtils.pascalCase(pluginCmd)}Generator`;
+                const realPluginCmd = `Yang${StringUtils.classify(pluginCmd)}Generator`;
                 return plugin[realPluginCmd];
             }
             else {

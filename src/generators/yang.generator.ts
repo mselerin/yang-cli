@@ -4,7 +4,7 @@ import * as path from "path";
 import * as stackTrace from "stack-trace";
 import chalk from "chalk";
 import TsSimpleAst, {SourceFile} from "ts-simple-ast";
-import {StringUtils} from "../helpers/string-utils";
+import {dasherize, classify} from "../helpers/string-utils";
 import {YangUtils} from "../helpers/yang-utils";
 
 export class YangGenerator extends Generator
@@ -51,18 +51,18 @@ export class YangGenerator extends Generator
     }
 
 
-    _configuring() {
-        this.props['kebabName'] = StringUtils.kebabCase(this.props.name);
-        this.props['pascalName'] = StringUtils.pascalCase(this.props.name);
-    }
+    _configuring() {}
 
 
     async _writing(): Promise<void> {
         // Templated filename
         this.registerTransformStream(rename((path) => {
-            path.basename = path.basename.replace(/(#name#)/g, this.props.kebabName);
-            path.dirname = path.dirname.replace(/(#name#)/g, this.props.kebabName);
+            path.basename = path.basename.replace(/(#name#)/g, dasherize(this.props.name));
+            path.dirname = path.dirname.replace(/(#name#)/g, dasherize(this.props.name));
         }));
+
+        this.props['dasherize_name'] = dasherize(this.props.name);
+        this.props['classify_name'] = classify(this.props.name);
     }
 
     async _conflicts() {}

@@ -77,6 +77,7 @@ export class YangAppGenerator extends YangGenerator
         });
     }
 
+
     _configuring() {
         super._configuring();
         this.props['dir'] = this.options['dir'] || `./${this.props['name']}`;
