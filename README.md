@@ -50,10 +50,15 @@ Generates a complete feature under app/features.
 Generates a stub component under the current directory.
 
 `yang component my-shared-component --shared`
+OR `yang component shared/my-shared-component` 
 Generates a stub component under `app/shared/components`.
 
 `yang component my-feature-component --feature my-super-feature`
+OR `yang component my-super-feature/my-feature-component`
 Generates a stub component under `app/features/my-super-feature/my-feature-component`.
+
+
+
 
 ##### Options
 * `--with-styles` : Add a `name.component.scss`
