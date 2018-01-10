@@ -119,7 +119,6 @@ export class YangAppGenerator extends YangGenerator
         await this._composeWith(YangFeatureGenerator, {
             'name': 'home',
             'with-component': true,
-            'flat': true,
             'with-template': true,
             'with-styles': true
         });
