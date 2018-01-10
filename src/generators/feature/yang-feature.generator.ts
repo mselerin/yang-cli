@@ -11,6 +11,7 @@ export class YangFeatureGenerator extends YangGenerator
         this.option('with-component', { type: Boolean, default: false });
         this.option('with-template', { type: Boolean, default: false });
         this.option('with-styles', { type: Boolean, default: false });
+        this.option('flat', { type: Boolean, default: false });
     }
 
 
@@ -20,6 +21,7 @@ export class YangFeatureGenerator extends YangGenerator
         this.props['component'] = this.options['with-component'] || false;
         this.props['template'] = this.options['with-template'] || false;
         this.props['styles'] = this.options['with-styles'] || false;
+        this.props['flat'] = this.options['flat'] || false;
     }
 
 
@@ -39,9 +41,9 @@ export class YangFeatureGenerator extends YangGenerator
 
         if (this.props['component']) {
             await this._composeWith(YangComponentGenerator, {
-                'dir': this.props.dir,
                 'name': this.props.name,
                 'feature': this.props.name,
+                'flat': this.props.flat,
                 'with-template': this.props.template,
                 'with-styles': this.props.styles
             });

@@ -4,6 +4,9 @@ import * as path from "path";
 import {Questions} from "inquirer";
 import {YangFeatureGenerator} from "../feature/yang-feature.generator";
 import {YangHomeGenerator} from "../home/yang-home.generator";
+import chalk from "chalk";
+
+const commandExists = require('command-exists').sync;
 
 export class YangAppGenerator extends YangGenerator
 {
@@ -95,13 +98,18 @@ export class YangAppGenerator extends YangGenerator
     async _writing(): Promise<void> {
 
         // Launch angular-cli
+        // if (!commandExists('ng')) {
+        //     console.log(chalk.bgRed(`Angular CLI not available. Install it with 'npm i -g @angular/cli' or 'yarn global add @angular/cli'.`));
+        //     process.exit();
+        // }
+        //
         // this.spawnCommandSync('ng', ['new', this.props.name
         //     , '--style', 'scss'
         //     , '--directory', this.root
         //     , '--inline-style'
         //     , '--inline-template'
-        //     //, '--skip-git'
-        //     //, '--skip-commit'
+        //     // , '--skip-git'
+        //     // , '--skip-commit'
         //     , '--skip-install'
         // ]);
 
@@ -111,6 +119,7 @@ export class YangAppGenerator extends YangGenerator
         await this._composeWith(YangFeatureGenerator, {
             'name': 'home',
             'with-component': true,
+            'flat': true,
             'with-template': true,
             'with-styles': true
         });
