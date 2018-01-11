@@ -22,7 +22,7 @@ export class YangComponentGenerator extends YangGenerator
         super._initializing();
         this.props['feature'] = this.options['feature'];
         this.props['shared'] = this.options['shared'] || false;
-        this.props['flat'] = this.options['flat'];
+        this.props['flat'] = this.options['flat'] || false;
         this.props['styles'] = this.options['with-styles'] || false;
         this.props['template'] = this.options['with-template'] || false;
     }
@@ -63,8 +63,11 @@ export class YangComponentGenerator extends YangGenerator
         }
 
 
-        if (this.props['shared'])
+        if (this.props['shared']) {
             this.props['dir'] = `${this.projectRoot}src/app/shared/components`;
+            if (!this.props['flat'])
+                this.props['dir'] += `/${this.props['name']}`;
+        }
 
         if (this.props['feature']) {
             this.props['dir'] = `${this.projectRoot}src/app/features/${this.props['feature']}`;
