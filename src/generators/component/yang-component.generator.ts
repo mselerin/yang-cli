@@ -1,5 +1,5 @@
-import {YangGenerator} from "../yang.generator";
 import * as path from "path";
+import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import chalk from "chalk";
@@ -64,15 +64,15 @@ export class YangComponentGenerator extends YangGenerator
 
 
         if (this.props['shared']) {
-            this.props['dir'] = `${this.projectRoot}src/app/shared/components`;
+            this.props['dir'] = path.join(this.projectRoot, 'src', 'app', 'shared', 'components');
             if (!this.props['flat'])
-                this.props['dir'] += `/${this.props['name']}`;
+                this.props['dir'] = path.join(this.props['dir'], dasherize(this.props.name));
         }
 
         if (this.props['feature']) {
-            this.props['dir'] = `${this.projectRoot}src/app/features/${this.props['feature']}`;
+            this.props['dir'] = path.join(this.projectRoot, 'src', 'app', 'features', dasherize(this.props['feature']));
             if (!this.props['flat'])
-                this.props['dir'] += `/${this.props['name']}`;
+                this.props['dir'] = path.join(this.props['dir'], dasherize(this.props.name));
         }
 
         if (!this.props['dir'])
@@ -110,11 +110,15 @@ export class YangComponentGenerator extends YangGenerator
         // Update files
         if (this.props.shared)
         {
-            const file = `${this.projectRoot}${YangUtils.SHARED_MODULE_FILE}`;
+            let compDir = `./components`;
+            if (!this.props['flat'])
+                compDir += `/${dasherize(this.props.name)}`;
+
+            const file = path.join(this.projectRoot, YangUtils.SHARED_MODULE_FILE);
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
-                `${classify(this.props.name)}Component`, `./components/${dasherize(this.props.name)}.component`);
+                `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Component`);
             this.fs.write(file, sourceFile.getFullText());
@@ -122,16 +126,15 @@ export class YangComponentGenerator extends YangGenerator
 
         else if (this.props.feature)
         {
-            let compDir = this.props.dir.substring(`${this.projectRoot}src/`.length);
+            let compDir = `.`;
+            if (!this.props['flat'])
+                compDir += `/${dasherize(this.props.name)}`;
 
-            if (compDir.startsWith(`app/features/${this.props['feature']}`))
-                compDir = compDir.substring(`app/features/${this.props['feature']}`.length);
-
-            const file = `${this.projectRoot}src/app/features/${this.props.feature}/${this.props.feature}.module.ts`;
+            const file = path.join(this.projectRoot, 'src', 'app', 'features', dasherize(this.props.feature), `${dasherize(this.props.feature)}.module.ts`);
             const sourceFile = this._getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
-                `${classify(this.props.name)}Component`, `.${compDir}/${dasherize(this.props.name)}.component`);
+                `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Component`);
             this.fs.write(file, sourceFile.getFullText());

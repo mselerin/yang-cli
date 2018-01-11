@@ -1,3 +1,4 @@
+import * as path from "path";
 import {YangGenerator} from "../yang.generator";
 import {YangComponentGenerator} from "../component/yang-component.generator";
 import {CodeUtils} from "../../helpers/code-utils";
@@ -25,7 +26,7 @@ export class YangFeatureGenerator extends YangGenerator
 
     _configuring() {
         super._configuring();
-        this.props['dir'] = this.props['dir'] || `${this.projectRoot}src/app/features/${dasherize(this.props.name)}`;
+        this.props['dir'] = this.props['dir'] || path.join(this.projectRoot, 'src', 'app', 'features', dasherize(this.props.name));
     }
 
 
@@ -34,7 +35,6 @@ export class YangFeatureGenerator extends YangGenerator
         await super._writing();
         this._copyTemplates();
 
-        // this._updateFeatures();
         this._updateRouting();
 
         if (this.props['component']) {
@@ -49,22 +49,10 @@ export class YangFeatureGenerator extends YangGenerator
     }
 
 
-    // _updateFeatures(): void {
-    //     // Ajouter l'import et le module
-    //     const file = `${this.projectRoot}${YangUtils.FEATURES_MODULE_FILE}`;
-    //     const sourceFile = this._getSourceFile(file);
-    //
-    //     CodeUtils.addImport(sourceFile,
-    //         `${classify(this.props.name)}Module`, `./${dasherize(this.props.name)}/${dasherize(this.props.name)}.module`);
-    //
-    //     CodeUtils.insertInVariableArray(sourceFile, "MODULES", `   ${classify(this.props.name)}Module`);
-    //     this.fs.write(file, sourceFile.getFullText());
-    // }
-
 
     _updateRouting(): void {
         // Ajouter la route
-        const file = `${this.projectRoot}${YangUtils.FEATURES_MODULE_FILE}`;
+        const file = path.join(this.projectRoot, YangUtils.FEATURES_MODULE_FILE);
         const sourceFile = this._getSourceFile(file);
 
         CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES",
