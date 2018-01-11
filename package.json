@@ -52,7 +52,7 @@
     "rc": "^1.2.3",
     "resolve": "^1.5.0",
     "stack-trace": "^0.0.10",
-    "ts-simple-ast": "^5.4.0",
+    "ts-simple-ast": "^5.5.1",
     "yargs": "^10.1.1",
     "yeoman-environment": "^2.0.5",
     "yeoman-generator": "^2.0.2"

@@ -1445,9 +1445,9 @@ ts-node@^4.1.0:
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-ts-simple-ast@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-5.4.0.tgz#3c543f6dca10cdac140ee204405c4c8629a2efd9"
+ts-simple-ast@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/ts-simple-ast/-/ts-simple-ast-5.5.1.tgz#b8145ea9351b308fe1a3babb8e920c2a9e41a4d7"
   dependencies:
     code-block-writer "^6.2.0"
     globby "^6.1.0"
