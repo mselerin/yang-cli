@@ -59,10 +59,10 @@ Generates a stub component under `app/features/my-super-feature/my-feature-compo
 
 
 
-
 ##### Options
 * `--with-styles` : Add a `name.component.scss`
 * `--with-template` : Add a `name.component.html`
+* `--flat` : Does not create a sub-folder for the component
 ***
 
 
