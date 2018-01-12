@@ -16,16 +16,6 @@ export class YangUtils
     {
         console.log(chalk.grey(`With ${(<any>generator).constructor.name}`));
         return generator._run(options);
-
-        // const env = Environment.createEnv();
-        // let g = env.instantiate(Generator, {
-        //     arguments: props.arguments,
-        //     options: props
-        // });
-        //
-        // return new Promise<void>(resolve => {
-        //     g.run(() => resolve());
-        // });
     }
 
 

@@ -1,5 +1,7 @@
+import * as _ from "lodash";
 import * as path from "path";
 import * as fs from "fs";
+import chalk from "chalk";
 import {dasherize} from "./string-utils";
 
 const rcopy = require("recursive-copy");
@@ -8,65 +10,83 @@ const ejs = require('ejs');
 
 export class FileUtils
 {
-    static read(path: string): string {
-        return fs.readFileSync(path, { encoding: 'utf8' });
+    static read(file: string): string {
+        return fs.readFileSync(file, { encoding: 'utf8' });
     }
 
-    static write(path: string, content: string): void {
-        fs.writeFileSync(path, content);
+    static write(file: string, content: string): void {
+        fs.writeFileSync(file, content);
     }
 
-    static readJSON(path: string): any {
-        return JSON.parse(FileUtils.read(path));
+    static readJSON(file: string): any {
+        return JSON.parse(FileUtils.read(file));
     }
 
-    static writeJSON(path: string, data: any): void {
-        FileUtils.write(path, JSON.stringify(data, null, 2));
+    static writeJSON(file: string, data: any): void {
+        FileUtils.write(file, JSON.stringify(data, null, 2));
     }
 
-    static exists(path: string): boolean {
-        return fs.existsSync(path);
-    }
-
-
-    static async copy(from: string, to: string, opts?: any): Promise<void> {
-        // TODO
-        console.log('copy', from, to);
-
-        let copyOptions = {
-            overwrite: true,
-            expand: true,
-            dot: true
-        };
-
-        await rcopy(from, to, copyOptions);
+    static exists(file: string): boolean {
+        fs.existsSync(path.resolve(file));
+        return fs.existsSync(path.resolve(file));
     }
 
 
-    static async copyTpl(from: string, to: string, context: any = {}, tplSettings?: any, opts?: any): Promise<void> {
-        // TODO
-        console.log('copyTpl', from, to);
+    static logCRUD(file: string): void {
+        let crud = chalk.green(_.padStart('create', 8));
+        if (FileUtils.exists(file))
+            crud = chalk.yellow(_.padStart('update', 8));
 
+        console.log(`${crud} ${file}`);
+    }
+
+
+    static async copy(from: string, to: string, context: any = {}, opts: any = {}): Promise<void>
+    {
         let copyOptions = {
             overwrite: true,
             expand: true,
             dot: true,
-            filter: [
-                '**/*.{json,js,ts,html,css,scss,md}'
-            ],
             rename: (filePath) => {
-                filePath = filePath.replace(/(#name#)/g, dasherize(context.name))
-                console.log(' > ' + filePath);
+                filePath = filePath.replace(/(#name#)/g, dasherize(context.name));
                 return filePath;
             },
-            // transform: (src, dest, stats) => {
-            //     return through((chunk, enc, done) => {
-            //         let output = chunk.toString().toUpperCase();
-            //         done(null, output);
-            //     });
-            // }
+            transform: (src, dest, stats) => {
+                FileUtils.logCRUD(dest);
+
+                let content: string = FileUtils.read(src);
+                return through.obj((data, encoding, callback) => {
+                    callback(null, content);
+                });
+            }
         };
 
-        await rcopy(from, to, copyOptions);
+        await rcopy(from, to, _.defaults(opts, copyOptions));
+    }
+
+
+    static async copyTpl(from: string, to: string, context: any = {}, opts: any = {}): Promise<void>
+    {
+        let copyOptions = {
+            overwrite: true,
+            expand: true,
+            dot: true,
+            rename: (filePath) => {
+                filePath = filePath.replace(/(#name#)/g, dasherize(context.name));
+                return filePath;
+            },
+            transform: (src, dest, stats) => {
+                FileUtils.logCRUD(dest);
+
+                let content: string = FileUtils.read(src);
+                content = ejs.render(content, context);
+
+                return through.obj((data, encoding, callback) => {
+                    callback(null, content);
+                });
+            }
+        };
+
+        await rcopy(from, to, _.defaults(opts, copyOptions));
     }
 }

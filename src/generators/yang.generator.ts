@@ -76,52 +76,48 @@ export class YangGenerator
     async _end() {}
 
 
-    async _composeWith(generator: YangGenerator, options: any = {}): Promise<void> {
+    _composeWith(generator: YangGenerator, options: any = {}): Promise<void> {
         if (!options) options = {};
 
         if (!options['root'])
             options['root'] = this.root;
 
         options['force'] = this.options['force'];
-        await YangUtils.runGenerator(generator, options);
+        return YangUtils.runGenerator(generator, options);
     }
 
 
-    async _copyTemplates() {
+    async _copyTemplates(): Promise<void> {
         // Copy all files
         await FileUtils.copy(
             this.templatePath(),
             this.destinationPath(this.directory),
+            this.props,
             {
-                globOptions: {
-                    dot: true
-                }
+                filter: [
+                    '**/*',
+                    '!**/*.{json,js,ts,html,css,scss,md}'
+                ]
             }
         );
 
         // Overwrite with templated files
         await FileUtils.copyTpl(
-            //this.templatePath('**/*.{json,js,ts,html,css,scss,md}'),
             this.templatePath(),
             this.destinationPath(this.directory),
             this.props,
-            null,
-            {
-                globOptions: {
-                    dot: true
-                }
-            }
+            { filter: [ '**/*.{json,js,ts,html,css,scss,md}' ] }
         );
     }
 
 
-    _copyTemplate(tplName: string) {
-        FileUtils.copyTpl(
-            this.templatePath(tplName),
-            this.destinationPath(this.directory),
-            this.props
-        );
-    }
+    // async _copyTemplate(tplName: string) {
+    //     await FileUtils.copyTpl(
+    //         this.templatePath(tplName),
+    //         this.destinationPath(this.directory),
+    //         this.props
+    //     );
+    // }
 
 
     _getSourceFile(file: string): SourceFile {
@@ -216,17 +212,8 @@ export class YangGenerator
     }
 
 
-    /*
-     * Déclaration de toutes les méthodes yeoman.
-     * Les générateurs qui implémentent celui-ci doivent inclure ceci :
-         initializing() { return super.initializing(); }
-         prompting() { return super.prompting(); }
-         configuring() { return super.configuring(); }
-         writing() { return super.writing(); }
-         conflicts() { return super.conflicts(); }
-         install() { return super.install(); }
-         end() { return super.end(); }
-     */
+
+
     initializing() {
         this._debug(` > ${this.generatorName} - initializing`);
         return this._initializing();

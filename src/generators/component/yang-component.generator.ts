@@ -87,24 +87,27 @@ export class YangComponentGenerator extends YangGenerator
 
         // Copy templates
         await FileUtils.copyTpl(
-            this.templatePath('#name#.component.ts'),
-            this.destinationPath(path.join(this.props.dir, '#name#.component.ts')),
-            this.props
+            this.templatePath(),
+            this.destinationPath(this.props.dir),
+            this.props,
+            { filter: [ '**/#name#.component.ts' ] }
         );
 
         if (this.props.template) {
             await FileUtils.copyTpl(
-                this.templatePath('#name#.component.html'),
-                this.destinationPath(path.join(this.props.dir, '#name#.component.html')),
-                this.props
+                this.templatePath(),
+                this.destinationPath(this.props.dir),
+                this.props,
+                { filter: [ '**/#name#.component.html' ] }
             );
         }
 
         if (this.props.styles) {
             await FileUtils.copyTpl(
-                this.templatePath('#name#.component.scss'),
-                this.destinationPath(path.join(this.props.dir, '#name#.component.scss')),
-                this.props
+                this.templatePath(),
+                this.destinationPath(this.props.dir),
+                this.props,
+                { filter: [ '**/#name#.component.scss' ] }
             );
         }
 
