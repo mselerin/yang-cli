@@ -53,7 +53,6 @@ export class YangFeatureGenerator extends YangGenerator
     }
 
 
-
     updateRouting(): void {
         // Ajouter la route
         const file = path.join(this.projectRoot, YangUtils.FEATURES_MODULE_FILE);

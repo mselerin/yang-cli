@@ -17,6 +17,7 @@ export class YangComponentGenerator extends YangGenerator
             .option('without-spec', { type: 'boolean', default: false, describe: 'Does not create a spec file' })
             .option('with-styles', { type: 'boolean', default: false, describe: 'Create a style file' })
             .option('with-template', { type: 'boolean', default: false, describe: 'Create a template file' })
+            .option('with-routing', { type: 'boolean', default: false, describe: 'Create a route for this component (feature-component only)' })
         ;
     }
 
@@ -29,6 +30,7 @@ export class YangComponentGenerator extends YangGenerator
         this.props['spec'] = !this.options['without-spec'];
         this.props['styles'] = this.options['with-styles'] || false;
         this.props['template'] = this.options['with-template'] || false;
+        this.props['routing'] = this.options['with-routing'] || false;
     }
 
 
@@ -133,6 +135,31 @@ export class YangComponentGenerator extends YangGenerator
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Component`);
             FileUtils.write(file, sourceFile.getFullText());
+
+            if (this.props.routing) {
+                this.updateRouting();
+            }
         }
+    }
+
+
+    updateRouting(): void
+    {
+        let compDir = `.`;
+        if (!this.props['flat'])
+            compDir += `/${dasherize(this.props.name)}`;
+
+
+        const file = path.join(this.projectRoot, 'src', 'app', 'features', dasherize(this.props.feature), `${dasherize(this.props.feature)}-routing.module.ts`);
+        const sourceFile = CodeUtils.getSourceFile(file);
+
+        CodeUtils.addImport(sourceFile,
+            `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
+
+        CodeUtils.insertInVariableArray(sourceFile, `${classify(this.props.feature)}Routes`,
+            `    { path: '${dasherize(this.props.name)}', component: '${classify(this.props.name)}Component' }`
+        );
+
+        FileUtils.write(file, sourceFile.getFullText());
     }
 }
