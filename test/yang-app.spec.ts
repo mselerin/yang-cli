@@ -10,6 +10,7 @@ chai.use(require('chai-fs'));
 const assert = (chai.assert as any);
 const DEFAULT_NAME = "test-yang-cli";
 const TMP_DIR = path.join(os.tmpdir(), DEFAULT_NAME);
+const TIMEOUT = 10000;
 
 
 function testApp(props: any) {
@@ -44,7 +45,7 @@ function testApp(props: any) {
     it('should contains a home feature', () => {
         assert.directoryInclude(
             path.join(ROOT_DIR, 'src', 'app', 'features', 'home'),
-            ['home.module.ts', 'home-routing.module.ts', 'home.component.ts']
+            ['home.module.ts', 'home-routing.module.ts', 'home.component.ts', 'home.component.spec.ts']
         );
     });
 
@@ -55,8 +56,10 @@ function testApp(props: any) {
 }
 
 
-describe('yang new', () => {
-    describe('no arguments', () => {
+describe('yang new', function () {
+    this.timeout(TIMEOUT);
+
+    describe('no arguments', function () {
         testApp({});
     });
 
