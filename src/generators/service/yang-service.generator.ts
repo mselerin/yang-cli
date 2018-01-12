@@ -18,11 +18,11 @@ export class YangServiceGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this._copyTemplates();
+        await this.copyTemplates();
 
         // Update files
         let file = `${this.projectRoot}${YangUtils.SERVICE_MODULE_FILE}`;
-        const sourceFile = this._getSourceFile(file);
+        const sourceFile = CodeUtils.getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
             `${classify(this.props.name)}Service`, `./services/${dasherize(this.props.name)}.service`);

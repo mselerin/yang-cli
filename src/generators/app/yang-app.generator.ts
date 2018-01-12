@@ -1,14 +1,12 @@
 import {YangGenerator} from "../yang.generator";
-import * as _ from 'lodash';
 import * as path from "path";
 import * as extend from "deep-extend";
-import {Questions} from "inquirer";
-import {YangFeatureGenerator} from "../feature/yang-feature.generator";
-import {YangHomeGenerator} from "../home/yang-home.generator";
 import chalk from "chalk";
 import {EOL} from 'os';
-import {FileUtils} from "../../helpers/file-utils";
 import {Argv} from "yargs";
+import {YangFeatureGenerator} from "../feature/yang-feature.generator";
+import {YangHomeGenerator} from "../home/yang-home.generator";
+import {FileUtils} from "../../helpers/file-utils";
 
 const commandExists = require('command-exists').sync;
 
@@ -19,56 +17,6 @@ export class YangAppGenerator extends YangGenerator
         this.props['name'] = this.options['name'] || path.basename(process.cwd());
         this.props['description'] = this.props.name;
     }
-
-
-//     _prompting(): Promise<any> {
-//     super._prompting();
-//
-//     if (!this.hasPrompt) {
-//         return;
-//     }
-//
-//     let prompts: Questions = [
-//         {
-//             type    : 'input',
-//             name    : 'name',
-//             message : 'Your project name',
-//             default : this.props.name
-//         },
-//
-//         {
-//             type    : 'input',
-//             name    : 'description',
-//             message : 'Your project description',
-//             default : this.props.description
-//         },
-//
-//         {
-//             type    : 'input',
-//             name    : 'authorName',
-//             message : 'Author\'s Name',
-//             default : this.props.authorName
-//         },
-//
-//         {
-//             type    : 'input',
-//             name    : 'authorEmail',
-//             message : 'Author\'s Email',
-//             default : this.props.authorEmail
-//         },
-//
-//         {
-//             type    : 'input',
-//             name    : 'authorUrl',
-//             message : 'Author\'s Homepage',
-//             default : this.props.authorUrl
-//         }
-//     ];
-//
-//     return this.prompt(prompts).then((props) => {
-//         _.merge(this.props, props);
-//     });
-// }
 
 
     _configuring() {
@@ -105,13 +53,13 @@ export class YangAppGenerator extends YangGenerator
         ]);
 
         await super._writing();
-        await this._copyTemplates();
+        await this.copyTemplates();
 
-        this._updatePolyfills();
-        this._updatePackageJson();
-        this._updateGitIgnore();
+        this.updatePolyfills();
+        this.updatePackageJson();
+        this.updateGitIgnore();
 
-        await this._composeWith(new YangFeatureGenerator(), {
+        await this.composeWith(new YangFeatureGenerator(), {
             'name': 'home',
             'with-component': true,
             'with-template': true,
@@ -119,7 +67,7 @@ export class YangAppGenerator extends YangGenerator
         });
 
         // Recopier les templates du home
-        await this._composeWith(new YangHomeGenerator());
+        await this.composeWith(new YangHomeGenerator());
 
         // Faire le git commit
         if (commandExists('git')) {
@@ -139,7 +87,7 @@ export class YangAppGenerator extends YangGenerator
 
 
 
-    _updatePolyfills(): void {
+    updatePolyfills(): void {
         const file = path.join(this.root, 'src', 'polyfills.ts');
         let content = FileUtils.read(file);
         content += `import 'whatwg-fetch';${EOL}`;
@@ -148,7 +96,7 @@ export class YangAppGenerator extends YangGenerator
     }
 
 
-    _updatePackageJson(): void {
+    updatePackageJson(): void {
         const file = path.join(this.root, 'package.json');
         const pkg = FileUtils.readJSON(file);
 
@@ -172,7 +120,7 @@ export class YangAppGenerator extends YangGenerator
     }
 
 
-    _updateGitIgnore(): void {
+    updateGitIgnore(): void {
         const file = path.join(this.root, '.gitignore');
         let content = FileUtils.read(file);
         content += `${EOL}# Custom Files${EOL}`;

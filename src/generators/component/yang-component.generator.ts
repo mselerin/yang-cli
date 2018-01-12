@@ -86,29 +86,14 @@ export class YangComponentGenerator extends YangGenerator
         await super._writing();
 
         // Copy templates
-        await FileUtils.copyTpl(
-            this.templatePath(),
-            this.destinationPath(this.props.dir),
-            this.props,
-            { filter: [ '**/#name#.component.ts' ] }
-        );
+        await this.copyTemplate('#name#.component.ts');
 
         if (this.props.template) {
-            await FileUtils.copyTpl(
-                this.templatePath(),
-                this.destinationPath(this.props.dir),
-                this.props,
-                { filter: [ '**/#name#.component.html' ] }
-            );
+            await this.copyTemplate('#name#.component.html');
         }
 
         if (this.props.styles) {
-            await FileUtils.copyTpl(
-                this.templatePath(),
-                this.destinationPath(this.props.dir),
-                this.props,
-                { filter: [ '**/#name#.component.scss' ] }
-            );
+            await this.copyTemplate('#name#.component.scss');
         }
 
 
@@ -120,7 +105,7 @@ export class YangComponentGenerator extends YangGenerator
                 compDir += `/${dasherize(this.props.name)}`;
 
             const file = path.join(this.projectRoot, YangUtils.SHARED_MODULE_FILE);
-            const sourceFile = this._getSourceFile(file);
+            const sourceFile = CodeUtils.getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
                 `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
@@ -136,7 +121,7 @@ export class YangComponentGenerator extends YangGenerator
                 compDir += `/${dasherize(this.props.name)}`;
 
             const file = path.join(this.projectRoot, 'src', 'app', 'features', dasherize(this.props.feature), `${dasherize(this.props.feature)}.module.ts`);
-            const sourceFile = this._getSourceFile(file);
+            const sourceFile = CodeUtils.getSourceFile(file);
 
             CodeUtils.addImport(sourceFile,
                 `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);

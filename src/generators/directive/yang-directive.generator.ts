@@ -17,11 +17,11 @@ export class YangDirectiveGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this._copyTemplates();
+        await this.copyTemplates();
 
         // Update files
         let file = `${this.projectRoot}${YangUtils.SHARED_MODULE_FILE}`;
-        const sourceFile = this._getSourceFile(file);
+        const sourceFile = CodeUtils.getSourceFile(file);
 
         CodeUtils.addImport(sourceFile,
             `${classify(this.props.name)}Directive`, `./directives/${dasherize(this.props.name)}.directive`);

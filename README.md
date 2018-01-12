@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/mselerin/yang-cli.svg?branch=master)](https://travis-ci.org/mselerin/yang-cli)
 
 # Yang
-> Yet Another Angular Generator - powered by Yeoman & Webpack
+> Yet Another Angular Generator
 
 ## Installation
 > _(You have pre-installed [node.js](https://nodejs.org/), right ?)_

@@ -3,10 +3,9 @@ import * as path from "path";
 import * as stackTrace from "stack-trace";
 import * as spawn from "cross-spawn";
 import chalk from "chalk";
-import TsSimpleAst, {SourceFile} from "ts-simple-ast";
+import {Argv} from "yargs";
 import {dasherize, classify} from "../helpers/string-utils";
 import {YangUtils} from "../helpers/yang-utils";
-import {Argv} from "yargs";
 import {FileUtils} from "../helpers/file-utils";
 
 export class YangGenerator
@@ -35,17 +34,17 @@ export class YangGenerator
     }
 
 
-    async _run(options: any = {}) {
+    async run(options: any = {}) {
         this.options = options;
         this.props = {};
 
-        await this.initializing();
-        await this.prompting();
-        await this.configuring();
-        await this.writing();
-        await this.conflicts();
-        await this.install();
-        await this.end();
+        await this.runInitializing();
+        await this.runPrompting();
+        await this.runConfiguring();
+        await this.runWriting();
+        await this.runConflicts();
+        await this.runInstall();
+        await this.runEnd();
     }
 
 
@@ -76,7 +75,7 @@ export class YangGenerator
     async _end() {}
 
 
-    _composeWith(generator: YangGenerator, options: any = {}): Promise<void> {
+    composeWith(generator: YangGenerator, options: any = {}): Promise<void> {
         if (!options) options = {};
 
         if (!options['root'])
@@ -87,7 +86,7 @@ export class YangGenerator
     }
 
 
-    async _copyTemplates(): Promise<void> {
+    async copyTemplates(): Promise<void> {
         // Copy all files
         await FileUtils.copy(
             this.templatePath(),
@@ -111,25 +110,13 @@ export class YangGenerator
     }
 
 
-    // async _copyTemplate(tplName: string) {
-    //     await FileUtils.copyTpl(
-    //         this.templatePath(tplName),
-    //         this.destinationPath(this.directory),
-    //         this.props
-    //     );
-    // }
-
-
-    _getSourceFile(file: string): SourceFile {
-        let ast = new TsSimpleAst({ useVirtualFileSystem: true });
-
-        let sourceFile = ast.getSourceFile(file);
-        if (!sourceFile) {
-            let content = FileUtils.read(file);
-            sourceFile = ast.createSourceFile(file, content);
-        }
-
-        return sourceFile;
+    async copyTemplate(tplName: string) {
+        await FileUtils.copyTpl(
+            this.templatePath(),
+            this.destinationPath(this.directory),
+            this.props,
+            { filter: [ '**/' + tplName ] }
+        );
     }
 
 
@@ -185,7 +172,7 @@ export class YangGenerator
     }
 
 
-    _debug(str: string) {
+    trace(str: string) {
         if (this.debug)
             console.log(chalk.grey(str));
     }
@@ -203,10 +190,6 @@ export class YangGenerator
     }
 
 
-    spawnCommand(command: string, args: string[], opt?: any): any {
-        return spawn(command, args, _.defaults(opt, {stdio: 'inherit'}));
-    }
-
     spawnCommandSync(command: string, args: string[], opt?: any): any {
         return spawn.sync(command, args, _.defaults(opt, {stdio: 'inherit'}));
     }
@@ -214,38 +197,38 @@ export class YangGenerator
 
 
 
-    initializing() {
-        this._debug(` > ${this.generatorName} - initializing`);
+    runInitializing() {
+        this.trace(` > ${this.generatorName} - initializing`);
         return this._initializing();
     }
 
-    prompting() {
-        this._debug(` > ${this.generatorName} - prompting`);
+    runPrompting() {
+        this.trace(` > ${this.generatorName} - prompting`);
         return this._prompting();
     }
 
-    configuring() {
-        this._debug(` > ${this.generatorName} - configuring`);
+    runConfiguring() {
+        this.trace(` > ${this.generatorName} - configuring`);
         return this._configuring();
     }
 
-    writing() {
-        this._debug(` > ${this.generatorName} - writing`);
+    runWriting() {
+        this.trace(` > ${this.generatorName} - writing`);
         return this._writing();
     }
 
-    conflicts() {
-        this._debug(` > ${this.generatorName} - conflicts`);
+    runConflicts() {
+        this.trace(` > ${this.generatorName} - conflicts`);
         return this._conflicts();
     }
 
-    install() {
-        this._debug(` > ${this.generatorName} - install`);
+    runInstall() {
+        this.trace(` > ${this.generatorName} - install`);
         return this._install();
     }
 
-    end() {
-        this._debug(` > ${this.generatorName} - end`);
+    runEnd() {
+        this.trace(` > ${this.generatorName} - end`);
         return this._end();
     }
 }

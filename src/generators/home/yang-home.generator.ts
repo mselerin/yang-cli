@@ -10,6 +10,6 @@ export class YangHomeGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this._copyTemplates();
+        await this.copyTemplates();
     }
 }

@@ -64,7 +64,7 @@ export class Main
                         return;
                     }
 
-                    //return YangUtils.runGenerator(cmd, args);
+                    return YangUtils.runGenerator(cmd, args);
                 }
             )
 

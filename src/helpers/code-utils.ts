@@ -1,8 +1,23 @@
 import {StringUtils} from "./string-utils";
 import {SourceFile} from "ts-simple-ast";
+import TsSimpleAst from "ts-simple-ast";
+import {FileUtils} from "./file-utils";
 
 export class CodeUtils
 {
+    static getSourceFile(file: string): SourceFile {
+        let ast = new TsSimpleAst({ useVirtualFileSystem: true });
+
+        let sourceFile = ast.getSourceFile(file);
+        if (!sourceFile) {
+            let content = FileUtils.read(file);
+            sourceFile = ast.createSourceFile(file, content);
+        }
+
+        return sourceFile;
+    }
+
+
     static extractArrayFromObject(block: string, arrName: string): string
     {
         let ndxStart = block.indexOf(arrName);

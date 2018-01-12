@@ -15,7 +15,7 @@ export class YangUtils
     static runGenerator(generator: YangGenerator, options: any): Promise<void>
     {
         console.log(chalk.grey(`With ${(<any>generator).constructor.name}`));
-        return generator._run(options);
+        return generator.run(options);
     }
 
 
@@ -29,16 +29,17 @@ export class YangUtils
         }
     }
 
-    static getPluginCommand(plugin: any, pluginCmd: string): any {
+
+    static getPluginCommand(plugin: any, pluginCmd: string): YangGenerator {
         if (plugin) {
             if (pluginCmd) {
                 // Retrouver la commande
                 const realPluginCmd = `Yang${StringUtils.classify(pluginCmd)}Generator`;
-                return plugin[realPluginCmd];
+                return new plugin[realPluginCmd]();
             }
             else {
                 // Le premier objet
-                return (Object.keys(plugin).length > 0 ? plugin[Object.keys(plugin)[0]] : null);
+                return (Object.keys(plugin).length > 0 ? new plugin[Object.keys(plugin)[0]]() : null);
             }
         }
 

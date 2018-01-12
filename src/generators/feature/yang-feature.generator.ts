@@ -37,12 +37,12 @@ export class YangFeatureGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this._copyTemplates();
+        await this.copyTemplates();
 
-        this._updateRouting();
+        this.updateRouting();
 
         if (this.props['component']) {
-            await this._composeWith(new YangComponentGenerator(), {
+            await this.composeWith(new YangComponentGenerator(), {
                 'name': this.props.name,
                 'feature': this.props.name,
                 'with-template': this.props.template,
@@ -54,10 +54,10 @@ export class YangFeatureGenerator extends YangGenerator
 
 
 
-    _updateRouting(): void {
+    updateRouting(): void {
         // Ajouter la route
         const file = path.join(this.projectRoot, YangUtils.FEATURES_MODULE_FILE);
-        const sourceFile = this._getSourceFile(file);
+        const sourceFile = CodeUtils.getSourceFile(file);
 
         CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES",
             `    { path: '${dasherize(this.props.name)}', loadChildren: 'app/features/${dasherize(this.props.name)}/${dasherize(this.props.name)}.module#${classify(this.props.name)}Module' }`
