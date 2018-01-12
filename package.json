@@ -55,7 +55,6 @@
     "stack-trace": "^0.0.10",
     "through2": "^2.0.3",
     "ts-simple-ast": "^5.5.1",
-    "yargs": "^10.1.1",
-    "yeoman-generator": "^2.0.2"
+    "yargs": "^10.1.1"
   }
 }

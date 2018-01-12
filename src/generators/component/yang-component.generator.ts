@@ -14,6 +14,7 @@ export class YangComponentGenerator extends YangGenerator
             .option('feature', { type: 'string', describe: 'Feature name' })
             .option('shared', { type: 'boolean', default: false, describe: 'Shared component' })
             .option('flat', { type: 'boolean', default: false, describe: 'Does not create a sub-directory for the component' })
+            .option('without-spec', { type: 'boolean', default: false, describe: 'Does not create a spec file' })
             .option('with-styles', { type: 'boolean', default: false, describe: 'Create a style file' })
             .option('with-template', { type: 'boolean', default: false, describe: 'Create a template file' })
         ;
@@ -25,6 +26,7 @@ export class YangComponentGenerator extends YangGenerator
         this.props['feature'] = this.options['feature'];
         this.props['shared'] = this.options['shared'] || false;
         this.props['flat'] = this.options['flat'] || false;
+        this.props['spec'] = !this.options['without-spec'];
         this.props['styles'] = this.options['with-styles'] || false;
         this.props['template'] = this.options['with-template'] || false;
     }
@@ -87,6 +89,9 @@ export class YangComponentGenerator extends YangGenerator
 
         // Copy templates
         await this.copyTemplate('#name#.component.ts');
+
+        if (this.props.spec)
+            await this.copyTemplate('#name#.component.spec.ts');
 
         if (this.props.template) {
             await this.copyTemplate('#name#.component.html');
