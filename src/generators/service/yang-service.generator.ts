@@ -3,11 +3,19 @@ import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import {classify, dasherize} from "../../helpers/string-utils";
 import {FileUtils} from "../../helpers/file-utils";
+import {Argv} from "yargs";
 
 export class YangServiceGenerator extends YangGenerator
 {
+    static yargs(yargs: Argv): Argv {
+        return super.yargs(yargs)
+            .option('without-spec', { type: 'boolean', default: false, describe: 'Does not create a spec file' })
+        ;
+    }
+
     _initializing() {
         super._initializing();
+        this.props['spec'] = !this.options['without-spec'];
         this.props['dir'] = this.options['dir'];
 
         if (!this.props['dir'])
@@ -18,7 +26,10 @@ export class YangServiceGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this.copyTemplates();
+        await this.copyTemplate('#name#.service.ts');
+
+        if (this.props.spec)
+            await this.copyTemplate('#name#.service.spec.ts');
 
         // Update files
         let file = `${this.projectRoot}${YangUtils.SERVICE_MODULE_FILE}`;
