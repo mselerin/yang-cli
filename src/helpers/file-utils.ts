@@ -10,11 +10,21 @@ const ejs = require('ejs');
 
 export class FileUtils
 {
+    static logCRUD(file: string): void {
+        let crud = chalk.green(_.padStart('create', 8));
+        if (FileUtils.exists(file))
+            crud = chalk.yellow(_.padStart('update', 8));
+
+        console.log(`${crud} ${file}`);
+    }
+
+
     static read(file: string): string {
         return fs.readFileSync(file, { encoding: 'utf8' });
     }
 
     static write(file: string, content: string): void {
+        FileUtils.logCRUD(file);
         fs.writeFileSync(file, content);
     }
 
@@ -32,14 +42,6 @@ export class FileUtils
     }
 
 
-    static logCRUD(file: string): void {
-        let crud = chalk.green(_.padStart('create', 8));
-        if (FileUtils.exists(file))
-            crud = chalk.yellow(_.padStart('update', 8));
-
-        console.log(`${crud} ${file}`);
-    }
-
 
     static async copy(from: string, to: string, context: any = {}, opts: any = {}): Promise<void>
     {
@@ -53,11 +55,6 @@ export class FileUtils
             },
             transform: (src, dest, stats) => {
                 FileUtils.logCRUD(dest);
-
-                let content: string = FileUtils.read(src);
-                return through.obj((data, encoding, callback) => {
-                    callback(null, content);
-                });
             }
         };
 
