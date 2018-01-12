@@ -2,6 +2,7 @@ import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import {classify, dasherize} from "../../helpers/string-utils";
+import {FileUtils} from "../../helpers/file-utils";
 
 export class YangDirectiveGenerator extends YangGenerator
 {
@@ -16,7 +17,7 @@ export class YangDirectiveGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        this._copyTemplates();
+        await this._copyTemplates();
 
         // Update files
         let file = `${this.projectRoot}${YangUtils.SHARED_MODULE_FILE}`;
@@ -26,17 +27,6 @@ export class YangDirectiveGenerator extends YangGenerator
             `${classify(this.props.name)}Directive`, `./directives/${dasherize(this.props.name)}.directive`);
 
         CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Directive`);
-        this.fs.write(file, sourceFile.getFullText());
+        FileUtils.write(file, sourceFile.getFullText());
     }
-
-
-
-    // Declaration du runLoop yeoman
-    initializing() { return super.initializing(); }
-    prompting() { return super.prompting(); }
-    configuring() { return super.configuring(); }
-    writing() { return super.writing(); }
-    conflicts() { return super.conflicts(); }
-    install() { return super.install(); }
-    end() { return super.end(); }
 }

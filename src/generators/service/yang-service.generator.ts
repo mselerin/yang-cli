@@ -2,6 +2,7 @@ import {YangGenerator} from "../yang.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import {classify, dasherize} from "../../helpers/string-utils";
+import {FileUtils} from "../../helpers/file-utils";
 
 export class YangServiceGenerator extends YangGenerator
 {
@@ -17,7 +18,7 @@ export class YangServiceGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        this._copyTemplates();
+        await this._copyTemplates();
 
         // Update files
         let file = `${this.projectRoot}${YangUtils.SERVICE_MODULE_FILE}`;
@@ -27,17 +28,6 @@ export class YangServiceGenerator extends YangGenerator
             `${classify(this.props.name)}Service`, `./services/${dasherize(this.props.name)}.service`);
 
         CodeUtils.insertInVariableArray(sourceFile, "PROVIDERS", `    ${classify(this.props.name)}Service`);
-        this.fs.write(file, sourceFile.getFullText());
+        FileUtils.write(file, sourceFile.getFullText());
     }
-
-
-
-    // Declaration du runLoop yeoman
-    initializing() { return super.initializing(); }
-    prompting() { return super.prompting(); }
-    configuring() { return super.configuring(); }
-    writing() { return super.writing(); }
-    conflicts() { return super.conflicts(); }
-    install() { return super.install(); }
-    end() { return super.end(); }
 }

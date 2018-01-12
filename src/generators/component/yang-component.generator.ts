@@ -4,17 +4,19 @@ import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import chalk from "chalk";
 import {dasherize, classify} from "../../helpers/string-utils";
+import {FileUtils} from "../../helpers/file-utils";
+import {Argv} from "yargs";
 
 export class YangComponentGenerator extends YangGenerator
 {
-    _initCli(): void {
-        super._initCli();
-
-        this.option('feature', { type: String });
-        this.option('shared', { type: Boolean, default: false });
-        this.option('flat', { type: Boolean, default: false });
-        this.option('with-styles', { type: Boolean, default: false });
-        this.option('with-template', { type: Boolean, default: false });
+    static yargs(yargs: Argv): Argv {
+        return super.yargs(yargs)
+            .option('feature', { type: 'string', describe: 'Feature name' })
+            .option('shared', { type: 'boolean', default: false, describe: 'Shared component' })
+            .option('flat', { type: 'boolean', default: false, describe: 'Does not create a sub-directory for the component' })
+            .option('with-styles', { type: 'boolean', default: false, describe: 'Create a style file' })
+            .option('with-template', { type: 'boolean', default: false, describe: 'Create a template file' })
+        ;
     }
 
 
@@ -34,13 +36,13 @@ export class YangComponentGenerator extends YangGenerator
         if (this.props['dir'] && this.props['shared']) {
             // throw new Error('--dir option cannot be used with --shared option');
             console.log(chalk.bgRed(`--shared option cannot be used with --dir option`));
-            process.exit();
+            process.exit(1);
         }
 
         if (this.props['dir'] && this.props['feature']) {
             // throw new Error('--dir option cannot be used with --feature option');
             console.log(chalk.bgRed(`--feature option cannot be used with --dir option`));
-            process.exit();
+            process.exit(1);
         }
 
         if (this.props['name'].includes('/')) {
@@ -84,14 +86,14 @@ export class YangComponentGenerator extends YangGenerator
         await super._writing();
 
         // Copy templates
-        this.fs.copyTpl(
+        await FileUtils.copyTpl(
             this.templatePath('#name#.component.ts'),
             this.destinationPath(path.join(this.props.dir, '#name#.component.ts')),
             this.props
         );
 
         if (this.props.template) {
-            this.fs.copyTpl(
+            await FileUtils.copyTpl(
                 this.templatePath('#name#.component.html'),
                 this.destinationPath(path.join(this.props.dir, '#name#.component.html')),
                 this.props
@@ -99,7 +101,7 @@ export class YangComponentGenerator extends YangGenerator
         }
 
         if (this.props.styles) {
-            this.fs.copyTpl(
+            await FileUtils.copyTpl(
                 this.templatePath('#name#.component.scss'),
                 this.destinationPath(path.join(this.props.dir, '#name#.component.scss')),
                 this.props
@@ -121,7 +123,7 @@ export class YangComponentGenerator extends YangGenerator
                 `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Component`);
-            this.fs.write(file, sourceFile.getFullText());
+            FileUtils.write(file, sourceFile.getFullText());
         }
 
         else if (this.props.feature)
@@ -137,18 +139,7 @@ export class YangComponentGenerator extends YangGenerator
                 `${classify(this.props.name)}Component`, `${compDir}/${dasherize(this.props.name)}.component`);
 
             CodeUtils.insertInVariableArray(sourceFile, "DECLARATIONS", `   ${classify(this.props.name)}Component`);
-            this.fs.write(file, sourceFile.getFullText());
+            FileUtils.write(file, sourceFile.getFullText());
         }
     }
-
-
-
-    // Declaration du runLoop yeoman
-    initializing() { return super.initializing(); }
-    prompting() { return super.prompting(); }
-    configuring() { return super.configuring(); }
-    writing() { return super.writing(); }
-    conflicts() { return super.conflicts(); }
-    install() { return super.install(); }
-    end() { return super.end(); }
 }

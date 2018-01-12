@@ -1,5 +1,6 @@
 // Rxjs
 import 'rxjs';
+import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 
 // Angular Modules

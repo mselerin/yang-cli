@@ -16,32 +16,35 @@ export class Main
     {
         console.log(`< ${chalk.blue('YANG')} ${chalk.yellow(Main.version)} >`);
 
-        const genOptionsGroup = 'Generator options:';
-
         Yargs
             .command(['new [name]'], 'Scaffold a new application',
-                (yargs) => yargs.option('install', { type: 'boolean', describe: 'Install dependencies' }),
-                (args) => YangUtils.runGenerator(YangAppGenerator, args)
+                YangAppGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangAppGenerator(), args)
             )
 
-            .command('component <name>', 'Create a new component', (yargs) => yargs,
-                (args) => YangUtils.runGenerator(YangComponentGenerator, args)
+            .command('component <name>', 'Create a new component',
+                YangComponentGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangComponentGenerator(), args)
             )
 
-            .command('directive <name>', 'Create a new directive', (yargs) => yargs,
-                (args) => YangUtils.runGenerator(YangDirectiveGenerator, args)
+            .command('directive <name>', 'Create a new directive',
+                YangDirectiveGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangDirectiveGenerator(), args)
             )
 
-            .command('feature <name>', 'Create a new feature', (yargs) => yargs,
-                (args) => YangUtils.runGenerator(YangFeatureGenerator, args)
+            .command('feature <name>', 'Create a new feature',
+                YangFeatureGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangFeatureGenerator(), args)
             )
 
-            .command('pipe <name>', 'Create a new pipe', (yargs) => yargs,
-                (args) => YangUtils.runGenerator(YangPipeGenerator, args)
+            .command('pipe <name>', 'Create a new pipe',
+                YangPipeGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangPipeGenerator(), args)
             )
 
-            .command('service <name>', 'Create a new service', (yargs) => yargs,
-                (args) => YangUtils.runGenerator(YangServiceGenerator, args)
+            .command('service <name>', 'Create a new service',
+                YangServiceGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangServiceGenerator(), args)
             )
 
             .command('plugin <name> [cmd]', 'Run a Yang plugin', (yargs) => yargs,
@@ -61,33 +64,9 @@ export class Main
                         return;
                     }
 
-                    return YangUtils.runGenerator(cmd, args);
+                    //return YangUtils.runGenerator(cmd, args);
                 }
             )
-
-            .option('debug', {
-                group: genOptionsGroup,
-                type: 'boolean',
-                describe: "Print debug informations"
-            })
-
-            .option('force', {
-                group: genOptionsGroup,
-                type: 'boolean',
-                describe: "Overwrite files"
-            })
-
-            .option('prompt', {
-                group: genOptionsGroup,
-                type: 'boolean',
-                describe: "Don't use the default, ask everything"
-            })
-
-            .option('dir', {
-                group: genOptionsGroup,
-                type: 'string',
-                describe: "The directory where the code will be"
-            })
 
             .demandCommand(1, 'You need one command before moving on')
             .help()

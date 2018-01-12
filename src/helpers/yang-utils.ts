@@ -1,4 +1,3 @@
-import * as Environment from 'yeoman-environment';
 import chalk from 'chalk';
 import {YangGenerator} from "../generators/yang.generator";
 import {StringUtils} from "./string-utils";
@@ -13,24 +12,20 @@ export class YangUtils
     static FEATURES_MODULE_FILE = "src/app/features/features.module.ts";
     static ROUTING_MODULE_FILE = "src/app/app-routing.module.ts";
 
-    static runGenerator(Generator: typeof YangGenerator, props?: any): Promise<void>
+    static runGenerator(generator: YangGenerator, options: any): Promise<void>
     {
-        console.log(chalk.grey(`With ${Generator.name}`));
+        console.log(chalk.grey(`With ${(<any>generator).constructor.name}`));
+        return generator._run(options);
 
-        if (!props) props = {};
-
-        // Always force mode
-        props['force'] = true;
-
-        const env = Environment.createEnv();
-        let g = env.instantiate(Generator, {
-            arguments: props.arguments,
-            options: props
-        });
-
-        return new Promise<void>(resolve => {
-            g.run(() => resolve());
-        });
+        // const env = Environment.createEnv();
+        // let g = env.instantiate(Generator, {
+        //     arguments: props.arguments,
+        //     options: props
+        // });
+        //
+        // return new Promise<void>(resolve => {
+        //     g.run(() => resolve());
+        // });
     }
 
 

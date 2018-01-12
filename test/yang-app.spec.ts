@@ -26,7 +26,7 @@ function testApp(props: any) {
             fs.ensureDirSync(TMP_DIR);
 
         process.chdir(TMP_DIR);
-        await YangUtils.runGenerator(YangAppGenerator, props);
+        await YangUtils.runGenerator(new YangAppGenerator(), props);
     });
 
 

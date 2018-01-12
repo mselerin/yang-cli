@@ -7,16 +7,16 @@ import {AppConfig} from "app/models/app-config.model";
 @Injectable()
 export class ConfigService
 {
-   constructor(
-      private http:HttpClient,
-      public appConfig:AppConfig
-   ) { }
+    constructor(
+        private http: HttpClient,
+        public appConfig: AppConfig
+    ) { }
 
-   loadConfig(): Promise<any> {
-      let url = 'assets/config/app-config.json';
+    async loadConfig(): Promise<AppConfig> {
+        let url = 'assets/config/app-config.json';
+        let data = await this.http.get(url).toPromise();
 
-      return this.http.get(url)
-         .map(data => _.merge(this.appConfig, new AppConfig(), data))
-         .toPromise();
-   }
+        _.merge(this.appConfig, new AppConfig(), data);
+        return this.appConfig;
+    }
 }

@@ -4,15 +4,19 @@ import {YangComponentGenerator} from "../component/yang-component.generator";
 import {CodeUtils} from "../../helpers/code-utils";
 import {YangUtils} from "../../helpers/yang-utils";
 import {dasherize, classify} from "../../helpers/string-utils";
+import {FileUtils} from "../../helpers/file-utils";
+import {Argv} from "yargs";
 
 export class YangFeatureGenerator extends YangGenerator
 {
-    _initCli(): void {
-        super._initCli();
-        this.option('with-component', { type: Boolean, default: false });
-        this.option('with-template', { type: Boolean, default: false });
-        this.option('with-styles', { type: Boolean, default: false });
+    static yargs(yargs: Argv): Argv {
+        return super.yargs(yargs)
+            .option('with-component', { type: 'boolean', default: false, describe: 'Create an empty component' })
+            .option('with-styles', { type: 'boolean', default: false, describe: 'Create a style file for the component' })
+            .option('with-template', { type: 'boolean', default: false, describe: 'Create a template file for the component' })
+        ;
     }
+
 
 
     _initializing() {
@@ -33,12 +37,12 @@ export class YangFeatureGenerator extends YangGenerator
 
     async _writing(): Promise<void> {
         await super._writing();
-        this._copyTemplates();
+        await this._copyTemplates();
 
         this._updateRouting();
 
         if (this.props['component']) {
-            await this._composeWith(YangComponentGenerator, {
+            await this._composeWith(new YangComponentGenerator(), {
                 'name': this.props.name,
                 'feature': this.props.name,
                 'with-template': this.props.template,
@@ -59,17 +63,6 @@ export class YangFeatureGenerator extends YangGenerator
             `    { path: '${dasherize(this.props.name)}', loadChildren: 'app/features/${dasherize(this.props.name)}/${dasherize(this.props.name)}.module#${classify(this.props.name)}Module' }`
         );
 
-        this.fs.write(file, sourceFile.getFullText());
+        FileUtils.write(file, sourceFile.getFullText());
     }
-
-
-
-    // Declaration du runLoop yeoman
-    initializing() { return super.initializing(); }
-    prompting() { return super.prompting(); }
-    configuring() { return super.configuring(); }
-    writing() { return super.writing(); }
-    conflicts() { return super.conflicts(); }
-    install() { return super.install(); }
-    end() { return super.end(); }
 }
