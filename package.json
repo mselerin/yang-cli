@@ -16,7 +16,8 @@
     "build": "npm run clean && tsc --pretty",
     "test": "ts-mocha test/**/*.spec.ts",
     "watch": "npm run build -- --watch",
-    "postversion": "npm run build"
+    "postversion": "npm run build",
+    "prepublish": "npm run build"
   },
   "bin": {
     "yang": "bin/yang"
