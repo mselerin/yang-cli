@@ -34,7 +34,7 @@ export class YangGenerator
     }
 
 
-    async run(options: any = {}) {
+    async run(options: any = {}): Promise<void> {
         this.options = options;
         this.props = {};
 
@@ -48,21 +48,21 @@ export class YangGenerator
     }
 
 
-    _initializing() {
+    _initializing(): void {
         this.root = this.options['root'] || '.';
         this.props['dir'] = this.options['dir'] || '';
         this.props['name'] = this.options['name'];
     }
 
 
-    _prompting() {
+    _prompting(): void {
         if (!this.hasPrompt) {
             return;
         }
     }
 
 
-    _configuring() {}
+    _configuring(): void {}
 
 
     async _writing(): Promise<void> {
@@ -70,9 +70,9 @@ export class YangGenerator
         this.props['classify_name'] = classify(this.props.name);
     }
 
-    async _conflicts() {}
-    async _install() {}
-    async _end() {}
+    async _conflicts(): Promise<void> {}
+    async _install(): Promise<void> {}
+    async _end(): Promise<void> {}
 
 
     composeWith(generator: YangGenerator, options: any = {}): Promise<void> {

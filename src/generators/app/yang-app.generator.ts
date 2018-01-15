@@ -12,14 +12,14 @@ const commandExists = require('command-exists').sync;
 
 export class YangAppGenerator extends YangGenerator
 {
-    _initializing() {
+    _initializing(): void {
         super._initializing();
         this.props['name'] = this.options['name'] || path.basename(process.cwd());
         this.props['description'] = this.props.name;
     }
 
 
-    _configuring() {
+    _configuring(): void {
         super._configuring();
         this.props['dir'] = this.options['dir'] || `./${this.props['name']}`;
 
@@ -35,6 +35,7 @@ export class YangAppGenerator extends YangGenerator
 
 
     async _writing(): Promise<void> {
+        await super._writing();
 
         // Launch angular-cli
         if (!commandExists('ng')) {
@@ -52,7 +53,6 @@ export class YangAppGenerator extends YangGenerator
             , '--skip-install'
         ]);
 
-        await super._writing();
         await this.copyTemplates();
 
         this.updatePolyfills();
@@ -100,6 +100,7 @@ export class YangAppGenerator extends YangGenerator
         const file = path.join(this.root, 'package.json');
         const pkg = FileUtils.readJSON(file);
 
+        // Add dependencies
         extend(pkg, {
             scripts: {
                 "prebuild": "node prebuild.js",
@@ -116,7 +117,23 @@ export class YangAppGenerator extends YangGenerator
             }
         });
 
+
+        // Remove ^ and ~ dependencies
+        this.fixDepsVersions(pkg.dependencies);
+        this.fixDepsVersions(pkg.devDependencies);
+
         FileUtils.writeJSON(file, pkg);
+    }
+
+
+    fixDepsVersions(deps: any): void {
+        for (let key in deps) {
+            let value: string = deps[key];
+            if (value.startsWith('^') || value.startsWith('~'))
+                value = value.substring(1);
+
+            deps[key] = value;
+        }
     }
 
 

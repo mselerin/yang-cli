@@ -41,6 +41,10 @@ export class FileUtils
         return fs.existsSync(path.resolve(file));
     }
 
+    static delete(file: string): void {
+        fs.unlinkSync(file);
+    }
+
 
 
     static async copy(from: string, to: string, context: any = {}, opts: any = {}): Promise<void>
