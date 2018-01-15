@@ -42,6 +42,7 @@ export class FileUtils
     }
 
     static delete(file: string): void {
+        chalk.red(_.padStart('delete', 8));
         fs.unlinkSync(file);
     }
 
