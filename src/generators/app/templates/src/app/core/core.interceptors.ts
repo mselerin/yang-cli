@@ -7,9 +7,9 @@ import {
     HttpHandler,
     HttpInterceptor,
     HttpRequest
-} from "@angular/common/http";
+} from '@angular/common/http';
 
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 const API_URL_TOKEN = "/api/";
 
@@ -19,7 +19,7 @@ export class APIInterceptor implements HttpInterceptor
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
     {
         if (environment.apiUrl && environment.apiUrl !== API_URL_TOKEN && req.url.startsWith(API_URL_TOKEN)) {
-            let url = environment.apiUrl + req.url.substr(5);
+            let url = environment.apiUrl + req.url.substr(API_URL_TOKEN.length);
             req = req.clone({
                 url: url
             });

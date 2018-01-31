@@ -1,14 +1,14 @@
 // Rxjs
 import 'rxjs';
 import 'rxjs/Rx';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
 // Angular Modules
 import {APP_INITIALIZER, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {BrowserModule} from "@angular/platform-browser";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 // Constants

@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {AppConfig} from "app/models/app-config.model";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {AppConfig} from 'app/models/app-config.model';
 
 @Injectable()
 export class ConfigService

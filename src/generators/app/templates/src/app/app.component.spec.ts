@@ -1,14 +1,14 @@
-import {Location} from "@angular/common";
+import {Location} from '@angular/common';
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {RouterTestingModule} from "@angular/router/testing";
-import {Router} from "@angular/router";
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
 import {AppComponent} from './app.component';
-import {ROUTES} from "./app-routing.module";
-import {CoreModule} from "./core/core.module";
-import {FeaturesModule} from "./features/features.module";
-import {SharedModule} from "./shared/shared.module";
-import {NgModuleFactoryLoader} from "@angular/core";
-import {HomeModule} from "./features/home/home.module";
+import {ROUTES} from './app-routing.module';
+import {CoreModule} from './core/core.module';
+import {FeaturesModule} from './features/features.module';
+import {SharedModule} from './shared/shared.module';
+import {NgModuleFactoryLoader} from '@angular/core';
+import {HomeModule} from './features/home/home.module';
 
 
 describe('Router: App', () => {

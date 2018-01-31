@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
+import {NgModule} from '@angular/core';
 
-import {ConfigService} from "./services/config.service";
+import {ConfigService} from './services/config.service';
 
 const PROVIDERS: any[] = [
     ConfigService

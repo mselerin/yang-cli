@@ -1,7 +1,7 @@
-import {NgModule} from "@angular/core";
-import {Routes} from "@angular/router";
+import {NgModule} from '@angular/core';
+import {Routes} from '@angular/router';
 
-import {LayoutModule} from "./layout/layout.module";
+import {LayoutModule} from './layout/layout.module';
 
 const MODULES: any[] = [
    LayoutModule
