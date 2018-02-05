@@ -17,7 +17,7 @@
     "test": "ts-mocha test/**/*.spec.ts",
     "watch": "npm run build -- --watch",
     "postversion": "npm run build",
-    "prepublish": "npm run build"
+    "prepack": "npm run build"
   },
   "bin": {
     "yang": "bin/yang"
