@@ -12,10 +12,19 @@ const commandExists = require('command-exists').sync;
 
 export class YangAppGenerator extends YangGenerator
 {
+    private skipGit: boolean = false;
+
+    static yargs(yargs: Argv): Argv {
+        return super.yargs(yargs)
+            .option('skip-git', { type: 'boolean', default: false, describe: 'Skip git' })
+        ;
+    }
+
     _initializing(): void {
         super._initializing();
         this.props['name'] = this.options['name'] || path.basename(process.cwd());
         this.props['description'] = this.props.name;
+        this.skipGit = this.options['skip-git'] || false;
     }
 
 
@@ -43,21 +52,26 @@ export class YangAppGenerator extends YangGenerator
             process.exit(1);
         }
 
-        this.spawnCommandSync('ng', ['new', this.props.name
+        let ngOpts = ['new', this.props.name
             , '--style', 'scss'
             , '--directory', this.root
             , '--inline-style'
             , '--inline-template'
-            // , '--skip-git'
-            , '--skip-commit'
             , '--skip-install'
-        ]);
+        ];
+
+        if (this.skipGit)
+            ngOpts.push('--skip-git');
+        else
+            ngOpts.push('--skip-commit');
+
+
+        this.spawnCommandSync('ng', ngOpts);
 
         await this.copyTemplates();
 
         this.updatePolyfills();
         this.updatePackageJson();
-        this.updateGitIgnore();
 
         await this.composeWith(new YangFeatureGenerator(), {
             'name': 'home',
@@ -70,10 +84,14 @@ export class YangAppGenerator extends YangGenerator
         await this.composeWith(new YangHomeGenerator());
 
         // Faire le git commit
-        if (commandExists('git')) {
-            let spawnOpts = { cwd: this.root, stdio: 'ignore' };
-            this.spawnCommandSync('git', ['add', '.'], spawnOpts);
-            this.spawnCommandSync('git', ['commit', '-m', 'chore: initial commit from yang-cli'], spawnOpts);
+        if (!this.skipGit) {
+            this.updateGitIgnore();
+
+            if (commandExists('git')) {
+                let spawnOpts = { cwd: this.root, stdio: 'ignore' };
+                this.spawnCommandSync('git', ['add', '.'], spawnOpts);
+                this.spawnCommandSync('git', ['commit', '-m', 'chore: initial commit from yang-cli'], spawnOpts);
+            }
         }
     }
 
