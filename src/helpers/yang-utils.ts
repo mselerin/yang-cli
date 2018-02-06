@@ -19,8 +19,20 @@ export class YangUtils
     }
 
 
-    static loadPlugin(pluginName: string): any {
-        const packageName = `yang-plugin-${pluginName}`;
+    static loadPlugin(pluginName: string): any
+    {
+        let packageName = '';
+        if (pluginName.startsWith('@') && pluginName.includes('/')) {
+            let group = pluginName.substring(0, pluginName.indexOf('/'));
+            pluginName = pluginName.substring(pluginName.indexOf('/') + 1);
+
+            packageName = `${group}/yang-plugin-${pluginName}`;
+        }
+        else {
+            packageName = `yang-plugin-${pluginName}`;
+        }
+
+
         try {
             return requireg(packageName);
         }
