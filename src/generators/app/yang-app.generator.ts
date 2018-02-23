@@ -52,9 +52,10 @@ export class YangAppGenerator extends YangGenerator
             process.exit(1);
         }
 
+
         let ngOpts = ['new', this.props.name
             , '--style', 'scss'
-            , '--directory', this.root
+            //, '--directory', this.root
             , '--inline-style'
             , '--inline-template'
             , '--skip-install'
@@ -62,8 +63,6 @@ export class YangAppGenerator extends YangGenerator
 
         if (this.skipGit)
             ngOpts.push('--skip-git');
-        else
-            ngOpts.push('--skip-commit');
 
 
         this.spawnCommandSync('ng', ngOpts);
