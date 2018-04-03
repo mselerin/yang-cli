@@ -1,5 +1,5 @@
 import {StringUtils} from "./string-utils";
-import {SourceFile} from "ts-simple-ast";
+import { ImportDeclarationStructure, SourceFile } from "ts-simple-ast";
 import TsSimpleAst from "ts-simple-ast";
 import {FileUtils} from "./file-utils";
 
@@ -81,9 +81,17 @@ export class CodeUtils
 
 
     static addImport(sourceFile: SourceFile, importName: string, importFile: string) {
-        sourceFile.addImportDeclaration({
-            namedImports: [{name: importName}],
-            moduleSpecifier: importFile
-        });
+        if (importName.includes(" as ")) {
+            sourceFile.addImportDeclaration({
+                defaultImport: importName,
+                moduleSpecifier: importFile
+            });
+        }
+        else {
+            sourceFile.addImportDeclaration({
+                namedImports: [{name: importName}],
+                moduleSpecifier: importFile
+            });
+        }
     }
 }
