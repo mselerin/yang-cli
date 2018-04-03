@@ -25,7 +25,7 @@ yarn
 yarn start
 ```
 
-Browse to http://localhost:3000.
+Browse to http://localhost:4200.
 That's all !
 
 
