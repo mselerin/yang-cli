@@ -13,7 +13,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 // Constants
 import {AppConfig} from '@app/models/app-config.model';
-import {Session} from '@app/app.session';
 
 // Services
 import {CoreInitializer} from './core.initializer';
@@ -54,8 +53,7 @@ const PROVIDERS = [
         deps: [CoreInitializer]
     },
 
-    AppConfig,
-    Session
+    AppConfig
 ];
 
 
