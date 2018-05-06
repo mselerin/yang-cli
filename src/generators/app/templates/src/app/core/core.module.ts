@@ -1,7 +1,7 @@
 // Rxjs
 import 'rxjs';
 import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 // Angular Modules
 import {APP_INITIALIZER, NgModule, Optional, SkipSelf} from '@angular/core';
@@ -12,15 +12,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 // Constants
-import {AppConfig} from 'app/models/app-config.model';
-import {Session} from 'app/app.session';
+import {AppConfig} from '@app/models/app-config.model';
+import {Session} from '@app/app.session';
 
 // Services
 import {CoreInitializer} from './core.initializer';
 
 // Modules
 import {InterceptorsModule} from './core.interceptors';
-import {ServicesModule} from './core.services';
 
 
 // App init
@@ -72,8 +71,7 @@ const MODULES = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    InterceptorsModule,
-    ServicesModule
+    InterceptorsModule
 ];
 
 

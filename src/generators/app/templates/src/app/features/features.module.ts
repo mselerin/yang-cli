@@ -9,6 +9,7 @@ const MODULES: any[] = [
 
 
 export const FEATURES_ROUTES: Routes = [
+    { path: 'home', loadChildren: '@app/features/home/home.module#HomeModule' }
 ];
 
 

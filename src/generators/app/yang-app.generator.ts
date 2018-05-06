@@ -71,6 +71,7 @@ export class YangAppGenerator extends YangGenerator
 
         this.updatePolyfills();
         this.updatePackageJson();
+        this.updateTsConfig();
 
         await this.composeWith(new YangFeatureGenerator(), {
             'name': 'home',
@@ -124,13 +125,8 @@ export class YangAppGenerator extends YangGenerator
                 "prestart": "node prebuild.js"
             },
             dependencies: {
-                "whatwg-fetch": "2.0.3",
-                "@ngx-translate/core": "9.0.2",
-                "lodash": "4.17.4",
-                "moment": "2.20.1"
-            },
-            devDependencies: {
-                "@types/lodash": "4.14.92"
+                "whatwg-fetch": "2.0.4",
+                "@ngx-translate/core": "10.0.1"
             }
         });
 
@@ -154,10 +150,26 @@ export class YangAppGenerator extends YangGenerator
     }
 
 
+    updateTsConfig(): void {
+        const file = path.join(this.root, 'tsconfig.json');
+        let config = FileUtils.readJSON(file);
+
+        extend(config, {
+            "paths": {
+                "@app/*": ["src/app/*"],
+                "@env/*": ["src/environments/*"]
+            }
+        });
+
+        FileUtils.writeJSON(file, config);
+    }
+
+
     updateGitIgnore(): void {
         const file = path.join(this.root, '.gitignore');
         let content = FileUtils.read(file);
         content += `${EOL}# Custom Files${EOL}`;
+        content += `*.iml${EOL}`;
         content += `/src/assets/app-manifest.json${EOL}`;
 
         FileUtils.write(file, content);

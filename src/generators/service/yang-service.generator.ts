@@ -1,8 +1,4 @@
 import {YangGenerator} from "../yang.generator";
-import {CodeUtils} from "../../helpers/code-utils";
-import {YangUtils} from "../../helpers/yang-utils";
-import {classify, dasherize} from "../../helpers/string-utils";
-import {FileUtils} from "../../helpers/file-utils";
 import {Argv} from "yargs";
 
 export class YangServiceGenerator extends YangGenerator
@@ -30,15 +26,5 @@ export class YangServiceGenerator extends YangGenerator
 
         if (this.props.spec)
             await this.copyTemplate('#name#.service.spec.ts');
-
-        // Update files
-        let file = `${this.projectRoot}${YangUtils.SERVICE_MODULE_FILE}`;
-        const sourceFile = CodeUtils.getSourceFile(file);
-
-        CodeUtils.addImport(sourceFile,
-            `${classify(this.props.name)}Service`, `./services/${dasherize(this.props.name)}.service`);
-
-        CodeUtils.insertInVariableArray(sourceFile, "PROVIDERS", `    ${classify(this.props.name)}Service`);
-        FileUtils.write(file, sourceFile.getFullText());
     }
 }

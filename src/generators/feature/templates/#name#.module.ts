@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {SharedModule} from 'app/shared/shared.module';
+import {SharedModule} from '@app/shared/shared.module';
 import {<%=classify_name%>RoutingModule} from './<%=dasherize_name%>-routing.module';
 
 const MODULES = [

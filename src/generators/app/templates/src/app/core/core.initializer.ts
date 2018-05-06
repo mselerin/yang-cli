@@ -2,7 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {LOGGER, LogLevelEnum} from './services/logger.service';
 import {ConfigService} from './services/config.service';
-import {AppConfig} from 'app/models/app-config.model';
+import {AppConfig} from '@app/models/app-config.model';
 
 @Injectable()
 export class CoreInitializer
