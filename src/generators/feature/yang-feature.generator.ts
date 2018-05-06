@@ -59,7 +59,7 @@ export class YangFeatureGenerator extends YangGenerator
         const sourceFile = CodeUtils.getSourceFile(file);
 
         CodeUtils.insertInVariableArray(sourceFile, "FEATURES_ROUTES",
-            `    { path: '${dasherize(this.props.name)}', loadChildren: 'app/features/${dasherize(this.props.name)}/${dasherize(this.props.name)}.module#${classify(this.props.name)}Module' }`
+            `    { path: '${dasherize(this.props.name)}', loadChildren: '@app/features/${dasherize(this.props.name)}/${dasherize(this.props.name)}.module#${classify(this.props.name)}Module' }`
         );
 
         FileUtils.write(file, sourceFile.getFullText());
