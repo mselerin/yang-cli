@@ -126,7 +126,8 @@ export class YangAppGenerator extends YangGenerator
             },
             dependencies: {
                 "whatwg-fetch": "2.0.4",
-                "@ngx-translate/core": "10.0.1"
+                "@ngx-translate/core": "10.0.1",
+                "rxjs-compat": "6.1.0"
             }
         });
 
@@ -154,7 +155,7 @@ export class YangAppGenerator extends YangGenerator
         const file = path.join(this.root, 'tsconfig.json');
         let config = FileUtils.readJSON(file);
 
-        extend(config, {
+        extend(config.compilerOptions, {
             "paths": {
                 "@app/*": ["src/app/*"],
                 "@env/*": ["src/environments/*"]

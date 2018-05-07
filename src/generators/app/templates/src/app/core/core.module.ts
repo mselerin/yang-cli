@@ -1,7 +1,6 @@
 // Rxjs
-import 'rxjs';
-import 'rxjs/Rx';
-import {Observable} from 'rxjs';
+import {of as observableOf, Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 // Angular Modules
 import {APP_INITIALIZER, NgModule, Optional, SkipSelf} from '@angular/core';
@@ -32,8 +31,8 @@ export class CoreTranslationLoader implements TranslateLoader {
     constructor(private http: HttpClient) {}
 
     public getTranslation(lang: string): any {
-        return this.http.get(`assets/i18n/${lang}.json`)
-            .catch(() => Observable.of({}));
+        return this.http.get(`assets/i18n/${lang}.json`).pipe(
+            catchError(() => observableOf({})));
     }
 }
 
