@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.5...v3.0.0) (2018-05-11)
+
+
+
 <a name="3.0.0-alpha.5"></a>
 # [3.0.0-alpha.5](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2018-05-11)
 
