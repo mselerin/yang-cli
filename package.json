@@ -48,7 +48,7 @@
     "cross-spawn": "^6.0.5",
     "lodash": "^4.17.10",
     "stack-trace": "^0.0.10",
-    "yang-schematics": "^1.0.0",
+    "yang-schematics": "^1.1.0",
     "yargs": "^11.0.0"
   }
 }
