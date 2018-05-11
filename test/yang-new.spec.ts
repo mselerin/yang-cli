@@ -3,7 +3,7 @@ import * as os from "os";
 import * as path from "path";
 import * as chai from "chai";
 import {YangUtils} from "../src/helpers/yang-utils";
-import {YangNewGenerator} from "../src/generators/yang-new.generator";
+import {YangNewCommand} from "../src/commands/yang-new.command";
 
 chai.use(require('chai-fs'));
 
@@ -27,7 +27,7 @@ function testApp(props: any) {
             fs.ensureDirSync(TMP_DIR);
 
         process.chdir(TMP_DIR);
-        await YangUtils.runGenerator(new YangNewGenerator(), props);
+        await YangUtils.runCommand(new YangNewCommand(), props);
     });
 
 

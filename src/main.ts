@@ -2,13 +2,13 @@ import * as Yargs from 'yargs';
 import { Argv } from 'yargs';
 import chalk from 'chalk';
 import { YangUtils } from "./helpers/yang-utils";
-import { YangNewGenerator } from "./generators/yang-new.generator";
-import { YangFeatureGenerator } from "./generators/yang-feature.generator";
-import { YangComponentGenerator } from "./generators/yang-component.generator";
-import { YangDirectiveGenerator } from "./generators/yang-directive.generator";
-import { YangPipeGenerator } from "./generators/yang-pipe.generator";
-import { YangServiceGenerator } from "./generators/yang-service.generator";
-import { YangPluginGenerator } from './generators/yang-plugin.generator';
+import { YangNewCommand } from "./commands/yang-new.command";
+import { YangFeatureCommand } from "./commands/yang-feature.command";
+import { YangComponentCommand } from "./commands/yang-component.command";
+import { YangDirectiveCommand } from "./commands/yang-directive.command";
+import { YangPipeCommand } from "./commands/yang-pipe.command";
+import { YangServiceCommand } from "./commands/yang-service.command";
+import { YangPluginCommand } from './commands/yang-plugin.command';
 
 export class Main
 {
@@ -20,38 +20,38 @@ export class Main
 
         Yargs
             .command(['new [name]'], 'Scaffold a new application',
-                YangNewGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangNewGenerator(), args)
+                YangNewCommand.yargs,
+                (args) => YangUtils.runCommand(new YangNewCommand(), args)
             )
 
             .command('component <name>', 'Create a new component',
-                YangComponentGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangComponentGenerator(), args)
+                YangComponentCommand.yargs,
+                (args) => YangUtils.runCommand(new YangComponentCommand(), args)
             )
 
             .command('directive <name>', 'Create a new directive',
-                YangDirectiveGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangDirectiveGenerator(), args)
+                YangDirectiveCommand.yargs,
+                (args) => YangUtils.runCommand(new YangDirectiveCommand(), args)
             )
 
             .command('feature <name>', 'Create a new feature',
-                YangFeatureGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangFeatureGenerator(), args)
+                YangFeatureCommand.yargs,
+                (args) => YangUtils.runCommand(new YangFeatureCommand(), args)
             )
 
             .command('pipe <name>', 'Create a new pipe',
-                YangPipeGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangPipeGenerator(), args)
+                YangPipeCommand.yargs,
+                (args) => YangUtils.runCommand(new YangPipeCommand(), args)
             )
 
             .command('service <name>', 'Create a new service',
-                YangServiceGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangServiceGenerator(), args)
+                YangServiceCommand.yargs,
+                (args) => YangUtils.runCommand(new YangServiceCommand(), args)
             )
 
             .command('*', 'Run another yang-schematics',
                 (yargs: Argv) => yargs,
-                (args) => YangUtils.runGenerator(new YangPluginGenerator(), args)
+                (args) => YangUtils.runCommand(new YangPluginCommand(), args)
             )
 
             .demandCommand(1, 'You need one command before moving on')

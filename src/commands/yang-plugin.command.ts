@@ -1,10 +1,9 @@
-import { YangGenerator } from "./yang.generator";
+import { YangCommand } from "./yang.command";
+import { YangUtils } from '../helpers/yang-utils';
 
-export class YangPluginGenerator extends YangGenerator
+export class YangPluginCommand extends YangCommand
 {
-    async _writing(): Promise<void> {
-        await super._writing();
-
+    async run(options: any = {}): Promise<void> {
         let argv = [...process.argv].slice(2);
         let schematicName: string = argv[0];
         let fullSchematicName: string = schematicName;
@@ -14,6 +13,6 @@ export class YangPluginGenerator extends YangGenerator
                 + schematicName.substring(schematicName.lastIndexOf('/') + 1);
         }
 
-        this.spawnCommandSync('ng', ['g', fullSchematicName, ...argv]);
+        YangUtils.spawnCommandSync('ng', ['g', fullSchematicName, ...argv]);
     }
 }
