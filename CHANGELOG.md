@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/mselerin/yang-cli/compare/v3.0.0...v3.0.1) (2018-05-11)
+
+
+### Bug Fixes
+
+* detection of schematic name with yang plugin ([9516ed1](https://github.com/mselerin/yang-cli/commit/9516ed1))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/mselerin/yang-cli/compare/v2.0.1...v3.0.0) (2018-05-11)
 
