@@ -11,11 +11,16 @@ Install Yang-Cli using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` o
 
 
 ## Usage
-Generate your new project inside any folder:
+Yang-Cli is just a wrapper around [yang-schematics](https://github.com/mselerin/yang-schematics).  
+It's main purpose is to avoid commands like `ng g yang-schematics:xxx` and write those as `yang xxx`  
 
-```bash
-yang new my-awesome-project
-```
+
+
+
+## Commands
+### New
+`yang new my-awesome-project`
+Scaffold a brand new application.
 
 This will create a new folder `my-awesome-project` containing a fresh Angular application.
 Just go inside this folder, install dependencies and run the project :
@@ -25,14 +30,9 @@ yarn
 yarn start
 ```
 
-Browse to http://localhost:4200.
+Browse to http://localhost:4200.  
 That's all !
 
-
-## Commands
-### New
-`yang new my-awesome-project`
-Scaffold a brand new application.
 ***
 
 
