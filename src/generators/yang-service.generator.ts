@@ -1,4 +1,4 @@
-import {YangGenerator} from "../yang.generator";
+import {YangGenerator} from "./yang.generator";
 import {Argv} from "yargs";
 
 export class YangServiceGenerator extends YangGenerator
@@ -9,22 +9,22 @@ export class YangServiceGenerator extends YangGenerator
         ;
     }
 
+
     _initializing() {
         super._initializing();
         this.props['spec'] = !this.options['without-spec'];
-        this.props['dir'] = this.options['dir'];
-
-        if (!this.props['dir'])
-            this.props['dir'] = `${this.projectRoot}src/app/core/services`;
     }
-
 
 
     async _writing(): Promise<void> {
         await super._writing();
-        await this.copyTemplate('#name#.service.ts');
 
-        if (this.props.spec)
-            await this.copyTemplate('#name#.service.spec.ts');
+        let ngOpts = [
+            '--name', this.props['name']
+        ];
+
+        if (this.props.spec) ngOpts.push('--spec');
+
+        this.spawnCommandSync('ng', ['g', 'yang-schematics:service', ...ngOpts]);
     }
 }

@@ -1,30 +1,15 @@
 import * as _ from "lodash";
-import * as path from "path";
-import * as stackTrace from "stack-trace";
 import * as spawn from "cross-spawn";
 import chalk from "chalk";
-import {Argv} from "yargs";
-import {dasherize, classify} from "../helpers/string-utils";
-import {YangUtils} from "../helpers/yang-utils";
-import {FileUtils} from "../helpers/file-utils";
+import { Argv } from "yargs";
+import { FileUtils } from "../helpers/file-utils";
 
 export class YangGenerator
 {
     protected options: any;
     protected props: any;
-    private _templateRoot: string;
     private _root: string;
     private _projectRoot: string;
-
-    constructor() {
-        // On est dans dist/src/generators, repositionner la source à src/generators
-        let callSite = stackTrace.get().find((callSite) => callSite.getFunctionName() === this.constructor.name);
-        let dirs = path.dirname(callSite.getFileName()).split(path.sep);
-        dirs[dirs.lastIndexOf('dist')] = '.';
-
-        this._templateRoot = path.join(dirs.join(path.sep), 'templates');
-    }
-
 
     static yargs(yargs: Argv): Argv {
         return yargs
@@ -65,59 +50,10 @@ export class YangGenerator
     _configuring(): void {}
 
 
-    async _writing(): Promise<void> {
-        this.props['dasherize_name'] = dasherize(this.props.name);
-        this.props['classify_name'] = classify(this.props.name);
-    }
-
+    async _writing(): Promise<void> {}
     async _conflicts(): Promise<void> {}
     async _install(): Promise<void> {}
     async _end(): Promise<void> {}
-
-
-    composeWith(generator: YangGenerator, options: any = {}): Promise<void> {
-        if (!options) options = {};
-
-        if (!options['root'])
-            options['root'] = this.root;
-
-        options['force'] = this.options['force'];
-        return YangUtils.runGenerator(generator, options);
-    }
-
-
-    async copyTemplates(): Promise<void> {
-        // Copy all files
-        await FileUtils.copy(
-            this.templatePath(),
-            this.destinationPath(this.directory),
-            this.props,
-            {
-                filter: [
-                    '**/*',
-                    '!**/*.{json,js,ts,html,css,scss,md}'
-                ]
-            }
-        );
-
-        // Overwrite with templated files
-        await FileUtils.copyTpl(
-            this.templatePath(),
-            this.destinationPath(this.directory),
-            this.props,
-            { filter: [ '**/*.{json,js,ts,html,css,scss,md}' ] }
-        );
-    }
-
-
-    async copyTemplate(tplName: string) {
-        await FileUtils.copyTpl(
-            this.templatePath(),
-            this.destinationPath(this.directory),
-            this.props,
-            { filter: [ '**/' + tplName ] }
-        );
-    }
 
 
     get projectRoot(): string {
@@ -177,11 +113,6 @@ export class YangGenerator
             console.log(chalk.grey(str));
     }
 
-
-
-    templatePath(p: string = ''): string {
-        return path.join(this._templateRoot, p);
-    }
 
 
     destinationPath(p?: string): string {

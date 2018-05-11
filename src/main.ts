@@ -1,12 +1,12 @@
 import * as Yargs from 'yargs';
 import chalk from 'chalk';
-import {YangUtils} from "./helpers/yang-utils";
-import {YangAppGenerator} from "./generators/app/yang-app.generator";
-import {YangFeatureGenerator} from "./generators/feature/yang-feature.generator";
-import {YangComponentGenerator} from "./generators/component/yang-component.generator";
-import {YangDirectiveGenerator} from "./generators/directive/yang-directive.generator";
-import {YangPipeGenerator} from "./generators/pipe/yang-pipe.generator";
-import {YangServiceGenerator} from "./generators/service/yang-service.generator";
+import { YangUtils } from "./helpers/yang-utils";
+import { YangNewGenerator } from "./generators/yang-new.generator";
+import { YangFeatureGenerator } from "./generators/yang-feature.generator";
+import { YangComponentGenerator } from "./generators/yang-component.generator";
+import { YangDirectiveGenerator } from "./generators/yang-directive.generator";
+import { YangPipeGenerator } from "./generators/yang-pipe.generator";
+import { YangServiceGenerator } from "./generators/yang-service.generator";
 
 export class Main
 {
@@ -18,8 +18,8 @@ export class Main
 
         Yargs
             .command(['new [name]'], 'Scaffold a new application',
-                YangAppGenerator.yargs,
-                (args) => YangUtils.runGenerator(new YangAppGenerator(), args)
+                YangNewGenerator.yargs,
+                (args) => YangUtils.runGenerator(new YangNewGenerator(), args)
             )
 
             .command('component <name>', 'Create a new component',
@@ -45,27 +45,6 @@ export class Main
             .command('service <name>', 'Create a new service',
                 YangServiceGenerator.yargs,
                 (args) => YangUtils.runGenerator(new YangServiceGenerator(), args)
-            )
-
-            .command('plugin <name> [cmd]', 'Run a Yang plugin', (yargs) => yargs,
-                (args) => {
-                    const pluginName = args['name'];
-                    const pluginCmd = args['cmd'];
-
-                    const plugin = YangUtils.loadPlugin(pluginName);
-                    if (!plugin) {
-                        console.log(chalk.bgRed(`Plugin ${pluginName} not found`));
-                        return;
-                    }
-
-                    const cmd = YangUtils.getPluginCommand(plugin, pluginCmd);
-                    if (!cmd) {
-                        console.log(chalk.bgRed(`Plugin command ${pluginCmd} not found`));
-                        return;
-                    }
-
-                    return YangUtils.runGenerator(cmd, args);
-                }
             )
 
             .demandCommand(1, 'You need one command before moving on')

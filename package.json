@@ -1,6 +1,6 @@
 {
   "name": "yang-cli",
-  "version": "2.0.1",
+  "version": "3.0.0-alpha.1",
   "description": "Yet Another Angular Generator",
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
     "@types/yargs": "^11.0.0",
     "chai": "^4.0.1",
     "chai-fs": "^2.0.0",
-    "fs-extra": "^6.0.1",
     "mocha": "^5.1.1",
     "sinon": "^5.0.7",
     "standard-version": "^4.3.0",
@@ -45,18 +44,11 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "code-block-writer": "^7.1.0",
     "command-exists": "^1.2.6",
     "cross-spawn": "^6.0.5",
-    "deep-extend": "^0.5.1",
-    "ejs": "^2.6.1",
     "lodash": "^4.17.10",
-    "rc": "^1.2.7",
-    "recursive-copy": "^2.0.9",
-    "resolve": "^1.7.1",
     "stack-trace": "^0.0.10",
-    "through2": "^2.0.3",
-    "ts-simple-ast": "^11.2.0",
+    "yang-schematics": "^1.0.0",
     "yargs": "^11.0.0"
   }
 }
