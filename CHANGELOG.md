@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-alpha.5"></a>
+# [3.0.0-alpha.5](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2018-05-11)
+
+
+### Code Refactoring
+
+* generator -> command ([340ce57](https://github.com/mselerin/yang-cli/commit/340ce57))
+
+
+### BREAKING CHANGES
+
+* bye-bye generator, welcome command :-)
+
+
+
 <a name="3.0.0-alpha.4"></a>
 # [3.0.0-alpha.4](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.3...v3.0.0-alpha.4) (2018-05-11)
 

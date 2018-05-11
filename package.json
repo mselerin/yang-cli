@@ -1,6 +1,6 @@
 {
   "name": "yang-cli",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0-alpha.5",
   "description": "Yet Another Angular Generator",
   "repository": {
     "type": "git",
