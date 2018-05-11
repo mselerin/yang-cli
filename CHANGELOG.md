@@ -1,5 +1,27 @@
 # Change Log
 
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="3.0.0-alpha.2"></a>
+# [3.0.0-alpha.2](https://github.com/mselerin/yang-cli/compare/v2.0.1...v3.0.0-alpha.2) (2018-05-11)
+
+
+### Bug Fixes
+
+* npmignore ([51a934b](https://github.com/mselerin/yang-cli/commit/51a934b))
+* travis config ([6aa74c2](https://github.com/mselerin/yang-cli/commit/6aa74c2))
+
+
+### Features
+
+* Using yang-schematics ([#13](https://github.com/mselerin/yang-cli/issues/13)) ([5a2b048](https://github.com/mselerin/yang-cli/commit/5a2b048))
+
+
+### BREAKING CHANGES
+
+* Yang is now just a runner for yang-schematics. No more plugin command available (rewrite the plugin with schematics)
+
+
 
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/mselerin/yang-cli/compare/v2.0.0...v2.0.1) (2018-05-11)
