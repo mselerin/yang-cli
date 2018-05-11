@@ -2,18 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name=""></a>
-# [](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.3...v) (2018-05-11)
-
-
-### Features
-
-* call external schematics with yang xxx (also works with yang [@org](https://github.com/org)/schematics) ([7bb9e9d](https://github.com/mselerin/yang-cli/commit/7bb9e9d))
-
-
-
-<a name=""></a>
-# [](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.3...v) (2018-05-11)
+<a name="3.0.0-alpha.4"></a>
+# [3.0.0-alpha.4](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.3...v3.0.0-alpha.4) (2018-05-11)
 
 
 ### Features
