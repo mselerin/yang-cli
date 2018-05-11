@@ -16,7 +16,8 @@
     "build": "npm run clean && tsc --pretty",
     "test": "ts-mocha test/**/*.spec.ts",
     "watch": "npm run build -- --watch",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "release": "standard-version"
   },
   "bin": {
     "yang": "bin/yang"
@@ -37,6 +38,7 @@
     "fs-extra": "^6.0.1",
     "mocha": "^5.1.1",
     "sinon": "^5.0.7",
+    "standard-version": "^4.3.0",
     "ts-mocha": "^1.2.0",
     "ts-node": "^6.0.3",
     "typescript": "^2.8.3"
