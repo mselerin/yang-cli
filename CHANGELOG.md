@@ -3,12 +3,19 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="3.0.0"></a>
-# [3.0.0](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.5...v3.0.0) (2018-05-11)
+# [3.0.0](https://github.com/mselerin/yang-cli/compare/v2.0.1...v3.0.0) (2018-05-11)
 
 
+### Features
 
-<a name="3.0.0-alpha.5"></a>
-# [3.0.0-alpha.5](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2018-05-11)
+* Using yang-schematics ([#13](https://github.com/mselerin/yang-cli/issues/13)) ([5a2b048](https://github.com/mselerin/yang-cli/commit/5a2b048))
+* call external schematics with yang xxx (also works with yang [@org](https://github.com/org)/schematics) ([7bb9e9d](https://github.com/mselerin/yang-cli/commit/7bb9e9d))
+
+
+### Bug Fixes
+
+* npmignore ([51a934b](https://github.com/mselerin/yang-cli/commit/51a934b))
+* travis config ([6aa74c2](https://github.com/mselerin/yang-cli/commit/6aa74c2))
 
 
 ### Code Refactoring
@@ -19,42 +26,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### BREAKING CHANGES
 
 * bye-bye generator, welcome command :-)
-
-
-
-<a name="3.0.0-alpha.4"></a>
-# [3.0.0-alpha.4](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.3...v3.0.0-alpha.4) (2018-05-11)
-
-
-### Features
-
-* call external schematics with yang xxx (also works with yang [@org](https://github.com/org)/schematics) ([7bb9e9d](https://github.com/mselerin/yang-cli/commit/7bb9e9d))
-
-
-
-<a name="3.0.0-alpha.3"></a>
-# [3.0.0-alpha.3](https://github.com/mselerin/yang-cli/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2018-05-11)
-
-
-
-<a name="3.0.0-alpha.2"></a>
-# [3.0.0-alpha.2](https://github.com/mselerin/yang-cli/compare/v2.0.1...v3.0.0-alpha.2) (2018-05-11)
-
-
-### Bug Fixes
-
-* npmignore ([51a934b](https://github.com/mselerin/yang-cli/commit/51a934b))
-* travis config ([6aa74c2](https://github.com/mselerin/yang-cli/commit/6aa74c2))
-
-
-### Features
-
-* Using yang-schematics ([#13](https://github.com/mselerin/yang-cli/issues/13)) ([5a2b048](https://github.com/mselerin/yang-cli/commit/5a2b048))
-
-
-### BREAKING CHANGES
-
 * Yang is now just a runner for yang-schematics. No more plugin command available (rewrite the plugin with schematics)
+
+
 
 
 
