@@ -49,7 +49,7 @@ export class Main
                 (args) => YangUtils.runGenerator(new YangServiceGenerator(), args)
             )
 
-            .command('*', 'Default command',
+            .command('*', 'Run another yang-schematics',
                 (yargs: Argv) => yargs,
                 (args) => YangUtils.runGenerator(new YangPluginGenerator(), args)
             )
