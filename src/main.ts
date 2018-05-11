@@ -1,4 +1,5 @@
 import * as Yargs from 'yargs';
+import { Argv } from 'yargs';
 import chalk from 'chalk';
 import { YangUtils } from "./helpers/yang-utils";
 import { YangNewGenerator } from "./generators/yang-new.generator";
@@ -7,6 +8,7 @@ import { YangComponentGenerator } from "./generators/yang-component.generator";
 import { YangDirectiveGenerator } from "./generators/yang-directive.generator";
 import { YangPipeGenerator } from "./generators/yang-pipe.generator";
 import { YangServiceGenerator } from "./generators/yang-service.generator";
+import { YangPluginGenerator } from './generators/yang-plugin.generator';
 
 export class Main
 {
@@ -45,6 +47,11 @@ export class Main
             .command('service <name>', 'Create a new service',
                 YangServiceGenerator.yargs,
                 (args) => YangUtils.runGenerator(new YangServiceGenerator(), args)
+            )
+
+            .command('*', 'Default command',
+                (yargs: Argv) => yargs,
+                (args) => YangUtils.runGenerator(new YangPluginGenerator(), args)
             )
 
             .demandCommand(1, 'You need one command before moving on')

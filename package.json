@@ -36,6 +36,7 @@
     "chai": "^4.0.1",
     "chai-fs": "^2.0.0",
     "mocha": "^5.1.1",
+    "rimraf": "^2.6.2",
     "sinon": "^5.0.7",
     "standard-version": "^4.3.0",
     "ts-mocha": "^1.2.0",
@@ -47,7 +48,6 @@
     "command-exists": "^1.2.6",
     "cross-spawn": "^6.0.5",
     "lodash": "^4.17.10",
-    "stack-trace": "^0.0.10",
     "yang-schematics": "^1.1.0",
     "yargs": "^11.0.0"
   }
