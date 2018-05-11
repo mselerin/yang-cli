@@ -1,13 +1,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/mselerin/yang-cli.svg?branch=master)](https://travis-ci.org/mselerin/yang-cli)
 
-# Yang
+# Yang Cli
 > Yet Another Angular Generator
 
 ## Installation
 > _(You have pre-installed [node.js](https://nodejs.org/), right ?)_
 
-Install Yang using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` or using [npm](https://www.npmjs.com/) `npm install -g yang-cli`.
+Install Yang-Cli using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` or using [npm](https://www.npmjs.com/) `npm install -g yang-cli`.
 
 
 ## Usage
