@@ -2642,9 +2642,9 @@ yallist@^3.0.0, yallist@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
-yang-schematics@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/yang-schematics/-/yang-schematics-1.1.0.tgz#090b55d75d4361d36cc0527ea5cfa1b9d9dc3a77"
+yang-schematics@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/yang-schematics/-/yang-schematics-1.1.1.tgz#c37e9d2785f617486cfe272fb23fbcae5b442fe1"
   dependencies:
     "@angular-devkit/core" "^0.6.1"
     "@angular-devkit/schematics" "^0.6.1"
