@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file. See [standa
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/mselerin/yang-cli/compare/v3.0.1...v3.0.2) (2018-05-14)
 
+* update version for yang-schematics
+
 
 
 <a name="3.0.1"></a>
