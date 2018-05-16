@@ -4,8 +4,6 @@ import chalk from "chalk";
 import { Argv } from "yargs";
 import { YangUtils } from '../helpers/yang-utils';
 
-const commandExists = require('command-exists').sync;
-
 export class YangNewCommand extends YangCommand
 {
     static yargs(yargs: Argv): Argv {
@@ -17,7 +15,7 @@ export class YangNewCommand extends YangCommand
 
 
     async run(options: any = {}): Promise<void> {
-        if (!commandExists('ng')) {
+        if (!YangUtils.commandExists('ng')) {
             console.log(chalk.bgRed(`Angular CLI not available. Install it with 'npm i -g @angular/cli' or 'yarn global add @angular/cli'.`));
             process.exit(1);
         }
