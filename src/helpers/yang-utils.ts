@@ -8,6 +8,10 @@ export class YangUtils
         return command.run(options);
     }
 
+    static runNgCli(args: string[], opt?: any): any {
+        return YangUtils.spawnCommandSync('ng', args, opt);
+    }
+
     static spawnCommandSync(command: string, args: string[], opt?: any): any {
         return spawn.sync(command, args, _.defaults(opt, {stdio: 'inherit'}));
     }

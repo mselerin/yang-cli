@@ -1,12 +1,18 @@
 import { YangCommand } from "./yang.command";
 import { YangUtils } from '../helpers/yang-utils';
 import chalk from 'chalk';
+import { Argv } from 'yargs';
 
 export class YangPluginCommand extends YangCommand
 {
+    static yargs(yargs: Argv): Argv {
+        return yargs;
+    }
+
     async run(options: any = {}): Promise<void> {
-        let argv = [...process.argv].slice(2);
-        let schematicName: string = argv[0];
+        let argv = [...process.argv].slice(3);
+
+        let schematicName: string = options.schematic;
         if (!schematicName) {
             console.log(chalk.bgRed(`No schematic name provided`));
             process.exit(1);
@@ -22,6 +28,6 @@ export class YangPluginCommand extends YangCommand
             fullSchematicName = 'yang-schematics:' + schematicName;
         }
 
-        YangUtils.spawnCommandSync('ng', ['g', fullSchematicName, ...argv]);
+        YangUtils.runNgCli(['g', fullSchematicName, ...argv]);
     }
 }

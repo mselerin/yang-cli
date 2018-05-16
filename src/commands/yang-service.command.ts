@@ -18,6 +18,6 @@ export class YangServiceCommand extends YangCommand
 
         if (!options['without-spec']) ngOpts.push('--spec');
 
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:service', ...ngOpts]);
+        YangUtils.runNgCli(['g', 'yang-schematics:service', ...ngOpts]);
     }
 }

@@ -35,10 +35,10 @@ export class YangNewCommand extends YangCommand
         if (skipGit)
             ngOpts.push('--skip-git');
 
-        YangUtils.spawnCommandSync('ng', ngOpts);
+        YangUtils.runNgCli(ngOpts);
 
         // Call yang-schematics:init
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:init'], { cwd: dir});
+        YangUtils.runNgCli(['g', 'yang-schematics:init'], {cwd: dir});
 
 
         // git commit

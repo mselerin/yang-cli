@@ -18,6 +18,6 @@ export class YangPipeCommand extends YangCommand
 
         if (!options['without-spec']) ngOpts.push('--spec');
 
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:pipe', ...ngOpts]);
+        YangUtils.runNgCli(['g', 'yang-schematics:pipe', ...ngOpts]);
     }
 }

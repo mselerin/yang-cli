@@ -18,6 +18,6 @@ export class YangDirectiveCommand extends YangCommand
 
         if (!options['without-spec']) ngOpts.push('--spec');
 
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:directive', ...ngOpts]);
+        YangUtils.runNgCli(['g', 'yang-schematics:directive', ...ngOpts]);
     }
 }

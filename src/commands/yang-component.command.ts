@@ -32,6 +32,6 @@ export class YangComponentCommand extends YangCommand
         if (options['with-routing']) ngOpts.push('--template');
         if (options.route) ngOpts.push('--route', options.route);
 
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:component', ...ngOpts]);
+        YangUtils.runNgCli(['g', 'yang-schematics:component', ...ngOpts]);
     }
 }

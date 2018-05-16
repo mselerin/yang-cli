@@ -1,5 +1,4 @@
 import * as Yargs from 'yargs';
-import { Argv } from 'yargs';
 import chalk from 'chalk';
 import { YangUtils } from "./helpers/yang-utils";
 import { YangNewCommand } from "./commands/yang-new.command";
@@ -49,8 +48,8 @@ export class Main
                 (args) => YangUtils.runCommand(new YangServiceCommand(), args)
             )
 
-            .command('*', 'Run another yang-schematics',
-                (yargs: Argv) => yargs,
+            .command('$0 <schematic>', 'Run another yang-schematics',
+                YangPluginCommand.yargs,
                 (args) => YangUtils.runCommand(new YangPluginCommand(), args)
             )
 

@@ -21,6 +21,6 @@ export class YangFeatureCommand extends YangCommand
         if (options['with-template']) ngOpts.push('--template');
         if (options['with-styles']) ngOpts.push('--styles');
 
-        YangUtils.spawnCommandSync('ng', ['g', 'yang-schematics:feature', ...ngOpts]);
+        YangUtils.runNgCli(['g', 'yang-schematics:feature', ...ngOpts]);
     }
 }
