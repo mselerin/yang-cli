@@ -8,15 +8,15 @@ import {YangNewCommand} from './yang-new.command';
 chai.use(require('chai-fs'));
 
 const assert = (chai.assert as any);
-const DEFAULT_NAME = "test-yang-cli";
-const TMP_DIR = path.join(os.tmpdir(), DEFAULT_NAME);
+const TMP_DIR = path.join(os.tmpdir(), 'test-yang-cli');
 const TIMEOUT = 10000;
 
 
 function testApp(props: any) {
     props['quiet'] = true;
+    props['skip-git'] = true;
 
-    let name = props['name'] || DEFAULT_NAME;
+    let name = props['name'];
     const ROOT_DIR = path.join(TMP_DIR, name);
 
     before(async () => {
@@ -50,22 +50,16 @@ function testApp(props: any) {
     });
 
 
-    // after(() => {
-    //     fs.removeSync(TMP_DIR);
-    // });
+    after(() => {
+        fs.removeSync(ROOT_DIR);
+    });
 }
 
 
 describe('yang new', function () {
     this.timeout(TIMEOUT);
 
-    describe('no arguments', function () {
-        testApp({});
-    });
-
-    describe('with specific name', () => {
-        testApp({
-            'name': 'awesome-project'
-        });
+    testApp({
+        'name': 'test-new-app'
     });
 });
