@@ -4,6 +4,7 @@ import * as spawn from 'cross-spawn';
 import { YangCommand } from '../commands/yang.command';
 import * as core from '@angular-devkit/core/node';
 import * as inquirer from 'inquirer';
+import chalk from 'chalk';
 
 const commandExists = require('command-exists').sync;
 
@@ -38,6 +39,29 @@ export class YangUtils
         return commandExists(command);
     }
 
+
+
+    static async ensurePackage(name: string, quiet: boolean = false): Promise<boolean> {
+        if (!YangUtils.packageInstalled(name)) {
+            console.log(chalk`{redBright ${name} not available}`);
+
+            let install = false;
+            if (!quiet) {
+                const answers = await YangUtils.askForPackageInstallation(name);
+                install = answers.install;
+            }
+
+            if (install) {
+                YangUtils.spawnCommandSync('npm', ['install', '-g', name]);
+            }
+            else {
+                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g ${name}}'.}`);
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 
     static packageInstalled(name: string, basedir = process.cwd()): boolean

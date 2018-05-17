@@ -31,24 +31,9 @@ export class YangPluginCommand extends YangCommand
         }
 
         let packageName = fullSchematicName.substring(0, fullSchematicName.indexOf(':'));
-
-        if (!YangUtils.packageInstalled(packageName)) {
-            console.log(chalk`{redBright ${packageName} not available}`);
-
-            let install = false;
-            if (!options['quiet']) {
-                const answers = await YangUtils.askForPackageInstallation(packageName);
-                install = answers.install;
-            }
-
-            if (install) {
-                YangUtils.spawnCommandSync('npm', ['install', '-g', packageName]);
-            }
-            else {
-                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g ${packageName}}'.}`);
-                process.exit(1);
-                return;
-            }
+        if (!await YangUtils.ensurePackage(packageName, options['quiet'])) {
+            process.exit(1);
+            return;
         }
 
         YangUtils.runNgCli(['g', fullSchematicName, ...argv]);

@@ -16,45 +16,14 @@ export class YangNewCommand extends YangCommand
 
 
     async run(options: any = {}): Promise<void> {
-        if (!YangUtils.commandExists('ng')) {
-            console.log(chalk`{redBright @angular/cli not available}`);
-
-            let install = false;
-            if (!options['quiet']) {
-                const answers = await YangUtils.askForPackageInstallation('@angular/cli');
-                install = answers.install;
-            }
-
-            if (install) {
-                YangUtils.spawnCommandSync('npm', ['install', '-g', '@angular/cli']);
-            }
-            else {
-                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g @angular/cli}'.}`);
-                process.exit(1);
-                return;
-            }
+        if (!await YangUtils.ensurePackage('@angular/cli', options['quiet'])) {
+            process.exit(1);
+            return;
         }
 
-        if (!YangUtils.packageInstalled('yang-schematics')) {
-            console.log(chalk`{redBright yang-schematics not available}`);
-
-            const pkg = YangUtils.PKG;
-            const yangSchematicsVersion = pkg.peerDependencies['yang-schematics'];
-
-            let install = false;
-            if (!options['quiet']) {
-                const answers = await YangUtils.askForPackageInstallation('yang-schematics');
-                install = answers.install;
-            }
-
-            if (install) {
-                YangUtils.spawnCommandSync('npm', ['install', '-g', `yang-schematics@${yangSchematicsVersion}`]);
-            }
-            else {
-                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g yang-schematics@${yangSchematicsVersion}}'.}`);
-                process.exit(1);
-                return;
-            }
+        if (!await YangUtils.ensurePackage('yang-schematics', options['quiet'])) {
+            process.exit(1);
+            return;
         }
 
         const name = options['name'] || path.basename(process.cwd());
