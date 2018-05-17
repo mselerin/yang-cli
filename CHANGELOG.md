@@ -9,9 +9,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * check plugin availability before running (same as the 'new' command) ([ada583a](https://github.com/mselerin/yang-cli/commit/ada583a))
-* new command based on the "ng-new" schematic from yang-schematics ([e259398](https://github.com/mselerin/yang-cli/commit/e259398))
-* new command check for [@angular](https://github.com/angular)/cli and yang-schematics. If not present, propose to install-it automatically. ([3f4b52e](https://github.com/mselerin/yang-cli/commit/3f4b52e))
-* quiet option for new command (usefull for unit-testing) ([9e12354](https://github.com/mselerin/yang-cli/commit/9e12354))
+* 'new' command based on the 'ng-new' schematic from yang-schematics ([e259398](https://github.com/mselerin/yang-cli/commit/e259398))
+* 'new' command check for @angular/cli and yang-schematics. If not present, propose to install-it automatically. ([3f4b52e](https://github.com/mselerin/yang-cli/commit/3f4b52e))
+* quiet option for 'new' command (usefull for unit-testing) ([9e12354](https://github.com/mselerin/yang-cli/commit/9e12354))
 
 
 
