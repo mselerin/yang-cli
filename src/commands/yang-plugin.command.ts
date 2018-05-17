@@ -6,7 +6,9 @@ import { Argv } from 'yargs';
 export class YangPluginCommand extends YangCommand
 {
     static yargs(yargs: Argv): Argv {
-        return yargs;
+        return super.yargs(yargs)
+            .option('quiet', { type: 'boolean', default: false, describe: 'Do not ask questions (usefull for tests)' })
+        ;
     }
 
     async run(options: any = {}): Promise<void> {
@@ -26,6 +28,27 @@ export class YangPluginCommand extends YangCommand
         }
         else {
             fullSchematicName = 'yang-schematics:' + schematicName;
+        }
+
+        let packageName = fullSchematicName.substring(0, fullSchematicName.indexOf(':'));
+
+        if (!YangUtils.packageInstalled(packageName)) {
+            console.log(chalk`{redBright ${packageName} not available}`);
+
+            let install = false;
+            if (!options['quiet']) {
+                const answers = await YangUtils.askForPackageInstallation(packageName);
+                install = answers.install;
+            }
+
+            if (install) {
+                YangUtils.spawnCommandSync('npm', ['install', '-g', packageName]);
+            }
+            else {
+                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g ${packageName}}'.}`);
+                process.exit(1);
+                return;
+            }
         }
 
         YangUtils.runNgCli(['g', fullSchematicName, ...argv]);
