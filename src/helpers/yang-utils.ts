@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as spawn from 'cross-spawn';
-import { YangCommand } from '@app/commands/yang.command';
+import { YangCommand } from '../commands/yang.command';
 import * as core from '@angular-devkit/core/node';
 import * as inquirer from 'inquirer';
 

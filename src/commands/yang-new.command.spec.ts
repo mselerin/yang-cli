@@ -1,9 +1,9 @@
-import * as fs from "fs-extra";
-import * as os from "os";
-import * as path from "path";
-import * as chai from "chai";
-import {YangUtils} from "@app/helpers/yang-utils";
-import {YangNewCommand} from "./yang-new.command";
+import * as fs from 'fs-extra';
+import * as os from 'os';
+import * as path from 'path';
+import * as chai from 'chai';
+import {YangUtils} from '../helpers/yang-utils';
+import {YangNewCommand} from './yang-new.command';
 
 chai.use(require('chai-fs'));
 

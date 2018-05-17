@@ -1,5 +1,5 @@
 import { YangCommand } from './yang.command';
-import { YangUtils } from '@app/helpers/yang-utils';
+import { YangUtils } from '../helpers/yang-utils';
 import chalk from 'chalk';
 import { Argv } from 'yargs';
 

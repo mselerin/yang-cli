@@ -1,17 +1,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "es6",
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "preserveConstEnums": true,
-    "removeComments": true,
-    "paths": {
-      "@app/*": [ "src/*" ]
-    }
+    "removeComments": true
   },
   "include": [
     "src/**/*",
