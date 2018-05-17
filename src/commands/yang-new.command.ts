@@ -10,6 +10,7 @@ export class YangNewCommand extends YangCommand
         return super.yargs(yargs)
             .option('install', { type: 'boolean', default: false, describe: 'Install dependencies' })
             .option('skip-git', { type: 'boolean', default: false, describe: 'Skip git' })
+            .option('quiet', { type: 'boolean', default: false, describe: 'Do not ask questions (usefull for tests)' })
         ;
     }
 
@@ -18,8 +19,13 @@ export class YangNewCommand extends YangCommand
         if (!YangUtils.commandExists('ng')) {
             console.log(chalk`{redBright @angular/cli not available}`);
 
-            const answers = await YangUtils.askForPackageInstallation('@angular/cli');
-            if (answers.install) {
+            let install = false;
+            if (!options['quiet']) {
+                const answers = await YangUtils.askForPackageInstallation('@angular/cli');
+                install = answers.install;
+            }
+
+            if (install) {
                 YangUtils.spawnCommandSync('npm', ['install', '-g', '@angular/cli']);
             }
             else {
@@ -35,8 +41,13 @@ export class YangNewCommand extends YangCommand
             const pkg = YangUtils.PKG;
             const yangSchematicsVersion = pkg.peerDependencies['yang-schematics'];
 
-            const answers = await YangUtils.askForPackageInstallation('yang-schematics');
-            if (answers.install) {
+            let install = false;
+            if (!options['quiet']) {
+                const answers = await YangUtils.askForPackageInstallation('yang-schematics');
+                install = answers.install;
+            }
+
+            if (install) {
                 YangUtils.spawnCommandSync('npm', ['install', '-g', `yang-schematics@${yangSchematicsVersion}`]);
             }
             else {

@@ -14,6 +14,8 @@ const TIMEOUT = 10000;
 
 
 function testApp(props: any) {
+    props['quiet'] = true;
+
     let name = props['name'] || DEFAULT_NAME;
     const ROOT_DIR = path.join(TMP_DIR, name);
 
