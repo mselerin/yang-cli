@@ -51,11 +51,13 @@ export class YangUtils
                 install = answers.install;
             }
 
+            const cmdOpts = ['install', name, '-g'];
+
             if (install) {
-                YangUtils.spawnCommandSync('npm', ['install', '-g', name]);
+                YangUtils.spawnCommandSync('npm', cmdOpts);
             }
             else {
-                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm i -g ${name}}'.}`);
+                console.log(chalk`{white.bold Cannot continue. Install it with '{blue.bold npm ${cmdOpts.join(' ')}}'.}`);
                 return false;
             }
         }
