@@ -35,7 +35,7 @@ export class YangNewCommand extends YangCommand
             const pkg = YangUtils.PKG;
             const yangSchematicsVersion = pkg.peerDependencies['yang-schematics'];
 
-            const answers = await YangUtils.askForPackageInstallation('@angular/cli');
+            const answers = await YangUtils.askForPackageInstallation('yang-schematics');
             if (answers.install) {
                 YangUtils.spawnCommandSync('npm', ['install', '-g', `yang-schematics@${yangSchematicsVersion}`]);
             }

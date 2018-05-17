@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as path from 'path';
 import * as spawn from 'cross-spawn';
 import { YangCommand } from '../commands/yang.command';
 import * as core from '@angular-devkit/core/node';
@@ -9,6 +10,17 @@ const commandExists = require('command-exists').sync;
 export class YangUtils
 {
     static PKG = require('../../package.json');
+    static GLOBAL_NODE_MODULES = YangUtils.getGlobalNodeModulesPath();
+
+    static getGlobalNodeModulesPath(): string {
+        const isWin32 = process.platform === 'win32';
+        const nodeCmd = isWin32 ? 'npm.cmd' : 'npm';
+        const result = spawn.sync(nodeCmd, ['root', '-g'], { cwd: path.resolve('/'), encoding: 'utf8' });
+        const nodePath = result.stdout.replace(/[\r\n]+/g, '');
+
+        return path.resolve(nodePath);
+    }
+
 
     static runCommand(command: YangCommand, options: any): Promise<void> {
         return command.run(options);
@@ -26,25 +38,26 @@ export class YangUtils
         return commandExists(command);
     }
 
+
+
     static packageInstalled(name: string, basedir = process.cwd()): boolean
     {
         try {
+            const paths = [
+                YangUtils.GLOBAL_NODE_MODULES
+            ];
+
             core.resolve(name, {
                 basedir,
+                paths: paths,
                 checkLocal: true,
                 checkGlobal: true,
-                resolvePackageJson: true,
-                preserveSymlinks: true
+                resolvePackageJson: true
             });
 
             return true;
         }
         catch (e) {
-            // Retry with another basedir
-            if (basedir !== process.argv[1]) {
-                return YangUtils.packageInstalled(name, process.argv[1]);
-            }
-
             return false;
         }
     }
@@ -54,7 +67,7 @@ export class YangUtils
             {
                 type: 'confirm',
                 name: 'install',
-                message: 'Install it ?',
+                message: `Install ${name} ?`,
                 default: false
             }
         ];
