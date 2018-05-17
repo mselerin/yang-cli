@@ -2,8 +2,8 @@ import * as fs from "fs-extra";
 import * as os from "os";
 import * as path from "path";
 import * as chai from "chai";
-import {YangUtils} from "../src/helpers/yang-utils";
-import {YangNewCommand} from "../src/commands/yang-new.command";
+import {YangUtils} from "@app/helpers/yang-utils";
+import {YangNewCommand} from "./yang-new.command";
 
 chai.use(require('chai-fs'));
 
@@ -14,8 +14,6 @@ const TIMEOUT = 10000;
 
 
 function testApp(props: any) {
-    props['force'] = true;
-
     let name = props['name'] || DEFAULT_NAME;
     const ROOT_DIR = path.join(TMP_DIR, name);
 

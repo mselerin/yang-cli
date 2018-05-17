@@ -1,6 +1,6 @@
-import { YangCommand } from "./yang.command";
+import { YangCommand } from './yang.command';
 import { Argv } from 'yargs';
-import { YangUtils } from '../helpers/yang-utils';
+import { YangUtils } from '@app/helpers/yang-utils';
 
 export class YangPipeCommand extends YangCommand
 {

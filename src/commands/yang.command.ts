@@ -1,4 +1,4 @@
-import { Argv } from "yargs";
+import { Argv } from 'yargs';
 
 export abstract class YangCommand
 {

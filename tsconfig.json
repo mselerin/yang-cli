@@ -1,14 +1,17 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "es6",
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "outDir": "./dist",
     "preserveConstEnums": true,
-    "removeComments": true
+    "removeComments": true,
+    "paths": {
+      "@app/*": [ "src/*" ]
+    }
   },
   "include": [
     "src/**/*",
@@ -16,7 +19,6 @@
   ],
   "exclude": [
     "node_modules",
-    "!node_modules/@types",
-    "src/generators/*/templates/**/*"
+    "!node_modules/@types"
   ]
 }

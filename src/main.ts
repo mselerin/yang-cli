@@ -1,18 +1,16 @@
 import * as Yargs from 'yargs';
 import chalk from 'chalk';
-import { YangUtils } from "./helpers/yang-utils";
-import { YangNewCommand } from "./commands/yang-new.command";
-import { YangFeatureCommand } from "./commands/yang-feature.command";
-import { YangComponentCommand } from "./commands/yang-component.command";
-import { YangDirectiveCommand } from "./commands/yang-directive.command";
-import { YangPipeCommand } from "./commands/yang-pipe.command";
-import { YangServiceCommand } from "./commands/yang-service.command";
-import { YangPluginCommand } from './commands/yang-plugin.command';
+import { YangUtils } from '@app/helpers/yang-utils';
+import { YangNewCommand } from '@app/commands/yang-new.command';
+import { YangFeatureCommand } from '@app/commands/yang-feature.command';
+import { YangComponentCommand } from '@app/commands/yang-component.command';
+import { YangDirectiveCommand } from '@app/commands/yang-directive.command';
+import { YangPipeCommand } from '@app/commands/yang-pipe.command';
+import { YangServiceCommand } from '@app/commands/yang-service.command';
+import { YangPluginCommand } from '@app/commands/yang-plugin.command';
 
 export class Main
 {
-    static PKG = require('../../package.json');
-
     public static main()
     {
         console.log(`< ${chalk.blue('YANG')} ${chalk.yellow(Main.version)} >`);
@@ -59,7 +57,7 @@ export class Main
     }
 
     static get version(): string {
-        return Main.PKG.version;
+        return YangUtils.PKG.version;
     }
 }
 
