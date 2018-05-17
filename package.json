@@ -30,7 +30,6 @@
   "dependencies": {
     "@angular-devkit/core": "^0.6.3",
     "chalk": "^2.4.1",
-    "command-exists": "^1.2.6",
     "cross-spawn": "^6.0.5",
     "inquirer": "^5.2.0",
     "lodash": "^4.17.10",

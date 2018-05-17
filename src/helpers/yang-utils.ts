@@ -6,8 +6,6 @@ import * as core from '@angular-devkit/core/node';
 import * as inquirer from 'inquirer';
 import chalk from 'chalk';
 
-const commandExists = require('command-exists').sync;
-
 export class YangUtils
 {
     static PKG = require('../../package.json');
@@ -33,10 +31,6 @@ export class YangUtils
 
     static spawnCommandSync(command: string, args: string[], opt?: any): any {
         return spawn.sync(command, args, _.defaults(opt, {stdio: 'inherit'}));
-    }
-
-    static commandExists(command: string): boolean {
-        return commandExists(command);
     }
 
 
