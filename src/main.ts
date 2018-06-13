@@ -21,27 +21,27 @@ export class Main
                 (args) => YangUtils.runCommand(new YangNewCommand(), args)
             )
 
-            .command('component <name>', 'Create a new component',
+            .command(['component <name>', 'c'], 'Create a new component',
                 YangComponentCommand.yargs,
                 (args) => YangUtils.runCommand(new YangComponentCommand(), args)
             )
 
-            .command('directive <name>', 'Create a new directive',
+            .command(['directive <name>', 'd'], 'Create a new directive',
                 YangDirectiveCommand.yargs,
                 (args) => YangUtils.runCommand(new YangDirectiveCommand(), args)
             )
 
-            .command('feature <name>', 'Create a new feature',
+            .command(['feature <name>', 'f'], 'Create a new feature',
                 YangFeatureCommand.yargs,
                 (args) => YangUtils.runCommand(new YangFeatureCommand(), args)
             )
 
-            .command('pipe <name>', 'Create a new pipe',
+            .command(['pipe <name>', 'p'], 'Create a new pipe',
                 YangPipeCommand.yargs,
                 (args) => YangUtils.runCommand(new YangPipeCommand(), args)
             )
 
-            .command('service <name>', 'Create a new service',
+            .command(['service <name>', 's'], 'Create a new service',
                 YangServiceCommand.yargs,
                 (args) => YangUtils.runCommand(new YangServiceCommand(), args)
             )
