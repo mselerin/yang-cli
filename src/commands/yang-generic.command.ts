@@ -3,7 +3,7 @@ import { YangUtils } from '../helpers/yang-utils';
 import chalk from 'chalk';
 import { Argv } from 'yargs';
 
-export class YangPluginCommand extends YangCommand
+export class YangGenericCommand extends YangCommand
 {
   static yargs(yargs: Argv): Argv {
     return super.yargs(yargs)
