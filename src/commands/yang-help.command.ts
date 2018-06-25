@@ -28,5 +28,8 @@ export class YangHelpCommand extends YangCommand
       console.log(chalk.yellow('To see help for a schematic run:'));
       console.log(chalk.blue('  yang <schematic> --help'));
     }
+    else {
+      console.log(chalk.bgRed('Cannot find yang-schematics !'));
+    }
   }
 }
