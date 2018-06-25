@@ -3,11 +3,11 @@ import { YangUtils } from '../helpers/yang-utils';
 
 export abstract class YangCommand
 {
-    static yargs(yargs: Argv): Argv {
-        return yargs;
-    }
+  static yargs(yargs: Argv): Argv {
+    return yargs;
+  }
 
-    abstract async run(options: any): Promise<void>;
+  abstract async run(options: any): Promise<void>;
 }
 
 
