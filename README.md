@@ -73,6 +73,12 @@ Generates a stub directive under app/shared/directives.
 ***
 
 
+### Module
+`yang module my-modularized-module`
+Generates a stub module.
+***
+
+
 ### Service
 `yang service my-cool-service`
 Generates a stub service under app/services.
