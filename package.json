@@ -31,7 +31,7 @@
     "@angular-devkit/core": "^0.6.8",
     "chalk": "^2.4.1",
     "cross-spawn": "^6.0.5",
-    "inquirer": "^5.2.0",
+    "inquirer": "^6.0.0",
     "lodash": "^4.17.10",
     "yargs": "^11.0.0"
   },
@@ -40,17 +40,17 @@
     "@types/inquirer": "0.0.42",
     "@types/mocha": "^5.2.3",
     "@types/node": "^10.3.5",
-    "@types/sinon": "^4.3.3",
+    "@types/sinon": "^5.0.1",
     "@types/yargs": "^11.0.0",
     "chai": "^4.0.1",
     "chai-fs": "^2.0.0",
     "fs-extra": "^6.0.1",
     "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
-    "sinon": "^5.0.7",
+    "sinon": "^6.0.1",
     "standard-version": "^4.4.0",
     "ts-mocha": "^1.2.0",
-    "ts-node": "^6.0.3",
+    "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   }
 }
