@@ -60,27 +60,32 @@ export class YangUtils
   }
 
 
-  static packageInstalled(name: string, basedir = process.cwd()): boolean
+  static packageInstalled(name: string, basedir = process.cwd()): boolean {
+    return (!!YangUtils.getPackagePath(name, basedir));
+  }
+
+
+  static getPackagePath(name: string, basedir = process.cwd()): string
   {
     try {
       const paths = [
         YangUtils.GLOBAL_NODE_MODULES
       ];
 
-      core.resolve(name, {
+      return core.resolve(name, {
         basedir,
         paths: paths,
         checkLocal: true,
         checkGlobal: true,
         resolvePackageJson: true
       });
-
-      return true;
     }
     catch (e) {
-      return false;
+      return null;
     }
   }
+
+
 
   static async askForPackageInstallation(name: string): Promise<any> {
     const questions = [
