@@ -2,8 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="3.2.0"></a>
-# [3.2.0](https://github.com/mselerin/yang-cli/compare/v3.1.0...v3.2.0) (2018-06-25)
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/mselerin/yang-cli/compare/v3.1.0...v4.0.0) (2018-06-25)
 
 
 ### Bug Fixes
@@ -15,8 +15,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 * command aliases ([2c9da2d](https://github.com/mselerin/yang-cli/commit/2c9da2d))
 * simplified call of schematics (just pass the arguments to ng-cli) ([824f372](https://github.com/mselerin/yang-cli/commit/824f372))
-* yang help command ([28491b6](https://github.com/mselerin/yang-cli/commit/28491b6))
-* yang help command ([6b523ba](https://github.com/mselerin/yang-cli/commit/6b523ba))
+* yang help command ([28491b6](https://github.com/mselerin/yang-cli/commit/28491b6), [6b523ba](https://github.com/mselerin/yang-cli/commit/6b523ba))
+
+
+### BREAKING CHANGES
+
+* Simplified commands
 
 
 
