@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/mselerin/yang-cli/compare/v4.0.0...v5.0.0) (2018-06-26)
+
+
+### Features
+
+* removed the YangSimpleGenerateCommand -> need yang-schematics@2.x ([26f242c](https://github.com/mselerin/yang-cli/commit/26f242c))
+
+
+### BREAKING CHANGES
+
+* YangSimpleGenerateCommand removed
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/mselerin/yang-cli/compare/v3.1.0...v4.0.0) (2018-06-25)
 
