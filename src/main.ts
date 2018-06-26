@@ -3,7 +3,6 @@ import chalk from 'chalk';
 import { YangUtils } from './helpers/yang-utils';
 import { YangNewCommand } from './commands/yang-new.command';
 import { YangGenericCommand } from './commands/yang-generic.command';
-import { YangSimpleGenerateCommand } from './commands/yang.command';
 import { YangHelpCommand } from './commands/yang-help.command';
 
 export class Main
@@ -13,19 +12,14 @@ export class Main
     console.log(`< ${chalk.blue('YANG')} ${chalk.yellow(Main.version)} >`);
 
     Yargs
-      .command(['new [name]'], 'Scaffold a new application',
-        YangNewCommand.yargs,
-        (args) => YangUtils.runCommand(new YangNewCommand(), args)
-      )
-
-      .command(['component [name]', 'c'], 'Create a new component',
-        YangSimpleGenerateCommand.yargs,
-        (args) => YangUtils.runCommand(new YangSimpleGenerateCommand('component'), args)
-      )
-
       .command(['help'], 'Get help',
         YangHelpCommand.yargs,
         (args) => YangUtils.runCommand(new YangHelpCommand(), args)
+      )
+
+      .command(['new [name]'], 'Scaffold a new application',
+        YangNewCommand.yargs,
+        (args) => YangUtils.runCommand(new YangNewCommand(), args)
       )
 
       .command('$0 <schematic>', 'Run another yang-schematics',
