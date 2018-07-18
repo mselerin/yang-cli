@@ -12,13 +12,21 @@ Install Yang-Cli using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` o
 
 
 ## Usage
-Yang-Cli is just a wrapper around [yang-schematics](https://github.com/mselerin/yang-schematics).  
+Yang-Cli is just a wrapper around @angular/cli and [yang-schematics](https://github.com/mselerin/yang-schematics).  
 It's main purpose is to avoid commands like `ng g yang-schematics:xxx` and write those as `yang xxx`  
 
+Every cli parameters are passed 'as-is' to @angular/cli.
+
+The first parameter is the Yang schematic short-name (ex: 'component' for 'yang-schematic:component'). 
+If this name contains a slash ('/'), the cli assume you want to call a yang-schematic extension.
+For example the command `yang @corp/stuff` is a shortcut for `ng g @corp/yang-schematic:stuff`.
 
 
+## Available schematics
+Just read the [yang-schematics](https://github.com/mselerin/yang-schematics) docs ;-)
 
-## Commands
+
+## Special Commands
 ### New
 `yang new my-awesome-project`
 Scaffold a brand new application.
@@ -37,63 +45,10 @@ That's all !
 ***
 
 
-### Feature
-`yang feature my-super-feature`
-Generates a complete feature under app/features.
+### Help
+`yang help`
+Print all available schematics.
 
-##### Options
-* `--with-component` : Add a new 'my-super-feature' component. Options from the 'component' generator are available.
-***
-
-
-### Component
-`yang component my-nice-component`
-Generates a stub component under the current directory.
-
-`yang component shared/my-shared-component` 
-Generates a stub component under `app/shared/components`.
-
-`yang component my-super-feature/my-feature-component`
-Generates a stub component under `app/features/my-super-feature/my-feature-component`.
-
-
-
-##### Options
-* `--styles` : Add a `name.component.scss`
-* `--template` : Add a `name.component.html`
-* `--flat` : Does not create a sub-folder for the component
-***
-
-
-### Directive
-`yang directive my-small-directive`
-Generates a stub directive under app/shared/directives.
-***
-
-
-### Module
-`yang module my-modularized-module`
-Generates a stub module.
-***
-
-
-### Service
-`yang service my-cool-service`
-Generates a stub service under app/services.
-***
-
-
-### Plugin
-`yang plugin fantastic`
-Call an external plugin installed globally.
-***
-
-
-## Global options
-```
---force : Always overwrite files (never ask)
---help : Show help (no way !)
-```
 
 ## License
 MIT © [Michel Selerin]()
