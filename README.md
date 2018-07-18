@@ -49,6 +49,8 @@ That's all !
 `yang help`
 Print all available schematics.
 
+***
+
 
 ## License
 MIT © [Michel Selerin]()
