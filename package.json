@@ -28,7 +28,7 @@
     "src"
   ],
   "dependencies": {
-    "@angular-devkit/core": "^0.7.5",
+    "@angular-devkit/core": "^0.8.1",
     "chalk": "^2.4.1",
     "cross-spawn": "^6.0.5",
     "inquirer": "^6.2.0",
