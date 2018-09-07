@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.1.2"></a>
+## [5.1.2](https://github.com/mselerin/yang-cli/compare/v5.1.1...v5.1.2) (2018-09-07)
+
+
+### Bug Fixes
+
+* unit test ([b3e05cd](https://github.com/mselerin/yang-cli/commit/b3e05cd))
+
+
+
 <a name="5.1.1"></a>
 ## [5.1.1](https://github.com/mselerin/yang-cli/compare/v5.1.0...v5.1.1) (2018-09-07)
 
