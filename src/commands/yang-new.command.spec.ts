@@ -12,12 +12,14 @@ const TMP_DIR = path.join(os.tmpdir(), 'test-yang-cli');
 const TIMEOUT = 10000;
 
 
-function testApp(props: any) {
-  props['quiet'] = true;
-  props['skip-git'] = true;
-
-  let name = props['name'];
+function testNew(args: any[]) {
+  let name = args[0];
   const ROOT_DIR = path.join(TMP_DIR, name);
+
+  let props = {
+    'quiet': true,
+    'name': name
+  };
 
   before(async () => {
     if (fs.existsSync(ROOT_DIR))
@@ -27,6 +29,8 @@ function testApp(props: any) {
       fs.ensureDirSync(TMP_DIR);
 
     process.chdir(TMP_DIR);
+
+    process.argv = ['_', 'ng', 'new', ...args, '--skip-git'];
     await YangUtils.runCommand(new YangNewCommand(), props);
   });
 
@@ -58,8 +62,5 @@ function testApp(props: any) {
 
 describe('yang new', function () {
   this.timeout(TIMEOUT);
-
-  testApp({
-    'name': 'test-new-app'
-  });
+  testNew(['test-new-app']);
 });
