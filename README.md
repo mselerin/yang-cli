@@ -8,7 +8,7 @@
 ## Installation
 > _(You have pre-installed [node.js](https://nodejs.org/), right ?)_
 
-Install Yang-Cli using [yarn](https://yarnpkg.com/) `yarn global add yang-cli` or using [npm](https://www.npmjs.com/) `npm install -g yang-cli`.
+Install Yang-Cli using [npm](https://www.npmjs.com/) `npm install -g yang-cli`.
 
 
 ## Usage
@@ -35,8 +35,8 @@ This will create a new folder `my-awesome-project` containing a fresh Angular ap
 Just go inside this folder, install dependencies and run the project :
 ```bash
 cd my-awesome-project
-yarn
-yarn start
+npm install
+npm run start
 ```
 
 Browse to http://localhost:4200.  
