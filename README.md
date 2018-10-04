@@ -53,7 +53,7 @@ Print all available schematics.
 
 
 ## License
-MIT © [Michel Selerin]()
+MIT
 
 
 [npm-image]: https://badge.fury.io/js/yang-cli.svg
