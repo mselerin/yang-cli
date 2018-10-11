@@ -6,13 +6,11 @@
 > Yet Another Angular Generator
 
 ## Installation
-> _(You have pre-installed [node.js](https://nodejs.org/), right ?)_
-
 Install Yang-Cli using [npm](https://www.npmjs.com/) `npm install -g yang-cli`.
 
 
 ## Usage
-Yang-Cli is just a wrapper around @angular/cli and [yang-schematics](https://github.com/mselerin/yang-schematics).  
+Yang-Cli is just a wrapper around [@angular/cli](https://cli.angular.io) and [yang-schematics](https://github.com/mselerin/yang-schematics).  
 It's main purpose is to avoid commands like `ng g yang-schematics:xxx` and write those as `yang xxx`  
 
 Every cli parameters are passed 'as-is' to @angular/cli.
