@@ -1,3 +1,5 @@
+## DEPRECATED - Please use [Yang-Schematics](https://github.com/mselerin/yang-schematics) directly.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/yang-cli.svg)](https://www.npmjs.com/package/yang-cli)
 [![Build Status](https://travis-ci.org/mselerin/yang-cli.svg?branch=master)](https://travis-ci.org/mselerin/yang-cli)
